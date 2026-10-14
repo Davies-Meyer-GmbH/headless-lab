@@ -1,0 +1,48 @@
+uuid: 7d054666-7cdf-4030-9560-a25f92cbce3c
+langcode: en
+status: true
+dependencies: {  }
+machineName: button
+name: Button
+type: external
+required:
+  - text
+props:
+  variant:
+    type: string
+    enum:
+      - solid
+      - outline_dark
+      - outline_light
+      - ghost_neutral
+      - ghost_light
+      - link
+      - link_underline
+      - link_dark
+      - link_light
+      - nav_link_dark
+    'meta:enum':
+      solid: Solid
+      outline_dark: 'Outline Dark'
+      outline_light: 'Outline Light'
+      ghost_neutral: 'Ghost Neutral'
+      ghost_light: 'Ghost Light'
+      link: Link
+      link_underline: 'Link Underline'
+      link_dark: 'Link Dark'
+      link_light: 'Link Light'
+      nav_link_dark: 'Nav Link Dark'
+    title: Variant
+    examples:
+      - solid
+  text:
+    type: string
+    title: Text
+    examples:
+      - Button
+  link:
+    type: string
+    format: uri-reference
+    title: Link
+slots: {  }
+dataDependencies: {  }

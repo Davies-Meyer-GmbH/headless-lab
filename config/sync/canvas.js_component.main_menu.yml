@@ -1,0 +1,11 @@
+uuid: 1deac28f-43c3-4996-ab6f-44e1abe597ba
+langcode: en
+status: true
+dependencies: {  }
+machineName: main_menu
+name: 'Main menu'
+type: external
+required: {  }
+props: {  }
+slots: {  }
+dataDependencies: {  }

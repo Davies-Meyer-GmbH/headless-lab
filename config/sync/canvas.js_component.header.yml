@@ -1,0 +1,15 @@
+uuid: ae2eefbd-cf0f-4b2b-9a99-52a929adb7f2
+langcode: en
+status: true
+dependencies: {  }
+machineName: header
+name: Header
+type: external
+required: {  }
+props: {  }
+slots:
+  logo:
+    title: Logo
+  menu:
+    title: Menu
+dataDependencies: {  }

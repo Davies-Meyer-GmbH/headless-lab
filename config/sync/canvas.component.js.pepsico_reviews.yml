@@ -1,0 +1,30 @@
+uuid: 8704de5b-1a78-4188-9f54-37fdf4f77d71
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.pepsico_reviews
+active_version: acae10944339e4bc
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        heading:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'DAS SAGEN UNSERE KUNDEN'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'PepsiCo Reviews'
+id: js.pepsico_reviews
+provider: null
+source: js
+source_local_id: pepsico_reviews

@@ -1,0 +1,41 @@
+name: PepsiCo Hero
+machineName: pepsico_hero
+status: true
+required: []
+props:
+  properties:
+    headingLight:
+      title: Heading light
+      type: string
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - <p>PEPSICO</p>
+    headingDark:
+      title: Heading dark
+      type: string
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - <p>FÜR IHRE</p><p>GASTRONOMIE</p>
+    text:
+      title: Text
+      type: string
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - >-
+          <p>PepsiCo überzeugt mit starken Marken und attraktiver
+          Produktvielfalt, die weltweit begeistern. Unser Sortiment an
+          Erfrischungsgetränken, individueller Kundenbetreuung und
+          Professionalität machen PepsiCo zu Ihrem zuverlässigen Partner im
+          Außer-Haus-Markt.</p>
+slots:
+  left:
+    title: Left
+  right:
+    title: Right
+  wide:
+    title: Wide
+  actions:
+    title: Buttons

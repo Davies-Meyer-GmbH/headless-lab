@@ -1,0 +1,17 @@
+uuid: eaaad32c-2c55-46f0-98bf-0f7fcee8a80e
+langcode: en
+status: true
+dependencies: {  }
+machineName: footer
+name: Footer
+type: external
+required: {  }
+props: {  }
+slots:
+  menu:
+    title: Menu
+  logo:
+    title: Logo
+  copyright:
+    title: Copyright
+dataDependencies: {  }

@@ -1,0 +1,30 @@
+name: PepsiCo Header
+machineName: pepsico_header
+status: true
+required: []
+props:
+  properties:
+    taglinePrimary:
+      title: Tagline line 1
+      type: string
+      examples:
+        - GASTRONOMIE &
+    taglineSecondary:
+      title: Tagline line 2
+      type: string
+      examples:
+        - AWAY FROM HOME
+    ctaText:
+      title: Button text
+      type: string
+      examples:
+        - Jetzt wechseln
+    ctaUrl:
+      title: Button URL
+      type: string
+      format: uri-reference
+      examples:
+        - /
+slots:
+  logo:
+    title: Logo

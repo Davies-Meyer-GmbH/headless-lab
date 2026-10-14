@@ -1,0 +1,36 @@
+uuid: 1bfc6e13-04ed-4827-ae46-726005690bb2
+langcode: en
+status: true
+dependencies: {  }
+machineName: blockquote
+name: Blockquote
+type: external
+required:
+  - textColor
+props:
+  text:
+    type: string
+    contentMediaType: text/html
+    x-formatting-context: block
+    title: Text
+    examples:
+      - 'Insert a quote...'
+  textColor:
+    type: string
+    enum:
+      - dark
+      - light
+    'meta:enum':
+      dark: Dark
+      light: Light
+    title: 'Text Color'
+    examples:
+      - dark
+  name:
+    type: string
+    title: Name
+  title:
+    type: string
+    title: Title
+slots: {  }
+dataDependencies: {  }

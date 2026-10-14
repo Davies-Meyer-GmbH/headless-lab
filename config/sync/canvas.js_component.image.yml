@@ -1,0 +1,22 @@
+uuid: 02d2430e-ba41-4f71-8f48-2dc5d8ad066c
+langcode: en
+status: true
+dependencies: {  }
+machineName: image
+name: Image
+type: external
+required:
+  - image
+props:
+  image:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/image'
+    title: Image
+    examples:
+      -
+        src: 'https://placehold.co/800x600@2x.png?alternateWidths=https%3A%2F%2Fplacehold.co%2F%7Bwidth%7Dx%7Bheight%7D%402x.png'
+        alt: 'Example image placeholder'
+        width: 800
+        height: 600
+slots: {  }
+dataDependencies: {  }

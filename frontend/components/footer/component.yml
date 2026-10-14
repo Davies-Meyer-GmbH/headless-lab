@@ -1,0 +1,13 @@
+name: Footer
+machineName: footer
+status: true
+required: []
+props:
+  properties: {}
+slots:
+  menu:
+    title: Menu
+  logo:
+    title: Logo
+  copyright:
+    title: Copyright

@@ -1,0 +1,7 @@
+name: Main menu
+machineName: main_menu
+status: true
+required: []
+props:
+  properties: {}
+slots: {}

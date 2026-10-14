@@ -1,0 +1,38 @@
+uuid: 11ced47f-516c-41da-ab4c-a10c23bc4cd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.video
+    - field.field.media.video.field_media_video_file
+    - media.type.video
+  module:
+    - file
+    - media
+    - media_library
+active_version: a7e5b4e15a339906
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        video:
+          required: true
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: media
+          field_instance_settings:
+            handler: 'default:media'
+            handler_settings:
+              target_bundles:
+                video: video
+          field_widget: media_library_widget
+          default_value: {  }
+          expression: 'ℹ︎entity_reference␟entity␜␜entity:media:video␝field_media_video_file␞␟{src↝entity␜␜entity:file␝uri␞␟url}'
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: Video
+id: js.video
+provider: null
+source: js
+source_local_id: video

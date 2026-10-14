@@ -1,0 +1,53 @@
+uuid: 0fbf6e63-963f-4699-a9e7-6456d595a6f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.js.accordion
+    - canvas.component.js.accordion-item
+    - canvas.component.js.blockquote
+    - canvas.component.js.button
+    - canvas.component.js.card
+    - canvas.component.js.card_container
+    - canvas.component.js.footer
+    - canvas.component.js.grid_container
+    - canvas.component.js.header
+    - canvas.component.js.heading
+    - canvas.component.js.hero
+    - canvas.component.js.image
+    - canvas.component.js.logo_card
+    - canvas.component.js.main_menu
+    - canvas.component.js.section
+    - canvas.component.js.spacer
+    - canvas.component.js.text
+    - canvas.component.js.two_column_text
+    - canvas.component.js.video
+    - canvas.component.marker.page_content
+    - canvas.component.sdc.navigation.message
+    - canvas.component.sdc.navigation.title
+name: Other
+configEntityTypeId: component
+weight: 0
+items:
+  - js.accordion
+  - js.accordion-item
+  - js.blockquote
+  - js.button
+  - js.card
+  - js.card_container
+  - js.footer
+  - js.grid_container
+  - js.header
+  - js.heading
+  - js.hero
+  - js.image
+  - js.logo_card
+  - js.main_menu
+  - js.section
+  - js.spacer
+  - js.text
+  - js.two_column_text
+  - js.video
+  - marker.page_content
+  - sdc.navigation.message
+  - sdc.navigation.title

@@ -1,0 +1,19 @@
+uuid: 10140667-697f-4c2a-ad81-525066e821d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.js.pepsico_button
+    - canvas.component.js.pepsico_header
+    - canvas.component.js.pepsico_hero
+    - canvas.component.js.pepsico_image
+    - canvas.component.js.pepsico_reviews
+name: PepsiCo
+configEntityTypeId: component
+weight: -10
+items:
+  - js.pepsico_button
+  - js.pepsico_header
+  - js.pepsico_hero
+  - js.pepsico_image
+  - js.pepsico_reviews

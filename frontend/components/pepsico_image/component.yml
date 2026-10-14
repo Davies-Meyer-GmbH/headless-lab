@@ -1,0 +1,63 @@
+name: PepsiCo Image
+machineName: pepsico_image
+status: true
+required:
+  - image
+props:
+  properties:
+    image:
+      title: Image
+      type: object
+      examples:
+        - src: >-
+            https://placehold.co/160x40.png?alternateWidths=https%3A%2F%2Fplacehold.co%2F%7Bwidth%7Dx%7Bheight%7D.png
+          alt: PepsiCo logo
+          width: 160
+          height: 40
+      $ref: json-schema-definitions://canvas.module/image
+    size:
+      title: Size
+      type: string
+      examples:
+        - logo
+      enum:
+        - logo
+        - small
+        - medium
+        - large
+        - full
+      meta:enum:
+        logo: Logo
+        small: Small
+        medium: Medium
+        large: Large
+        full: Full width
+    fit:
+      title: Fit
+      type: string
+      examples:
+        - contain
+      enum:
+        - contain
+        - cover
+      meta:enum:
+        contain: Contain
+        cover: Cover
+    align:
+      title: Align
+      type: string
+      examples:
+        - start
+      enum:
+        - start
+        - center
+        - end
+      meta:enum:
+        start: Left
+        center: Center
+        end: Right
+    link:
+      title: Link
+      type: string
+      format: uri-reference
+slots: {}

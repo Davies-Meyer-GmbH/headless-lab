@@ -1,0 +1,27 @@
+# Composer dependencies
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
+
+# Local Drupal settings and uploaded files
+/web/sites/*/settings.local.php
+/web/sites/*/files/
+
+# OAuth keys and the local TLS certificate
+/keys/*.key
+/certs/
+
+# IDE
+/.idea/
+
+# Local key directory configuration
+/keys/.htaccess
+
+# Frontend dependencies and local environment
+/frontend/node_modules/
+/frontend/.env
+/frontend/.env.*
+!/frontend/.env.example

@@ -1,0 +1,31 @@
+_core:
+  default_config_hash: FNSFqBlCXLC2Gewt2S3kEqKQy69i0YKkhhmPndKgo0M
+frontends:
+  -
+    url: 'http://localhost:3000'
+    components:
+      - js.accordion-item
+      - js.accordion
+      - js.blockquote
+      - js.button
+      - js.card_container
+      - js.card
+      - js.footer
+      - js.grid_container
+      - js.header
+      - js.heading
+      - js.hero
+      - js.image
+      - js.logo_card
+      - js.main_menu
+      - js.pepsico_button
+      - js.pepsico_header
+      - js.pepsico_hero
+      - js.pepsico_image
+      - js.pepsico_reviews
+      - js.section
+      - js.spacer
+      - js.text
+      - js.two_column_text
+      - js.video
+assertion_expiration: 60

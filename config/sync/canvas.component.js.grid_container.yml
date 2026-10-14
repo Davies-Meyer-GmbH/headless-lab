@@ -1,0 +1,46 @@
+uuid: 4ee9c2fd-5c58-4d0e-a422-e6a9629bb4f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.grid_container
+  module:
+    - options
+active_version: bcf7874f44734a6e
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        layout:
+          required: true
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: 33-33-33
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+        gap:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: medium
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions:
+        content:
+          title: Content
+label: 'Grid container'
+id: js.grid_container
+provider: null
+source: js
+source_local_id: grid_container

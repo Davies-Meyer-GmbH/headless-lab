@@ -1,0 +1,12 @@
+name: PepsiCo Reviews
+machineName: pepsico_reviews
+status: true
+required: []
+props:
+  properties:
+    heading:
+      title: Heading
+      type: string
+      examples:
+        - DAS SAGEN UNSERE KUNDEN
+slots: {}
