@@ -49,11 +49,14 @@ export default async function CatchAllPage({ params }: CatchAllPageProps) {
   }
 
   const language = page.context?.page?.mainEntity?.requestedLanguage ?? '';
+  // A5: fetch shared data only when the component tree needs it. The tree is
+  // already in memory, so this costs a JSON.stringify, not an API call.
+  const treeJson = JSON.stringify(page.content);
   const [menu, footerMenu, products, inspirationProducts] = await Promise.all([
-    getMenu('main', language),
-    getMenu('footer', language),
-    getOrderedProducts(),
-    getOrderedProducts('inspiration'),
+    treeJson.includes('js-alpina-header') ? getMenu('main', language) : [],
+    treeJson.includes('js-alpina-footer') ? getMenu('footer', language) : [],
+    treeJson.includes('js-alpina-product-slider') ? getOrderedProducts() : [],
+    treeJson.includes('js-alpina-inspo-grid') ? getOrderedProducts('inspiration') : [],
   ]);
 
   return (

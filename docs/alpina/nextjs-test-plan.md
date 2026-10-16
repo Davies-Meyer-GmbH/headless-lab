@@ -60,7 +60,9 @@ Check: does an async server component render through `CanvasComponentTree`? Does
 
 ### A5. Data fetching per component
 
-Status: todo
+Status: pass
+
+Result (16 Oct): `page.tsx` now inspects the tree (`JSON.stringify(page.content)`, free — no extra API call) and fetches only what is present: main menu only with `js-alpina-header`, footer menu only with `js-alpina-footer`, slider products only with `js-alpina-product-slider`, inspiration products only with `js-alpina-inspo-grid`. Verified `/alpina` (fetches all four) and `/a4-async` (menus only, product calls skipped) plus `/alpina-video-test` all render 200. Notes: the frontend `no-store` fetches are untouched — this removes whole calls, not caching. Provider consumers today are only `alpina_product_slider` and `alpina_inspo_grid`; `alpina_product_teaser` receives its product through tree props and needs no provider. Cost of a new data-backed component: measured in A4 — roughly 15 lines of inline fetch when it can't reuse a `server-only` lib (see A4 limitation).
 
 Steps: add a component that needs its own data (for example "latest 3 products"), using the existing approach in `lib/product-list.ts` and an `AlpinaXProvider`.
 

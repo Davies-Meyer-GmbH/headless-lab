@@ -56,3 +56,9 @@ Pushed the earlier commits to origin/main first, then ran A4.
 - A4 page/status recorded in `nextjs-test-plan.md`.
 
 Conclusion: async server components are viable on the public site if they self-fetch without `server-only` imports. `lib/product-list.ts`'s `server-only` marker is the binding constraint.
+
+## Test plan: A5 done (conditional data fetching)
+
+- `page.tsx` now checks the fetched tree for component element names and fetches menus/products conditionally. Zero extra API calls (string search over the in-memory tree).
+- Verified: `/alpina` full render, `/a4-async` menus-only (product JSON:API calls skipped), `/alpina-video-test` unaffected.
+- Recorded in `nextjs-test-plan.md` as pass.
