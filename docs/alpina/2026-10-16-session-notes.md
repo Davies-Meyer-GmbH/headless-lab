@@ -21,3 +21,13 @@ Findings:
 ## Next.js test plan
 
 Dejan asked for a plan covering the suggested tests, and clarified that the focus should be on trying how Next.js itself works in this setup. Created `docs/alpina/nextjs-test-plan.md`: Part A has 15 Next.js tests (routes next to the catch-all, route-group layouts, server vs client components, per-component data, caching/revalidation, draft mode, error states, SEO, redirects, images, hydration, styling, workbench, production hosting). Part B keeps the Drupal/Canvas items as a short table. Each test has a status field. Observed while planning: only `alpina_store_logo` lacks `'use client'`; menus and products are fetched in `page.tsx` on every route, even where unused. No tests run yet.
+
+## Committed all work so far
+
+Dejan asked to commit everything before starting the test plan. Split into three commits instead of one, because the changes covered distinct areas (369 files total):
+
+- `ee04fc1` feat(alpina): Drupal side — Canvas config, alpina_cms module, Product type, import scripts, discovery tooling (203 files)
+- `6712b1a` feat(frontend): Alpina frontend components, styles, fonts, assets, context providers (164 files)
+- `ccb3cae` docs: session notes, topic docs, nextjs-test-plan, README rewrite, AGENTS/CLAUDE
+
+Also added `/discovery/out/` (15M generated screenshots/reports) and `/.compare/` (comparison screenshots) to `.gitignore` rather than committing generated output. Checked scripts for credentials before committing — none found. Nothing pushed yet.
