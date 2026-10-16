@@ -12,7 +12,9 @@ Background: Next.js has one root layout (`frontend/app/layout.tsx`) and one catc
 
 ### A1. A normal Next.js route next to the catch-all
 
-Status: todo
+Status: pass
+
+Result (16 Oct): `app/(app)/test-route/page.tsx` returns 200 and wins over the catch-all, confirmed by creating Canvas page 18 with the same `/test-route` alias — its content is not rendered. No Alpina header/footer on the Next.js page (correct: chrome comes from the Drupal page variant). The Drupal side keeps serving the Canvas page through the content API, so the conflict is **silent**: the Canvas page is simply unreachable from the frontend, and the editor preview (which iframes the public URL) would show the Next.js page instead. A project mixing the two must keep paths disjoint; test script kept at `scripts/test-a1-route-conflict.php`.
 
 Steps:
 1. Create `app/test-route/page.tsx` that renders static text.
@@ -23,7 +25,9 @@ Check: which one wins (Next.js gives specific routes priority over the catch-all
 
 ### A2. A Next.js layout around Canvas content
 
-Status: todo
+Status: limited
+
+Result (16 Oct): moved the catch-all to `app/(canvas)/[[...slug]]/page.tsx` with `app/(canvas)/layout.tsx`, and added `app/(app)/` with `test-route` and its own layout. Both groups render correctly; `/alpina` still returns the full Alpina tree and the `frame-ancestors` CSP header is unchanged. Note: moving the catch-all one level deeper breaks its relative `../..` imports — they need an extra segment. **Editor preview not yet verified** (needs Drupal admin login): the A2 banner should appear in the editor iframe since it is part of the public page, but this needs eyes. Route groups work, so chrome *could* live in Next.js layouts — but the header/footer props still live in Drupal (see A3).
 
 Steps:
 1. Move the catch-all into a route group, for example `app/(canvas)/[[...slug]]/page.tsx`, and add `app/(canvas)/layout.tsx` with a visible wrapper.
@@ -33,7 +37,9 @@ Check: does the Canvas editor preview still work? Does the layout show in the ed
 
 ### A3. Header and footer reused on Next.js-only pages
 
-Status: todo
+Status: limited
+
+Result (16 Oct): works via a workaround. Added `lib/alpina-chrome.ts`, which fetches `/canvas/content-api?requestUri=/` (source path configurable via `ALPINA_CHROME_SOURCE_PATH`), walks the tree and extracts `js-alpina-header` / `js-alpina-footer` props. `app/(app)/shell-demo/page.tsx` renders the real `AlpinaHeader`/`AlpinaFooter` with those props plus menus from `getMenu()`: verified 200 with the Drupal-hosted logo, labels, 4 footer links and social icons. The components run fine outside `CanvasComponentTree` because the root layout's `CanvasRuntime` provides their contexts on every route. Cost: one extra content-API call per request (no-store), and the props are a snapshot of one source page's variant — if the variant is edited, the source path must still render header/footer. This is the price of mixing route types; a first-class "site chrome" API from Drupal would remove it.
 
 Steps: on the A1 page, render `alpina_header` and `alpina_footer` directly as React components, with menus from `lib/main-menu.ts`.
 

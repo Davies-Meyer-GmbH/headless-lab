@@ -7,11 +7,11 @@ import {
 import type { Metadata } from 'next';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import { cache } from 'react';
-import { getMenu } from '../../lib/main-menu';
-import { AlpinaFooterMenuProvider, AlpinaNavigationProvider } from '../../lib/alpina-navigation';
-import { getOrderedProducts } from '../../lib/product-list';
-import { AlpinaInspirationProvider } from '../../lib/alpina-inspiration';
-import { AlpinaProductsProvider } from '../../lib/alpina-products';
+import { getMenu } from '../../../lib/main-menu';
+import { AlpinaFooterMenuProvider, AlpinaNavigationProvider } from '../../../lib/alpina-navigation';
+import { getOrderedProducts } from '../../../lib/product-list';
+import { AlpinaInspirationProvider } from '../../../lib/alpina-inspiration';
+import { AlpinaProductsProvider } from '../../../lib/alpina-products';
 
 export const dynamic = 'force-dynamic';
 

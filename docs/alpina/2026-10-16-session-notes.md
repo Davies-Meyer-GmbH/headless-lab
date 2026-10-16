@@ -31,3 +31,15 @@ Dejan asked to commit everything before starting the test plan. Split into three
 - `ccb3cae` docs: session notes, topic docs, nextjs-test-plan, README rewrite, AGENTS/CLAUDE
 
 Also added `/discovery/out/` (15M generated screenshots/reports) and `/.compare/` (comparison screenshots) to `.gitignore` rather than committing generated output. Checked scripts for credentials before committing — none found. Nothing pushed yet.
+
+## Test plan started: A1–A3 done
+
+Started with A1–A3 (the layout/routing tests). All three recorded in `nextjs-test-plan.md` with results.
+
+- **A1 (pass):** a specific Next.js route beats the catch-all. Created `test-route` and a conflicting Canvas page (ID 18, script `scripts/test-a1-route-conflict.php`). The Next.js page wins; the Canvas page is silently shadowed — still served by the content API, unreachable on the public site, and the editor preview would show the Next.js page. Paths of Canvas pages and Next.js pages must be kept disjoint.
+- **A2 (limited):** moved the catch-all into `app/(canvas)/` with its own layout; added `app/(app)/` for Next.js-only pages. Both groups work; CSP `frame-ancestors` unchanged. Moving the catch-all broke its relative imports (needed an extra `../`). Editor preview not verified yet — needs Drupal admin login in a browser, so Dejan should glance at the A2 banner in the editor iframe.
+- **A3 (limited):** header/footer do work on Next.js-only pages, via a workaround: `lib/alpina-chrome.ts` fetches the content API for a source page and extracts `js-alpina-header`/`js-alpina-footer` props. Verified on `/shell-demo` with the real Drupal logo and footer socials. Extra API call per request; props depend on the source path keeping the variant. Root `CanvasRuntime` provides the component contexts on every route, which is why this works at all.
+
+Conclusion so far: Next.js layouts are viable for separating Canvas and non-Canvas areas, but site chrome stays Drupal-owned, so Next.js-only pages pay an extra fetch (or hard-code props).
+
+Test artifacts committed: `test-route` and `shell-demo` pages, route group layouts, `alpina-chrome.ts`. Canvas page 18 (`A1 route conflict`) left in Drupal for reference.
