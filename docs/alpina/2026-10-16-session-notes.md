@@ -102,3 +102,12 @@ Dejan asked for a page that displays the findings, ideally the real .md content 
 - Verified live: a line appended to the .md appeared on the page immediately; file reverted after the check.
 - Scoped to the repo/lab: in production the file must ship with the deployment (or be fetched from the repo at runtime); the path is fixed rather than configurable — fine for a lab.
 - Badge entry added for /findings; test-index table gained a row for it. Not a Drupal page on purpose: Drupal has no markdown renderer, and the findings are repo artifacts, not editorial content.
+
+## Findings page: first version called ugly, rebuilt as a dashboard
+
+Dejan's verdict on the raw markdown dump: "sooo ugly". Rebuilt as a structured dashboard, still parsing the same `nextjs-test-plan.md` live (no duplication):
+
+- Parses the test index table into rows, Part A sections into bodies, Part B rows into cards; hero with status counts ("2 passed fully / 4 work with limits / 9 not tested yet"), card grid for "Test pages at a glance", collapsible `<details>` per Part A test.
+- Visual direction via the frontend-design skill: "lab report" look — Univers LT Std, Alpina tokens (`--clr-text-error` red as the accent, grey-200/300 rules, text-helper/muted/headline), paper texture, stamped status chips. All styles in `styles/alpina/layout/_findings.scss` (imported after `legal-shell` in `main.scss`).
+- Second pass after snapshot review: cards had literal `**bold**`/backticks (cells rendered as plain text) and card headings were test IDs instead of titles. Fixed: card headings come from the first test-id's Part A section title; test ids render as small red chips; conclusion/check cells go through `marked.parse` + `dangerouslySetInnerHTML` (safe: content is our own repo file). Cells are injected into a `<div>`, not a `<p>` — marked emits its own `<p>` and nested paragraphs are invalid HTML.
+- Verified via browser snapshot: statuses, chips, links and rendered markdown all correct on `/findings`.
