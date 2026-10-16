@@ -1,0 +1,607 @@
+block.language_block.language_interface:
+  id: block.language_block.language_interface
+  name: 'Language switcher'
+  description: 'Language switcher'
+  props:
+    label:
+      name: Description
+      description: Description
+      type: label
+      default: 'Language switcher'
+      required: true
+    label_display:
+      name: 'Display title'
+      description: 'Display title'
+      type: string
+      default: '0'
+      required: true
+      enum: ['0', visible]
+block.system_branding_block:
+  id: block.system_branding_block
+  name: 'Site branding'
+  description: 'Site branding'
+  props:
+    label:
+      name: Description
+      description: Description
+      type: label
+      default: 'Site branding'
+      required: true
+    label_display:
+      name: 'Display title'
+      description: 'Display title'
+      type: string
+      default: '0'
+      required: true
+      enum: ['0', visible]
+    use_site_logo:
+      name: 'Use site logo'
+      description: 'Use site logo'
+      type: boolean
+      default: true
+      required: true
+    use_site_name:
+      name: 'Use site name'
+      description: 'Use site name'
+      type: boolean
+      default: true
+      required: true
+    use_site_slogan:
+      name: 'Use site slogan'
+      description: 'Use site slogan'
+      type: boolean
+      default: true
+      required: true
+block.system_breadcrumb_block:
+  id: block.system_breadcrumb_block
+  name: Breadcrumbs
+  description: Breadcrumbs
+  props:
+    label:
+      name: Description
+      description: Description
+      type: label
+      default: Breadcrumbs
+      required: true
+    label_display:
+      name: 'Display title'
+      description: 'Display title'
+      type: string
+      default: '0'
+      required: true
+      enum: ['0', visible]
+block.system_menu_block.footer:
+  id: block.system_menu_block.footer
+  name: Footer
+  description: Footer
+  props:
+    label:
+      name: Description
+      description: Description
+      type: label
+      default: Footer
+      required: true
+    label_display:
+      name: 'Display title'
+      description: 'Display title'
+      type: string
+      default: '0'
+      required: true
+      enum: ['0', visible]
+    level:
+      name: 'Starting level'
+      description: 'Starting level'
+      type: integer
+      default: 1
+      required: true
+    depth:
+      name: 'Maximum number of levels'
+      description: 'Maximum number of levels'
+      type: integer
+      default: null
+      required: true
+    expand_all_items:
+      name: 'Expand all items'
+      description: 'Expand all items'
+      type: boolean
+      default: false
+      required: true
+    ignore_active_trail:
+      name: 'Ignore active trail'
+      description: 'Ignore active trail'
+      type: boolean
+      default: null
+block.system_menu_block.main:
+  id: block.system_menu_block.main
+  name: 'Main navigation'
+  description: 'Main navigation'
+  props:
+    label:
+      name: Description
+      description: Description
+      type: label
+      default: 'Main navigation'
+      required: true
+    label_display:
+      name: 'Display title'
+      description: 'Display title'
+      type: string
+      default: '0'
+      required: true
+      enum: ['0', visible]
+    level:
+      name: 'Starting level'
+      description: 'Starting level'
+      type: integer
+      default: 1
+      required: true
+    depth:
+      name: 'Maximum number of levels'
+      description: 'Maximum number of levels'
+      type: integer
+      default: null
+      required: true
+    expand_all_items:
+      name: 'Expand all items'
+      description: 'Expand all items'
+      type: boolean
+      default: false
+      required: true
+    ignore_active_trail:
+      name: 'Ignore active trail'
+      description: 'Ignore active trail'
+      type: boolean
+      default: null
+block.system_messages_block:
+  id: block.system_messages_block
+  name: Messages
+  description: Messages
+  props:
+    label:
+      name: Description
+      description: Description
+      type: label
+      default: Messages
+      required: true
+    label_display:
+      name: 'Display title'
+      description: 'Display title'
+      type: string
+      default: '0'
+      required: true
+      enum: ['0', visible]
+block.system_powered_by_block:
+  id: block.system_powered_by_block
+  name: 'Powered by Drupal'
+  description: 'Powered by Drupal'
+  props:
+    label:
+      name: Description
+      description: Description
+      type: label
+      default: 'Powered by Drupal'
+      required: true
+    label_display:
+      name: 'Display title'
+      description: 'Display title'
+      type: string
+      default: '0'
+      required: true
+      enum: ['0', visible]
+js.alpina_footer:
+  id: js.alpina_footer
+  name: 'Alpina Footer'
+  description: 'Alpina Footer'
+  props:
+    pinterestLink:
+      name: pinterestLink
+      description: pinterestLink
+      type: string
+      default: 'https://www.pinterest.com/'
+      format: uri-reference
+      enum: ''
+    instagramLink:
+      name: instagramLink
+      description: instagramLink
+      type: string
+      default: 'https://www.instagram.com/'
+      format: uri-reference
+      enum: ''
+    facebookLink:
+      name: facebookLink
+      description: facebookLink
+      type: string
+      default: 'https://www.facebook.com/'
+      format: uri-reference
+      enum: ''
+    youTubeLink:
+      name: youTubeLink
+      description: youTubeLink
+      type: string
+      default: 'https://www.youtube.com/'
+      format: uri-reference
+      enum: ''
+  slots: {  }
+js.alpina_full_width_teaser:
+  id: js.alpina_full_width_teaser
+  name: 'Alpina Full-width Teaser'
+  description: 'Alpina Full-width Teaser'
+  props:
+    heading:
+      name: heading
+      description: heading
+      type: string
+      default: 'Unsere Produkte'
+      format: ''
+      enum: ''
+      required: true
+  slots:
+    products:
+      name: Products
+      description: products
+js.alpina_header:
+  id: js.alpina_header
+  name: 'Alpina Header'
+  description: 'Alpina Header'
+  props:
+    logo:
+      name: logo
+      description: logo
+      type: object
+      default: { src: 'http://localhost:3000/alpina/img/_icn/logo.svg', alt: Alpina, width: 97, height: 80 }
+      format: ''
+      enum: ''
+    logoLink:
+      name: logoLink
+      description: logoLink
+      type: string
+      default: /
+      format: uri-reference
+      enum: ''
+    logoLabel:
+      name: logoLabel
+      description: logoLabel
+      type: string
+      default: Alpina
+      format: ''
+      enum: ''
+      required: true
+    menuLabel:
+      name: menuLabel
+      description: menuLabel
+      type: string
+      default: 'Main navigation'
+      format: ''
+      enum: ''
+      required: true
+    openMenuLabel:
+      name: openMenuLabel
+      description: openMenuLabel
+      type: string
+      default: 'Open menu'
+      format: ''
+      enum: ''
+      required: true
+    closeMenuLabel:
+      name: closeMenuLabel
+      description: closeMenuLabel
+      type: string
+      default: 'Close menu'
+      format: ''
+      enum: ''
+      required: true
+    untranslatedLabel:
+      name: untranslatedLabel
+      description: untranslatedLabel
+      type: string
+      default: 'Translation not yet available'
+      format: ''
+      enum: ''
+      required: true
+  slots: {  }
+js.alpina_hero:
+  id: js.alpina_hero
+  name: 'Alpina Hero'
+  description: 'Alpina Hero'
+  props:
+    eyebrow:
+      name: eyebrow
+      description: eyebrow
+      type: string
+      default: 'Weiße Wandfarben, bunte Innenfarben und Lacke'
+      format: ''
+      enum: ''
+    heading:
+      name: heading
+      description: heading
+      type: string
+      default: 'alpina — Deutsch­lands Nr. 1* Jetzt auch in Belgien!'
+      format: ''
+      enum: ''
+      required: true
+    subHeading11:
+      name: subHeading11
+      description: subHeading11
+      type: string
+      default: 'Example subheading'
+      format: ''
+      enum: ''
+    text:
+      name: text
+      description: text
+      type: string
+      default: 'Willkommen bei Alpina. Mit unseren Farben und Lacken kannst du deine Wände streichen und dein Bad oder deine Küche renovieren. Sogar Fliesen lassen sich einfach überstreichen – schnell, sauber und ohne Vorkenntnisse. Unsere Wandfarben decken zuverlässig, sind frei von Löse- und Konservierungsmitteln und lassen sich ganz einfach verarbeiten.'
+      format: ''
+      enum: ''
+    desktopImage:
+      name: desktopImage
+      description: desktopImage
+      type: object
+      default: { src: 'http://localhost:3000/alpina/assets/hero-img.jpg', alt: 'Alpinaweiß paint bucket on a wooden table in a bright interior', width: 1920, height: 900 }
+      format: ''
+      enum: ''
+    mobileImage:
+      name: mobileImage
+      description: mobileImage
+      type: object
+      default: { src: 'http://localhost:3000/alpina/assets/hero-img-m.jpg', alt: 'Alpinaweiß paint bucket on a wooden table in a bright interior', width: 375, height: 600 }
+      format: ''
+      enum: ''
+    mediaType:
+      name: mediaType
+      description: mediaType
+      type: string
+      default: image
+      format: ''
+      enum: [image, video]
+      enum_options: [{ label: image, value: image }, { label: video, value: video }]
+    desktopVideo:
+      name: desktopVideo
+      description: desktopVideo
+      type: object
+      default: { src: 'http://localhost:3000/alpina/assets/video/video-a-d.mp4' }
+      format: ''
+      enum: ''
+    mobileVideo:
+      name: mobileVideo
+      description: mobileVideo
+      type: object
+      default: { src: 'http://localhost:3000/alpina/assets/video/video-a-m.mp4' }
+      format: ''
+      enum: ''
+  slots: {  }
+js.alpina_inspo_grid:
+  id: js.alpina_inspo_grid
+  name: 'Alpina Inspo Grid'
+  description: 'Alpina Inspo Grid'
+  props:
+    heading:
+      name: heading
+      description: heading
+      type: string
+      default: 'Inspiration fürs Renovieren'
+      format: ''
+      enum: ''
+      required: true
+    text:
+      name: text
+      description: text
+      type: string
+      default: 'Lass dich inspirieren und gestalte elegante Räume, in denen du dich jeden Tag aufs Neue wohlfühlst – von der Farbwahl bis zur gestrichenen Wand oder Oberfläche.'
+      format: ''
+      enum: ''
+    numberOfProducts:
+      name: numberOfProducts
+      description: numberOfProducts
+      type: integer
+      default: 8
+      format: ''
+      enum: ''
+      required: true
+  slots: {  }
+js.alpina_product_slider:
+  id: js.alpina_product_slider
+  name: 'Alpina Product Slider'
+  description: 'Alpina Product Slider'
+  props:
+    heading:
+      name: heading
+      description: heading
+      type: string
+      default: 'unsere Produkte'
+      format: ''
+      enum: ''
+      required: true
+    text:
+      name: text
+      description: text
+      type: string
+      default: 'Alpinaweiß Premium überzeugt als Testsieger bei Stiftung Warenstest mit höchster Deckkraft und strahlendem Weiß für ein erstklassiges Farbergebnis.'
+      format: ''
+      enum: ''
+    numberOfProducts:
+      name: numberOfProducts
+      description: numberOfProducts
+      type: number
+      default: 4
+      format: ''
+      enum: ''
+      required: true
+  slots: {  }
+js.alpina_product_teaser:
+  id: js.alpina_product_teaser
+  name: 'Alpina Product Teaser'
+  description: 'Alpina Product Teaser'
+  props:
+    product:
+      name: product
+      description: product
+      type: object
+      default: ''
+      format: ''
+      enum: ''
+    linkLabel:
+      name: linkLabel
+      description: linkLabel
+      type: string
+      default: 'jetzt entdecken'
+      format: ''
+      enum: ''
+      required: true
+    desktopBackground:
+      name: desktopBackground
+      description: desktopBackground
+      type: object
+      default: { src: 'http://localhost:3000/alpina/assets/teaser-1.jpg', alt: '', width: 1920, height: 802 }
+      format: ''
+      enum: ''
+    mobileBackground:
+      name: mobileBackground
+      description: mobileBackground
+      type: object
+      default: { src: 'http://localhost:3000/alpina/assets/teaser-1-m.jpg', alt: '', width: 375, height: 700 }
+      format: ''
+      enum: ''
+    mediaType:
+      name: mediaType
+      description: mediaType
+      type: string
+      default: image
+      format: ''
+      enum: [image, video]
+      enum_options: [{ label: image, value: image }, { label: video, value: video }]
+    desktopVideo:
+      name: desktopVideo
+      description: desktopVideo
+      type: object
+      default: { src: 'http://localhost:3000/alpina/assets/video/video-a-d.mp4' }
+      format: ''
+      enum: ''
+    mobileVideo:
+      name: mobileVideo
+      description: mobileVideo
+      type: object
+      default: { src: 'http://localhost:3000/alpina/assets/video/video-a-m.mp4' }
+      format: ''
+      enum: ''
+  slots: {  }
+js.alpina_shell:
+  id: js.alpina_shell
+  name: 'Alpina Page Shell'
+  description: 'Alpina Page Shell'
+  props: {  }
+  slots:
+    header:
+      name: Header
+      description: header
+    content:
+      name: Content
+      description: content
+    footer:
+      name: Footer
+      description: footer
+js.alpina_store_logo:
+  id: js.alpina_store_logo
+  name: 'Alpina Store Logo'
+  description: 'Alpina Store Logo'
+  props:
+    heading:
+      name: heading
+      description: heading
+      type: string
+      default: 'Alpina Händlersuche'
+      format: ''
+      enum: ''
+      required: true
+    text:
+      name: text
+      description: text
+      type: string
+      default: 'Finde für jedes Alpina Sortiment den passenden Händler.'
+      format: ''
+      enum: ''
+    firstLogo:
+      name: firstLogo
+      description: firstLogo
+      type: object
+      default: { src: 'http://localhost:3000/alpina/img/_icn/logos-hubo.svg', alt: Hubo, width: 368, height: 144 }
+      format: ''
+      enum: ''
+    secondLogo:
+      name: secondLogo
+      description: secondLogo
+      type: object
+      default: { src: 'http://localhost:3000/alpina/img/_icn/logos-colos.png', alt: Colos, width: 350, height: 141 }
+      format: ''
+      enum: ''
+    buttonLabel:
+      name: buttonLabel
+      description: buttonLabel
+      type: string
+      default: 'Zur Händlersuche'
+      format: ''
+      enum: ''
+    buttonLink:
+      name: buttonLink
+      description: buttonLink
+      type: string
+      default: ''
+      format: uri-reference
+      enum: ''
+  slots: {  }
+sdc.navigation.message:
+  id: sdc.navigation.message
+  name: Message
+  description: Message
+  group: ''
+  props:
+    type:
+      name: 'Message Type'
+      description: 'No description available'
+      type: string
+      default: status
+      enum: [error, status, warning]
+      enum_options: [{ label: error, value: error }, { label: status, value: status }, { label: warning, value: warning }]
+    url:
+      name: 'Message URL'
+      description: 'No description available'
+      type: string
+      default: null
+    content:
+      name: 'Message Content'
+      description: 'No description available'
+      type: string
+      default: null
+  slots: 'No slots'
+sdc.navigation.title:
+  id: sdc.navigation.title
+  name: Title
+  description: Title
+  group: ''
+  props:
+    modifiers:
+      name: 'Modifier classes.'
+      description: 'Title modifiers. https://en.bem.info/methodology/css/#modifiers'
+      type: array
+      default: null
+    extra_classes:
+      name: 'Extra classes.'
+      description: 'External modifiers added from the placement context. https://en.bem.info/methodology/css/#mixes'
+      type: array
+      default: null
+    html_tag:
+      name: 'HTML tag for title'
+      description: 'No description available'
+      type: string
+      default: h2
+      enum: [h1, h2, h3, h4, h5, h6, span]
+      enum_options: [{ label: 'Heading 1', value: h1 }, { label: 'Heading 2', value: h2 }, { label: 'Heading 3', value: h3 }, { label: 'Heading 4', value: h4 }, { label: 'Heading 5', value: h5 }, { label: 'Heading 6', value: h6 }, { label: Inline, value: span }]
+    icon:
+      name: Icon
+      description: 'No description available'
+      type: string
+      default: null
+  slots:
+    content:
+      name: Content
+      description: 'Content of title.'

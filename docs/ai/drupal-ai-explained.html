@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drupal AI in our workflow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #16233b;        /* text */
+    --paper: #eef1f3;      /* page */
+    --drop: #0678be;       /* Drupal blue: structure, links */
+    --meter: #b77800;      /* paid per token through an API key */
+    --plan: #3f7d5a;       /* covered by the coding agent subscription */
+    --rule: #c7ced6;
+    --soft: #566174;
+    --wide: "wdth" 115;
+    --narrow: "wdth" 80;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); color: var(--ink); }
+  body { margin: 0; font-family: "Archivo", system-ui, sans-serif; font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  main { max-width: 1680px; margin: 0 auto; padding: 40px 56px 72px; }
+
+  h1, h2 { font-variation-settings: var(--wide); }
+  h1 { font-size: 1.6rem; line-height: 1.2; font-weight: 750; margin: 0 0 8px; }
+  h2 { font-size: 1.2rem; line-height: 1.25; font-weight: 750; margin: 0 0 14px; }
+  h3 { font-size: 1rem; line-height: 1.3; font-weight: 700; margin: 0 0 6px; }
+  p { margin: 0 0 10px; }
+  section { margin-top: 48px; }
+  .summary { max-width: 72ch; color: var(--soft); margin: 0; }
+  a { color: var(--drop); text-underline-offset: 3px; }
+  a:focus-visible { outline: 3px solid var(--drop); outline-offset: 3px; border-radius: 2px; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.84em; background: #e0e5ea; padding: 1px 5px; border-radius: 4px; }
+  .paid { color: var(--meter); font-weight: 650; }
+  .free { color: var(--plan); font-weight: 650; }
+
+  /* Route map: the one bold element. */
+  .stops, .bands { display: grid; grid-template-columns: repeat(5, 1fr); column-gap: 16px; }
+  .stops { position: relative; list-style: none; margin: 0; padding: 0; }
+  .stops::before { content: ""; position: absolute; top: 9px; left: 10%; right: 10%; height: 4px; background: var(--drop); border-radius: 2px; }
+  .stop { position: relative; text-align: center; padding-top: 34px; }
+  .stop::before { content: ""; position: absolute; top: 0; left: calc(50% - 11px); width: 22px; height: 22px; border-radius: 50%; background: var(--paper); border: 4px solid var(--drop); }
+  .stop h3 { font-variation-settings: var(--narrow); font-size: 1.05rem; margin: 0; }
+  .stop p { margin: 4px auto 0; max-width: 26ch; font-size: 0.88rem; color: var(--soft); line-height: 1.4; }
+  .bands { margin-top: 20px; row-gap: 10px; }
+  .band { padding: 10px 14px; border-radius: 6px; color: #fff; font-size: 0.92rem; line-height: 1.35; }
+  .band b { display: block; font-weight: 700; }
+  .band.plan { grid-column: 1 / span 3; background: var(--plan); }
+  .band.meter { grid-column: 4 / span 2; background: var(--meter); }
+  .band-note { grid-column: 2 / span 2; font-size: 0.84rem; color: var(--soft); border-left: 3px dashed var(--meter); padding-left: 10px; }
+
+  /* Three questions */
+  .questions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+  .questions > div { border-top: 3px solid var(--drop); padding-top: 14px; }
+  .verdict { font-variation-settings: var(--wide); font-weight: 800; font-size: 1.15rem; display: block; margin-bottom: 4px; }
+
+  /* Stage table */
+  .steps { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .steps th, .steps td { text-align: left; vertical-align: top; padding: 12px 24px 12px 0; border-top: 1px solid var(--rule); }
+  .steps thead th { border-top: 0; font-size: 0.85rem; color: var(--soft); font-weight: 600; padding-bottom: 6px; }
+  .steps tbody th { font-variation-settings: var(--narrow); font-weight: 700; font-size: 1rem; width: 18%; }
+  .steps td.fit { width: 20%; font-weight: 700; }
+  .steps td:last-child { max-width: 80ch; padding-right: 0; }
+  .fit.no { color: var(--soft); }
+  .fit.yes { color: var(--meter); }
+  .fit.ours { color: var(--plan); }
+
+  /* Setup and caveats */
+  .pair { margin-top: 48px; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; }
+  .pair > section { margin-top: 0; }
+  .setup { list-style: none; padding: 0; margin: 0; }
+  .setup li { padding: 9px 0 9px 32px; border-top: 1px solid var(--rule); position: relative; }
+  .setup li::before { content: ""; position: absolute; left: 0; top: 11px; width: 18px; height: 18px; border-radius: 50%; }
+  .setup li.done::before { background: var(--drop); }
+  .setup li.you::before { border: 3px solid var(--meter); }
+  .setup .who { color: var(--meter); font-weight: 700; }
+  ul.plain { padding-left: 20px; margin: 0; }
+  ul.plain li { margin: 0 0 9px; }
+  .sources { columns: 2; column-gap: 56px; font-size: 0.9rem; }
+  .sources li { break-inside: avoid; }
+
+  @media (max-width: 1000px) {
+    main { padding: 28px 22px 56px; }
+    .questions, .pair { grid-template-columns: 1fr; gap: 28px; }
+    .sources { columns: 1; }
+    .steps tbody th, .steps td.fit { width: auto; }
+  }
+  @media (max-width: 720px) {
+    .stops, .bands { grid-template-columns: 1fr; }
+    .stops { row-gap: 18px; }
+    .stops::before { top: 11px; bottom: 30px; left: 9px; right: auto; width: 4px; height: auto; }
+    .stop { text-align: left; padding: 0 0 0 36px; }
+    .stop::before { left: 0; top: 1px; }
+    .stop p { margin-left: 0; }
+    .band.plan, .band.meter, .band-note { grid-column: 1; }
+    .steps thead { display: none; }
+    .steps tr { display: block; border-top: 1px solid var(--rule); padding: 10px 0; }
+    .steps th, .steps td { display: block; border: 0; padding: 2px 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Drupal AI in our workflow</h1>
+  <p class="summary">Drupal AI calls model APIs from inside Drupal and is billed per token through an API key. Our coding agents, Codex and Claude Code, run on their own subscriptions and work on Drupal from the outside. The map shows which side covers each stage of our process.</p>
+</header>
+
+<section aria-label="Our workflow and who pays for each stage">
+  <ol class="stops">
+    <li class="stop"><h3>Figma design</h3><p>Read through Figma's MCP server</p></li>
+    <li class="stop"><h3>Static frontend</h3><p>HTML, SCSS, JS built by the agent</p></li>
+    <li class="stop"><h3>Canvas components</h3><p>Our skill, in the <code>frontend/</code> repo</p></li>
+    <li class="stop"><h3>Editors build pages</h3><p>Canvas AI places our components</p></li>
+    <li class="stop"><h3>Content upkeep</h3><p>Alt text, summaries, FR/NL translation</p></li>
+  </ol>
+  <div class="bands">
+    <div class="band plan"><b>Codex or Claude Code, from Figma to components</b>Covered by your subscription</div>
+    <div class="band meter"><b>Drupal AI, for editors and content</b>Billed per token on an API key</div>
+    <div class="band-note">Canvas AI can also generate components, but it stores them in Drupal, outside our repo.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Your three questions</h2>
+  <div class="questions">
+    <div>
+      <h3>Which models can Drupal AI use?</h3>
+      <span class="verdict">Most of them.</span>
+      <p>Each provider has its own Drupal module: OpenAI, Anthropic, Gemini, Vertex, AWS Bedrock, Azure, Mistral, Hugging Face, and more. Local models run through Ollama or LiteLLM. Canvas AI needs a model that supports tool calling; its docs recommend a current GPT or Claude Sonnet-class model.</p>
+    </div>
+    <div>
+      <h3>Can I use my Codex subscription in Drupal?</h3>
+      <span class="verdict">No.</span>
+      <p>Drupal AI providers sign in with an <span class="paid">API key</span>, and API use is billed per token, separately from ChatGPT plans. No Drupal provider supports "Sign in with ChatGPT". The subscription is for <span class="free">Codex itself</span>, which works on Drupal from the outside through drush, scripts, or the MCP Server module. That is how the Alpina migration was built.</p>
+    </div>
+    <div>
+      <h3>Is <code>figma_canvas_ai</code> a real Figma MCP?</h3>
+      <span class="verdict">No.</span>
+      <p>It's a proof of concept with no stable release, and no code runs in Drupal. It's a set of instructions for GitHub Copilot, which reads the design through Figma's own MCP server. That server, <code>https://mcp.figma.com/mcp</code>, works with Codex and Claude Code too, so the Figma step doesn't need Drupal AI.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Stage by stage</h2>
+  <table class="steps">
+    <thead><tr><th>Stage</th><th>Who should do it</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><th>Figma to static frontend</th><td class="fit no">Coding agent; Drupal AI isn't involved</td>
+          <td>The agent reads Figma through its MCP server and writes the static site with the dm-frontend workflow. This happens before Drupal exists.</td></tr>
+      <tr><th>Static to Canvas components</th><td class="fit ours">Coding agent</td>
+          <td>Use <code>dm-static-frontend-to-drupal-canvas-headless</code> and the official <code>canvas-*</code> skills. The Canvas AI component agent saves components in Drupal, which would split them between Drupal and our Git repo.</td></tr>
+      <tr><th>Content types and fields</th><td class="fit ours">Coding agent</td>
+          <td>AI Agents can create content types, fields, and vocabularies, but our re-runnable scripts can be reviewed and run again. Changes clicked in the UI can't.</td></tr>
+      <tr><th>Editors building pages</th><td class="fit yes">Drupal AI (Canvas AI)</td>
+          <td>An editor asks Canvas AI to "place a hero, then the product slider" and it composes the page from our approved components. Not yet tried with our headless components.</td></tr>
+      <tr><th>Content upkeep</th><td class="fit yes">Drupal AI</td>
+          <td>AI Automators fill alt text and summaries, and AI Translate drafts translations, such as FR and NL for Alpina Belgium. Editors review the results.</td></tr>
+      <tr><th>Agents without a shell</th><td class="fit no">MCP Server, still early</td>
+          <td>The MCP Server module (beta) lets chat clients and remote agents work with Drupal. It exposes no tools until Tool API modules are added. Our local agents already use drush, so they don't need it.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="pair">
+  <section>
+    <h2>Set up in headless-lab</h2>
+    <ul class="setup">
+      <li class="done">Updated Drupal core from 11.4.9 to the 11.4.10 security release. Composer refused to add modules while core had open advisories.</li>
+      <li class="done">Installed and enabled Drupal AI 1.5.1, AI Agents, API Explorer, Key, and the OpenAI and Anthropic providers.</li>
+      <li class="done">Enabled Canvas AI, which adds six agents: orchestrator, page builder, template builder, component, title, and metadata.</li>
+      <li class="done">Installed MCP Server 2.0 beta. <code>drush mcp:server admin</code> responds, but has no tools yet.</li>
+      <li class="done">Connected both providers to key files in <code>keys/</code>. They are gitignored, so keys never reach the database or exported config.</li>
+      <li class="you"><span class="who">You:</span> paste an API key into <code>keys/anthropic_api.key</code> or <code>keys/openai_api.key</code>, then run <code>setfacl -m u:www-data:r keys/&lt;file&gt;</code> so Apache can read it.</li>
+      <li class="you"><span class="who">You:</span> choose the default model for each chat operation at <code>/admin/config/ai/settings</code>, and test it in the API Explorer.</li>
+      <li class="you"><span class="who">You:</span> open a page in Canvas and click the AI button to try the assistant.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Before relying on it</h2>
+    <ul class="plain">
+      <li>Results vary between runs. Canvas AI can pick a component ID or option value that doesn't exist, which breaks rendering.</li>
+      <li>Each Canvas AI request can send more than 30,000 tokens describing the available components. Disable unused components and keep descriptions short to lower the cost.</li>
+      <li>Component descriptions are how Canvas AI learns when to use each component. Write them for ours before editors start.</li>
+      <li>Since AI 1.3, the Canvas component agent may need "Disable hostname filtering" to create code components.</li>
+      <li>Unofficial gateways that turn a ChatGPT login into an API exist. Don't connect a shared company site to them.</li>
+    </ul>
+  </section>
+</div>
+
+<section>
+  <h2>Sources</h2>
+  <ul class="plain sources">
+    <li><a href="https://www.drupal.org/project/ai">Drupal AI module</a> and the <a href="https://www.drupal.org/about/ai/initiatives">Drupal AI Initiative</a></li>
+    <li><a href="https://new.drupal.org/ai/about-drupal-ai/providers">Supported AI providers</a></li>
+    <li><a href="https://project.pages.drupalcode.org/canvas/ai-assistant">Canvas AI assistant documentation</a></li>
+    <li><a href="https://www.drupal.org/project/figma_canvas_ai">figma_canvas_ai project page</a></li>
+    <li><a href="https://www.drupal.org/project/mcp_server">MCP Server module</a></li>
+    <li><a href="https://developers.figma.com/docs/figma-mcp-server/local-server-installation">Figma MCP server documentation</a></li>
+    <li><a href="https://docs.docker.com/ai/docker-agent/providers/chatgpt.md">ChatGPT plan versus API billing, in Docker's documentation</a></li>
+  </ul>
+</section>
+
+</main>
+</body>
+</html>

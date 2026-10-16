@@ -1,0 +1,64 @@
+/* Shared stylesheet for the Drupal AI lessons and reference sheets. */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..115,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&display=swap");
+
+:root {
+  --ink: #16233b;
+  --paper: #eef1f3;
+  --drop: #0678be;   /* Drupal blue: structure and links */
+  --meter: #b77800;  /* Drupal AI route: paid per token on an API key */
+  --plan: #3f7d5a;   /* Agent route: covered by the coding agent subscription */
+  --rule: #c7ced6;
+  --soft: #566174;
+  --wrong: #b23b3b;
+  --sans: "Archivo", system-ui, sans-serif;
+  --serif: "Source Serif 4", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { background: var(--paper); color: var(--ink); }
+body { margin: 0; font-family: var(--serif); font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* Main column plus a side-note column on wide screens. */
+.lesson { max-width: 1280px; margin: 0 auto; padding: 40px 56px 80px; }
+.lesson > :not(.row):not(.wide) { max-width: 68ch; }
+.row { display: grid; grid-template-columns: minmax(0, 68ch) minmax(0, 1fr); column-gap: 56px; align-items: start; }
+.row > aside { font-family: var(--sans); font-size: 0.82rem; line-height: 1.45; color: var(--soft); border-left: 2px solid var(--rule); padding-left: 14px; }
+.row > aside p { margin: 0 0 8px; }
+
+h1, h2, h3 { font-family: var(--sans); font-variation-settings: "wdth" 110; line-height: 1.2; }
+h1 { font-size: 1.7rem; font-weight: 750; margin: 0 0 6px; }
+h2 { font-size: 1.2rem; font-weight: 750; margin: 44px 0 12px; }
+h3 { font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
+p { margin: 0 0 14px; }
+a { color: var(--drop); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, textarea:focus-visible { outline: 3px solid var(--drop); outline-offset: 2px; }
+code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.8em; background: #e0e5ea; padding: 1px 5px; border-radius: 4px; }
+.meta { font-family: var(--sans); font-size: 0.88rem; color: var(--soft); margin-bottom: 28px; }
+.agent { color: var(--plan); font-weight: 650; }
+.drupal { color: var(--meter); font-weight: 650; }
+
+/* Two-route figure */
+.routes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 8px 0 20px; font-family: var(--sans); font-size: 0.95rem; line-height: 1.45; }
+.routes > div { padding: 16px 18px; border-radius: 8px; color: #fff; }
+.routes .a { background: var(--plan); }
+.routes .d { background: var(--meter); }
+.routes h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.routes ul { margin: 0; padding-left: 18px; }
+
+/* Callouts */
+.task, .ask { font-family: var(--sans); font-size: 0.95rem; padding: 14px 18px; border-radius: 8px; background: #fff; border: 1px solid var(--rule); }
+.task { border-left: 4px solid var(--drop); }
+.ask { margin-top: 36px; color: var(--soft); }
+
+.nav { font-family: var(--sans); font-size: 0.9rem; margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--rule); display: flex; gap: 24px; flex-wrap: wrap; }
+
+@media (max-width: 980px) {
+  .lesson { padding: 28px 22px 56px; }
+  .row { grid-template-columns: 1fr; }
+  .row > aside { margin: 4px 0 18px; }
+  .routes { grid-template-columns: 1fr; }
+}
+@media print {
+  html { background: #fff; }
+  .lesson { padding: 0; }
+  .quiz button { border-color: #999; }
+}

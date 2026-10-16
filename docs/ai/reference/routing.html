@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Routing cheat sheet: agent or Drupal AI</title>
+<link rel="stylesheet" href="../assets/course.css">
+<style>
+  .sheet { max-width: 1280px; margin: 0 auto; padding: 40px 56px 64px; }
+  .rule { font-family: var(--sans); font-size: 1.15rem; margin: 6px 0 28px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .cols h2 { margin-top: 0; }
+  .cols ul { margin: 0; padding-left: 20px; }
+  .cols li { margin: 0 0 8px; }
+  .a h2 { color: var(--plan); }
+  .d h2 { color: var(--meter); }
+  dl { font-family: var(--sans); font-size: 0.95rem; display: grid; grid-template-columns: 14rem 1fr; gap: 8px 24px; margin: 0; }
+  dt { font-weight: 700; }
+  dd { margin: 0; }
+  @media (max-width: 900px) { .sheet { padding: 24px 20px; } .cols, dl { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main class="sheet">
+<h1>Agent or Drupal AI?</h1>
+<p class="rule">Ask where the result lives. In the Git repo: <span class="agent">agent route</span>. In the site's content: <span class="drupal">Drupal AI route</span>.</p>
+
+<div class="cols">
+  <section class="a">
+    <h2>Agent route: Codex or Claude Code</h2>
+    <ul>
+      <li>Figma to static frontend, through Figma's MCP server</li>
+      <li>Canvas components and SCSS in <code>frontend/</code></li>
+      <li>Content types, fields, menus, and other config, exported</li>
+      <li>Import scripts that create content and can be re-run</li>
+    </ul>
+    <p style="margin-top:12px">Paid by the agent's subscription. Reviewed as a Git diff.</p>
+  </section>
+  <section class="d">
+    <h2>Drupal AI route: inside Drupal</h2>
+    <ul>
+      <li>Editors composing pages with Canvas AI from existing components</li>
+      <li>Alt text, summaries, and metadata with AI Automators</li>
+      <li>Translation drafts with AI Translate</li>
+      <li>Content suggestions while editing</li>
+    </ul>
+    <p style="margin-top:12px">Billed per token on a provider's API key. Reviewed by the editor in Drupal.</p>
+  </section>
+</div>
+
+<h2>Where things are configured</h2>
+<dl>
+  <dt>API keys</dt><dd>Key module entities. In headless-lab they read gitignored files in <code>keys/</code>.</dd>
+  <dt>Default model per task</dt><dd><code>/admin/config/ai/settings</code>, one default per operation type, such as chat or embeddings.</dd>
+  <dt>Test a request</dt><dd>API Explorer, <code>/admin/config/ai/explorers</code></dd>
+  <dt>Canvas AI cost</dt><dd>Each request can send over 30,000 tokens of component context. Disable unused components to cut it.</dd>
+</dl>
+
+<p class="meta" style="margin-top:32px">Sources: <a href="https://project.pages.drupalcode.org/ai/1.5.x/">Drupal AI docs</a>, <a href="https://project.pages.drupalcode.org/canvas/ai-assistant">Canvas AI docs</a>. From <a href="../lessons/0001-agent-or-drupal-ai.html">Lesson 1</a>.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1: Agent or Drupal AI?</title>
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main class="lesson">
+
+<h1>Lesson 1: Agent or Drupal AI?</h1>
+<p class="meta">About 5 minutes. After it, you can decide for any AI task on next week's client project whether your coding agent or Drupal AI should do it.</p>
+
+<h2>Two ways to bring AI into the work</h2>
+<div class="row">
+  <div>
+    <p>There are two routes. They differ in where the AI runs, what it changes, and who pays.</p>
+  </div>
+  <aside></aside>
+</div>
+<div class="routes wide">
+  <div class="a">
+    <h3>Agent route</h3>
+    <ul>
+      <li>Codex or Claude Code, outside Drupal.</li>
+      <li>Changes files, config, and scripts, which you review in Git.</li>
+      <li>Covered by the agent's subscription.</li>
+    </ul>
+  </div>
+  <div class="d">
+    <h3>Drupal AI route</h3>
+    <ul>
+      <li>The AI module, inside Drupal, used through the admin UI.</li>
+      <li>Changes content that editors own: fields, pages, translations.</li>
+      <li>Billed per token through a provider's API key.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div>
+    <p>Drupal AI never uses your Codex or Claude subscription. Every request goes through a <em>provider</em> module, and the provider connects with an API key stored by the Key module. API use is billed separately from ChatGPT plans.</p>
+  </div>
+  <aside>
+    <p>Providers and the Key module: <a href="https://project.pages.drupalcode.org/ai/1.5.x/">Drupal AI docs</a>.</p>
+    <p>Plan versus API billing: <a href="https://docs.docker.com/ai/docker-agent/providers/chatgpt.md">Docker docs</a>.</p>
+  </aside>
+</div>
+
+<h2>The one question that decides</h2>
+<div class="row">
+  <div>
+    <p><strong>Where does the result live?</strong></p>
+    <p>If it belongs in the Git repo, such as a component, SCSS, a content type, or an import script, take the <span class="agent">agent route</span>. You get a diff to review, and the change can be run again on another environment.</p>
+    <p>If it belongs in the site's content, such as alt text, a translation, or a page an editor composes, take the <span class="drupal">Drupal AI route</span>. The editor works in Drupal and reviews the result there.</p>
+  </div>
+  <aside>
+    <p>Canvas AI can also generate components, but it saves them in Drupal, not in <code>frontend/</code>. That's why components stay on the agent route. See the <a href="https://project.pages.drupalcode.org/canvas/ai-assistant">Canvas AI docs</a>.</p>
+    <p>AI Agents can create content types and fields too. Our re-runnable scripts stay on the agent route because they can be reviewed and repeated.</p>
+  </aside>
+</div>
+
+<h2>Practice</h2>
+<div class="row">
+  <div>
+    <p>Route each task. You get the answer and the reason straight away.</p>
+
+    <div class="quiz" data-answer="0" data-explain="The component lives in frontend/ and is reviewed in Git, like the Alpina footer.">
+      <p class="q">Build the footer component from the static site's SCSS.</p>
+      <button>The coding agent</button><button>Drupal AI itself</button>
+    </div>
+
+    <div class="quiz" data-answer="1" data-explain="Alt text is content an editor owns. AI Automators can fill the field, and the editor checks it.">
+      <p class="q">Write alt text for 40 product images already in the media library.</p>
+      <button>The coding agent</button><button>Drupal AI itself</button>
+    </div>
+
+    <div class="quiz" data-answer="1" data-explain="A content type is configuration. Create it with a reviewed, re-runnable script and export it.">
+      <p class="q">Create a Retailer content type with address and opening-hours fields.</p>
+      <button>Drupal AI itself</button><button>The coding agent</button>
+    </div>
+
+    <div class="quiz" data-answer="0" data-explain="This is Canvas AI's page builder: an editor composes a page from components you already built.">
+      <p class="q">An editor asks for a campaign page: a hero, then two product teasers.</p>
+      <button>Drupal AI itself</button><button>The coding agent</button>
+    </div>
+
+    <div class="quiz" data-answer="1" data-explain="Translations are content. AI Translate drafts them in Drupal, and editors approve them there.">
+      <p class="q">Draft French and Dutch versions of 200 product descriptions for editors to approve.</p>
+      <button>The coding agent</button><button>Drupal AI itself</button>
+    </div>
+
+    <div class="quiz" data-answer="1" data-explain="This happens before Drupal is involved. The agent reads Figma through Figma's MCP server.">
+      <p class="q">Read the Figma frame for the store locator and write its static HTML.</p>
+      <button>Drupal AI itself</button><button>The coding agent</button>
+    </div>
+
+    <div class="quiz" data-answer="2" data-explain="Canvas AI runs inside Drupal, so it needs a provider with an API key. Your subscription stays with the agent.">
+      <p class="q">What does Canvas AI need before an editor can use it?</p>
+      <button>A login with your ChatGPT</button><button>The Figma MCP server link</button><button>An API key from a provider</button>
+    </div>
+
+    <p class="score"></p>
+  </div>
+  <aside>
+    <p>The answer buttons swap places between questions on purpose, so their order gives nothing away.</p>
+  </aside>
+</div>
+
+<h2>From memory</h2>
+<div class="row">
+  <div>
+    <div class="recall">
+      <p class="q">Without scrolling up: which question decides the route, and why can't Drupal AI run on your Codex plan?</p>
+      <template>Ask where the result lives. If it goes in the Git repo (components, SCSS, content types, scripts), use the coding agent. If it is content editors own (alt text, translations, composed pages), use Drupal AI. Drupal AI calls models through a provider module with an API key, and API use is billed per token, separately from the subscription.</template>
+    </div>
+  </div>
+  <aside></aside>
+</div>
+
+<h2>Try it on the real project</h2>
+<div class="row">
+  <div>
+    <div class="task">Write down three AI tasks you expect on next week's client project and route each one with the question above. Bring them to the next session; any task that doesn't fit the rule is worth discussing.</div>
+  </div>
+  <aside></aside>
+</div>
+
+<h2>Read next</h2>
+<div class="row">
+  <div>
+    <p>The primary source for this lesson is the <a href="https://project.pages.drupalcode.org/ai/1.5.x/">Drupal AI documentation</a>, the Getting Started section: what providers are and why every request needs one. It takes about 10 minutes.</p>
+    <p>Keep the <a href="../reference/routing.html">routing cheat sheet</a> at hand, and see <a href="../drupal-ai-explained.html">Drupal AI in our workflow</a> for the full overview.</p>
+    <p class="ask">If anything is unclear, ask me. I'm your teacher for this, and follow-up questions are the fastest way to fill gaps.</p>
+  </div>
+  <aside></aside>
+</div>
+
+<nav class="nav">
+  <a href="../drupal-ai-explained.html">Overview</a>
+  <a href="../reference/routing.html">Routing cheat sheet</a>
+  <span>Next: connecting a provider and choosing default models (coming)</span>
+</nav>
+
+</main>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>
