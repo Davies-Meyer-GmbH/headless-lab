@@ -29,7 +29,7 @@ const PAGE_INFO = [
     id: 'A4',
     title: 'A section that fetches its own data',
     tested: 'The product list below the headline fetches its own data straight from Drupal — no page-level code feeds it. On the public site this works: the list is filled in on the server before you see it.',
-    conclusion: 'Works for visitors, but breaks in the editing preview: the preview cannot run sections that fetch their own data, so editors see an error there instead. Sections like this should not be used on pages editors need to preview.',
+    conclusion: 'Works for visitors. In the editing preview the section shows a short notice instead ("cannot render in the editing preview") — the preview cannot fetch on the server, and that cannot be fixed from our side. Public site and preview never get in each other\'s way.',
   },
   {
     match: '/test-route',

@@ -84,3 +84,12 @@ Dejan asked for both legal-page approaches, an on-page test badge everywhere, a 
 - **Test badge:** `components/test-info/index.jsx`, mounted in all three group layouts, including the real pages `/alpina` and `/alpina-video-test` as Dejan requested. Black pill bottom-right, expands to Tested/Conclusion per page.
 - **Test index added** at the top of `nextjs-test-plan.md`: URL, test, status, one-line conclusion for every page.
 - Stumbled once: `component.yml` for rich text had `slots` nested under `props` — dev server exits fatally on invalid metadata (worth remembering: a bad component.yml takes the whole frontend down).
+
+## A4 follow-up: editor preview warnings fixed with a two-file split
+
+After the plain-language badge texts, Dejan still saw "[browser] A component was suspended by an uncached promise" spam from the editor preview. Root cause: the entry component was still `async` — calling it always creates a promise, even with the env guard. Restructured:
+
+- `alpina_async_products/index.jsx` is now a **sync** component: in the browser it renders a notice ("cannot render in the editing preview") synchronously — no promise, no warnings.
+- `async-inner.jsx` holds the async fetcher and is only rendered on the server.
+- First attempt re-imported the `server-only` lib in the inner file — build broke again (the loader rejects the marker anywhere in the import graph, not just the entry). Inlined the fetch.
+- Verified: `/a4-async` renders the product list as before; badge text updated (preview shows the notice instead of an error).
