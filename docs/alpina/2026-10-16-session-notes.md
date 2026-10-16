@@ -62,3 +62,13 @@ Conclusion: async server components are viable on the public site if they self-f
 - `page.tsx` now checks the fetched tree for component element names and fetches menus/products conditionally. Zero extra API calls (string search over the in-memory tree).
 - Verified: `/alpina` full render, `/a4-async` menus-only (product JSON:API calls skipped), `/alpina-video-test` unaffected.
 - Recorded in `nextjs-test-plan.md` as pass.
+
+## Test plan: A6 done (production build, caching, revalidation)
+
+- Production build into a separate distDir (`NEXT_DIST_DIR=.next-prod`, added to next.config.ts and .gitignore) so the running dev server's `.next` is untouched. Build type-check surfaced three real errors that dev mode hid: stale generated types from before the A2 route move (fixed by deleting `.next/types`), and loose typing in the A3 page and `alpina-chrome.ts`.
+- **fetchPage cannot be cached**: hardcoded `no-store` plus per-request cookie/header reads. `unstable_cache(fetchPage)` crashes ("headers() inside unstable_cache"). Solution: anonymous requests fetch the content API directly with `next: { revalidate: 300, tags: ['canvas-page'] }`; draft sessions bypass the cache and use the real fetchPage.
+- Timings: `/alpina` 0.37s cold → 0.10s warm; `/a4-async` 0.19s → 0.02s.
+- **Invalidation:** revalidateTag does NOT expire fetch-cache entries on Next 16.2.12 (both profiles tried); revalidatePath DOES. `/api/revalidate?secret=…&path=…` endpoint added (401 without secret), Drupal-side event subscriber still todo. Cache key is path-only — language must be added when multilingual returns.
+- E2E verified: Drupal heading change stays invisible while cached, appears after revalidatePath; heading restored to original afterwards (the marker script's arg handling with drush was fiddly; restored via drush eval).
+- Ops note: `pkill -f "next start"` doesn't kill the listener because it renames itself to `next-server`; kill by PID. Two stale servers caused 30 confusing minutes of "revalidation doesn't work" while an old build answered.
+- Production server left running on port 3001 (terminal output in /tmp/next-prod.log).

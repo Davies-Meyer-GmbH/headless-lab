@@ -22,7 +22,7 @@ export default async function ShellDemoPage() {
   return (
     <AlpinaNavigationProvider items={mainMenu}>
       <AlpinaFooterMenuProvider items={footerMenu}>
-        <AlpinaHeader {...headerProps} />
+        <AlpinaHeader {...(headerProps as unknown as React.ComponentProps<typeof AlpinaHeader>)} />
         <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
           <h1>A3: Alpina chrome on a Next.js page</h1>
           <p>
@@ -31,7 +31,7 @@ export default async function ShellDemoPage() {
             variant of <code>/</code>).
           </p>
         </main>
-        <AlpinaFooter {...footerProps} />
+        <AlpinaFooter {...(footerProps as unknown as React.ComponentProps<typeof AlpinaFooter>)} />
       </AlpinaFooterMenuProvider>
     </AlpinaNavigationProvider>
   );

@@ -31,7 +31,11 @@ function findByElement(node: unknown, element: string): TreeNode | undefined {
   if (!node || typeof node !== 'object') return undefined;
   const tree = node as TreeNode;
   if (tree.element === element) return tree;
-  return Object.values(tree.slots ?? {}).find((slot) => findByElement(slot, element));
+  for (const slot of Object.values(tree.slots ?? {})) {
+    const found = findByElement(slot, element);
+    if (found) return found;
+  }
+  return undefined;
 }
 
 export async function getAlpinaChrome(): Promise<{ headerProps: Record<string, unknown>; footerProps: Record<string, unknown> }> {

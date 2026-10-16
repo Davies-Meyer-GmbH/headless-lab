@@ -70,7 +70,15 @@ Check: how much code each data-backed component needs, and whether `page.tsx` fe
 
 ### A6. Caching and revalidation
 
-Status: todo
+Status: limited
+
+Result (16 Oct, Next 16.2.12):
+
+- **Production build works** (`npm run build`); every Canvas route stays dynamic because of `force-dynamic`, which is kept deliberately for draft correctness. Timings with the cache below: `/alpina` cold 0.37s → warm 0.10s, `/a4-async` 0.19s → 0.02s, static Next route 0.01s.
+- **The SDK's `fetchPage` cannot be cached**: it hardcodes `fetch(…, { cache: 'no-store' })` *and* reads cookies/headers per request (draft detection, preview context, base-URL resolution). Wrapping it in `unstable_cache` crashes with "used `headers()` inside a function cached with `unstable_cache()`".
+- **Working cache:** for anonymous requests, `page.tsx` fetches the content API directly with `next: { revalidate: 300, tags: ['canvas-page'] }` (a small clone of fetchPage's anonymous shape); draft sessions (checked via `NEXT_DRAFT_MODE_COOKIE_NAME` cookie) bypass it and use the real `fetchPage`. TTL expiry proven in practice.
+- **On-demand invalidation:** `revalidateTag('canvas-page')` does **not** expire these fetch-cache entries (tried `max` and `default` profiles — Next 16.2.12). `revalidatePath('/alpina')` **does**. Added `/api/revalidate?secret=…&path=…` (401 without the secret) for Drupal to call per published page. Drupal-side event subscriber is still todo.
+- Cache key is the path only — must include the negotiated language once multilingual content returns. Drupal-down behaviour (MySQL stopped) not yet tested. A stale `next-server` on the port serves old builds — `pkill -f "next start"` misses it because the process renames itself to `next-server`; kill by PID.
 
 Steps:
 1. Run a production build: `npm run build && npm start`.

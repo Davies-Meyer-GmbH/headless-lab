@@ -29,3 +29,6 @@
 # Generated output: static-site inventory results and comparison screenshots
 /discovery/out/
 /.compare/
+
+# Production build with a separate distDir (NEXT_DIST_DIR, see next.config.ts)
+/frontend/.next-prod/
