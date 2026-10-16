@@ -1,0 +1,18 @@
+_core:
+  default_config_hash: wu7wtu-cIy7CT7wYhABkw5kutyyjuWnsMu5W5si5Vzs
+api_key: zai_api_key
+endpoint: 'https://api.z.ai/api/coding/paas/v4'
+models:
+  -
+    id: glm-5.3-flash
+    label: 'GLM-5.3 Flash (Z.ai)'
+    operation_types:
+      - chat
+      - translate_text
+    capabilities:
+      - chat_system_role
+      - chat_json_output
+      - chat_structured_response
+      - chat_tools
+      - chat_combined_tools_and_structured_response
+    parameters: {  }

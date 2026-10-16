@@ -18,6 +18,11 @@ props:
     title: Heading
     examples:
       - 'alpina — Deutsch­lands Nr. 1* Jetzt auch in Belgien!'
+  subHeading11:
+    type: string
+    title: 'Sub heading 11'
+    examples:
+      - 'Example subheading'
   text:
     type: string
     title: Text

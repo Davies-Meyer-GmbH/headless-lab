@@ -1,0 +1,30 @@
+uuid: 215c3ead-57dc-4095-8841-633cee291182
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.alpina_async_products
+active_version: 170a84e05f7b9e1d
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        heading:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'A4 async server component'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Alpina Async Products'
+id: js.alpina_async_products
+provider: null
+source: js
+source_local_id: alpina_async_products

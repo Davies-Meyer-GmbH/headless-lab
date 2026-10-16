@@ -13,4 +13,5 @@ frontends:
       - js.alpina_shell
       - js.alpina_store_logo
       - js.alpina_footer
+      - js.alpina_async_products
 assertion_expiration: 60

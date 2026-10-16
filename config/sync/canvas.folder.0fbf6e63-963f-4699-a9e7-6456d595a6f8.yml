@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.js.alpina_async_products
+    - canvas.component.js.alpina_footer
     - canvas.component.js.alpina_full_width_teaser
     - canvas.component.js.alpina_header
     - canvas.component.js.alpina_hero
@@ -10,6 +12,7 @@ dependencies:
     - canvas.component.js.alpina_product_slider
     - canvas.component.js.alpina_product_teaser
     - canvas.component.js.alpina_shell
+    - canvas.component.js.alpina_store_logo
     - canvas.component.marker.page_content
     - canvas.component.sdc.navigation.message
     - canvas.component.sdc.navigation.title
@@ -17,6 +20,8 @@ name: Other
 configEntityTypeId: component
 weight: 0
 items:
+  - js.alpina_async_products
+  - js.alpina_footer
   - js.alpina_full_width_teaser
   - js.alpina_header
   - js.alpina_hero
@@ -24,6 +29,7 @@ items:
   - js.alpina_product_slider
   - js.alpina_product_teaser
   - js.alpina_shell
+  - js.alpina_store_logo
   - marker.page_content
   - sdc.navigation.message
   - sdc.navigation.title

@@ -1,0 +1,17 @@
+uuid: 1498630c-f029-41d9-9c35-470a6737b452
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_async_products
+name: 'Alpina Async Products'
+type: external
+required:
+  - heading
+props:
+  heading:
+    type: string
+    title: Heading
+    examples:
+      - 'A4 async server component'
+slots: {  }
+dataDependencies: {  }
