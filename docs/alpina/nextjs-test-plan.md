@@ -47,7 +47,9 @@ Check: header props such as the logo are stored in the Drupal page variant, not 
 
 ### A4. Server and client components
 
-Status: todo
+Status: limited
+
+Result (16 Oct): an `async` server component **does** render through `CanvasComponentTree` on the public site — `alpina_async_products` fetched 13 products via JSON:API inside the component and rendered them server-side on `/a4-async`. But it **cannot import `server-only` modules**: the Canvas component loader compiles components outside the App Router server layer (Next reports "you are using it in the Pages Router"), so `import 'server-only'` fails the build. Consequence: the existing `lib/` loaders (`product-list.ts`, `main-menu.ts`, `alpina-chrome.ts`, all marked `server-only`) cannot be reused inside components; components must inline their own fetches or the libs must drop the marker. Sync server components without data (e.g. `alpina_store_logo`) are fine. **Editor preview not verified** (needs admin login) — expect async components to fail or render empty there, since the preview executes in the browser.
 
 Steps:
 1. Note which components use `'use client'`. Most do; `alpina_store_logo` doesn't.

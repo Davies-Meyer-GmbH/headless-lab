@@ -43,3 +43,16 @@ Started with A1–A3 (the layout/routing tests). All three recorded in `nextjs-t
 Conclusion so far: Next.js layouts are viable for separating Canvas and non-Canvas areas, but site chrome stays Drupal-owned, so Next.js-only pages pay an extra fetch (or hard-code props).
 
 Test artifacts committed: `test-route` and `shell-demo` pages, route group layouts, `alpina-chrome.ts`. Canvas page 18 (`A1 route conflict`) left in Drupal for reference.
+
+## Test plan: A4 done (async server component)
+
+Pushed the earlier commits to origin/main first, then ran A4.
+
+- Created `components/alpina_async_products/` (async, no `'use client'`) and synced its metadata to Drupal with a new script, `test-a4-sync-async-component.php`, using the project's usual `ExternalComponentSync` path (Canvas CLI has no auth configured — no token/oauth.json — so `npx canvas push` is not usable here).
+- **Mistake made and fixed:** the sync script rewrote `canvas_headless.settings` frontends[0].components with only the new component, clobbering the 9 existing entries. Restored with `test-a4-restore-component-list.php` and exported config (`5cdb92c`, which also picked up unrelated DB state: AI module config, hero active version, language.types).
+- Variant A (importing `server-only`-marked `lib/product-list.ts`) fails the build: the Canvas component loader compiles components outside the App Router server layer, so `server-only` is rejected ("using it in the Pages Router"). This blocks reusing all existing `lib/` loaders inside components.
+- Variant B (inline fetch, no `server-only`) works: page 19 (`/a4-async`, page variant alpina) renders the component server-side with 13 products from JSON:API.
+- Not verified: editor preview of the async component (needs admin login). Expect failure there — the preview runs in the browser.
+- A4 page/status recorded in `nextjs-test-plan.md`.
+
+Conclusion: async server components are viable on the public site if they self-fetch without `server-only` imports. `lib/product-list.ts`'s `server-only` marker is the binding constraint.

@@ -1,0 +1,20 @@
+{
+  "name": "Alpina Async Products",
+  "machineName": "alpina_async_products",
+  "status": true,
+  "required": [
+    "heading"
+  ],
+  "props": {
+    "properties": {
+      "heading": {
+        "title": "Heading",
+        "type": "string",
+        "examples": [
+          "A4 async server component"
+        ]
+      }
+    }
+  },
+  "slots": {}
+}
