@@ -1,0 +1,11 @@
+uuid: cfe23690-b6ef-4a2b-b2c6-e612f7f26d9e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: lBXDpdDPXQtrfTJQhr6MjRJJEEyYSoRJ0acdvHLsWeA
+id: en
+label: English
+direction: ltr
+weight: 0
+locked: false

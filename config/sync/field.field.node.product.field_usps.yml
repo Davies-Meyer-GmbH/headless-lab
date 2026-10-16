@@ -1,0 +1,19 @@
+uuid: f4958835-e934-4e65-820f-0015d4bb1e01
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_usps
+    - node.type.product
+id: node.product.field_usps
+field_name: field_usps
+entity_type: node
+bundle: product
+label: 'Product benefits'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

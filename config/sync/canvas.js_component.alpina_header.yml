@@ -1,0 +1,57 @@
+uuid: 6b7b0bbf-00ec-4648-9b24-bb6a3b586d0e
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_header
+name: 'Alpina Header'
+type: external
+required:
+  - logoLabel
+  - menuLabel
+  - openMenuLabel
+  - closeMenuLabel
+  - untranslatedLabel
+props:
+  logo:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/image'
+    title: Logo
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/img/_icn/logo.svg'
+        alt: Alpina
+        width: 97
+        height: 80
+  logoLink:
+    type: string
+    format: uri-reference
+    title: 'Logo link'
+    examples:
+      - /
+  logoLabel:
+    type: string
+    title: 'Logo label'
+    examples:
+      - Alpina
+  menuLabel:
+    type: string
+    title: 'Menu label'
+    examples:
+      - 'Main navigation'
+  openMenuLabel:
+    type: string
+    title: 'Open menu label'
+    examples:
+      - 'Open menu'
+  closeMenuLabel:
+    type: string
+    title: 'Close menu label'
+    examples:
+      - 'Close menu'
+  untranslatedLabel:
+    type: string
+    title: 'Untranslated label'
+    examples:
+      - 'Translation not yet available'
+slots: {  }
+dataDependencies: {  }

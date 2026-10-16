@@ -1,0 +1,25 @@
+uuid: fa920169-7c4b-44ce-b813-76fb42658a81
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_inspiration_weight
+    - node.type.product
+id: node.product.field_inspiration_weight
+field_name: field_inspiration_weight
+entity_type: node
+bundle: product
+label: 'Inspiration weight'
+description: 'Managed through the Product inspiration order admin page.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 100
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

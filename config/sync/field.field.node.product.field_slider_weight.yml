@@ -1,0 +1,25 @@
+uuid: fadcb491-6742-4a71-a641-9564a75b11b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slider_weight
+    - node.type.product
+id: node.product.field_slider_weight
+field_name: field_slider_weight
+entity_type: node
+bundle: product
+label: 'Slider weight'
+description: 'Order used by the Alpina product slider. Rearrange products on the Product slider order page.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 100
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

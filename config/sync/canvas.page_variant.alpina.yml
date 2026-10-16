@@ -1,0 +1,60 @@
+uuid: 940a458e-0187-4746-a81d-bb3d2a5601f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.js.alpina_footer
+    - canvas.component.js.alpina_header
+    - canvas.component.js.alpina_shell
+    - canvas.component.marker.page_content
+    - field.field.media.image.field_media_image
+    - image.style.canvas_parametrized_width
+    - media.type.image
+  content:
+    - 'file:file:6c63de8e-23aa-4ca3-b3e4-c4ee67733f9d'
+    - 'media:image:d5f2eea3-a8eb-49d7-9c06-75c75f513d9c'
+  module:
+    - file
+    - link
+    - media
+id: alpina
+label: Alpina
+description: 'Alpina header and editable page content.'
+component_tree:
+  06a7d50c-26af-40ca-b8f2-29b8c3735004:
+    uuid: 06a7d50c-26af-40ca-b8f2-29b8c3735004
+    component_id: js.alpina_shell
+    component_version: 464952b5ddca0042
+    inputs: {  }
+  93ef2c69-720d-466e-aec9-bf81295bc991:
+    parent_uuid: 06a7d50c-26af-40ca-b8f2-29b8c3735004
+    slot: header
+    uuid: 93ef2c69-720d-466e-aec9-bf81295bc991
+    component_id: js.alpina_header
+    component_version: c9cdad400be29f9f
+    inputs:
+      logo:
+        target_id: '10'
+      logoLabel: Alpina
+      menuLabel: 'Main navigation'
+      openMenuLabel: 'Open menu'
+      closeMenuLabel: 'Close menu'
+      untranslatedLabel: 'Translation not yet available'
+  338f1aab-69df-4f43-a512-fa56623deba0:
+    parent_uuid: 06a7d50c-26af-40ca-b8f2-29b8c3735004
+    slot: content
+    uuid: 338f1aab-69df-4f43-a512-fa56623deba0
+    component_id: marker.page_content
+    component_version: 3b12c0b99a6caecc
+    inputs: {  }
+  4ae76718-f32b-40ec-be97-6b70479a3d21:
+    parent_uuid: 06a7d50c-26af-40ca-b8f2-29b8c3735004
+    slot: footer
+    uuid: 4ae76718-f32b-40ec-be97-6b70479a3d21
+    component_id: js.alpina_footer
+    component_version: 1dc41e9fd191a73c
+    inputs:
+      pinterestLink: 'https://www.pinterest.com/'
+      instagramLink: 'https://www.instagram.com/'
+      facebookLink: 'https://www.facebook.com/'
+      youTubeLink: 'https://www.youtube.com/'

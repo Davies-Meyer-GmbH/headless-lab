@@ -1,0 +1,35 @@
+uuid: ff7ebead-74f4-4188-a077-7a7d58fa6543
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_footer
+name: 'Alpina Footer'
+type: external
+required: {  }
+props:
+  pinterestLink:
+    type: string
+    format: uri-reference
+    title: 'Pinterest link'
+    examples:
+      - 'https://www.pinterest.com/'
+  instagramLink:
+    type: string
+    format: uri-reference
+    title: 'Instagram link'
+    examples:
+      - 'https://www.instagram.com/'
+  facebookLink:
+    type: string
+    format: uri-reference
+    title: 'Facebook link'
+    examples:
+      - 'https://www.facebook.com/'
+  youTubeLink:
+    type: string
+    format: uri-reference
+    title: 'YouTube link'
+    examples:
+      - 'https://www.youtube.com/'
+slots: {  }
+dataDependencies: {  }

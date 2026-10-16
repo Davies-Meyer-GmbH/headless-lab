@@ -1,0 +1,29 @@
+uuid: 304ef189-2583-4ea5-878e-f48123d85fef
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_product_slider
+name: 'Alpina Product Slider'
+type: external
+required:
+  - heading
+  - numberOfProducts
+props:
+  heading:
+    type: string
+    title: Heading
+    examples:
+      - 'unsere Produkte'
+  text:
+    type: string
+    title: Text
+    examples:
+      - 'Alpinaweiß Premium überzeugt als Testsieger bei Stiftung Warenstest mit höchster Deckkraft und strahlendem Weiß für ein erstklassiges Farbergebnis.'
+  numberOfProducts:
+    type: number
+    title: 'Number of products'
+    description: 'How many products from the admin Product slider order to display.'
+    examples:
+      - 4.0
+slots: {  }
+dataDependencies: {  }

@@ -1,5 +1,5 @@
 uuid: 43b64adc-edb7-46e2-8d7b-2122964fea9c
-langcode: en
+langcode: fr
 status: true
 dependencies:
   config:
@@ -28,6 +28,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   path:
     type: path

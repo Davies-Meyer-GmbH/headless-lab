@@ -1,0 +1,20 @@
+uuid: bd1ca9a5-c5f8-4b2c-ae9d-3f42a0d60c8e
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_full_width_teaser
+name: 'Alpina Full-width Teaser'
+type: external
+required:
+  - heading
+props:
+  heading:
+    type: string
+    title: Heading
+    examples:
+      - 'Unsere Produkte'
+slots:
+  products:
+    title: Products
+    description: 'Add Product Teaser items and choose a reusable Product node for each.'
+dataDependencies: {  }

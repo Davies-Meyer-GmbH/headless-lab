@@ -1,0 +1,13 @@
+alpina_cms.product_slider_order:
+  title: 'Product slider order'
+  description: 'Rearrange the products shown by product sliders.'
+  route_name: alpina_cms.product_slider_order
+  parent: system.admin_content
+  weight: 5
+
+alpina_cms.product_inspiration_order:
+  title: 'Product inspiration order'
+  description: 'Rearrange products displayed in inspiration grids.'
+  route_name: alpina_cms.product_inspiration_order
+  parent: system.admin_content
+  weight: 6

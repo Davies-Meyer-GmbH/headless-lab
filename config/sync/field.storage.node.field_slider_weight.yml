@@ -1,0 +1,20 @@
+uuid: 156e1cec-f422-4d57-a173-8625c957c988
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_slider_weight
+field_name: field_slider_weight
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

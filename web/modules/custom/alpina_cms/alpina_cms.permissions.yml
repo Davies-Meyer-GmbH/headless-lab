@@ -1,0 +1,9 @@
+administer product slider order:
+  title: 'Rearrange the product slider order'
+  description: 'Drag and drop products to set the order in which product sliders display them.'
+  restrict access: true
+
+administer product inspiration order:
+  title: 'Rearrange the product inspiration order'
+  description: 'Set the product order for inspiration grids independently of product sliders.'
+  restrict access: true

@@ -1,0 +1,78 @@
+uuid: ae1492e3-69ca-41ad-ba8b-33aed0da02e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product.field_product_link
+    - field.field.node.product.field_summary
+    - field.field.node.product.field_teaser_image
+    - image.style.canvas_parametrized_width
+    - node.type.product
+  module:
+    - file
+    - node
+machineName: alpina_product_teaser
+name: 'Alpina Product Teaser'
+type: external
+required:
+  - linkLabel
+props:
+  product:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/content-entity-reference'
+    title: Product
+  linkLabel:
+    type: string
+    title: 'Link label'
+    examples:
+      - 'jetzt entdecken'
+  desktopBackground:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/image'
+    title: 'Desktop background'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/assets/teaser-1.jpg'
+        alt: ''
+        width: 1920
+        height: 802
+  mobileBackground:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/image'
+    title: 'Mobile background'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/assets/teaser-1-m.jpg'
+        alt: ''
+        width: 375
+        height: 700
+  mediaType:
+    type: string
+    enum:
+      - image
+      - video
+    title: 'Media type'
+    examples:
+      - image
+  desktopVideo:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/video'
+    title: 'Desktop video'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/assets/video/video-a-d.mp4'
+  mobileVideo:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/video'
+    title: 'Mobile video'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/assets/video/video-a-m.mp4'
+slots: {  }
+dataDependencies:
+  entityFields:
+    product:
+      - 'ℹ︎␜entity:node:product␝field_product_link␞␟url'
+      - 'ℹ︎␜entity:node:product␝field_summary␞␟value'
+      - 'ℹ︎␜entity:node:product␝field_teaser_image␞␟{alt↠alt,height↠height,src_with_alternate_widths↠src_with_alternate_widths,width↠width}'
+      - 'ℹ︎␜entity:node:product␝title␞␟value'

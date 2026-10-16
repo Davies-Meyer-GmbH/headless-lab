@@ -1,0 +1,17 @@
+alpina_cms.product_slider_order:
+  path: '/admin/content/product-slider-order'
+  defaults:
+    _form: 'Drupal\alpina_cms\Form\ProductSliderOrderForm'
+    _title: 'Product slider order'
+  requirements:
+    _permission: 'administer product slider order'
+
+alpina_cms.product_inspiration_order:
+  path: '/admin/content/product-inspiration-order'
+  defaults:
+    _form: 'Drupal\alpina_cms\Form\ProductInspirationOrderForm'
+    _title: 'Product inspiration order'
+  requirements:
+    _permission: 'administer product inspiration order'
+  options:
+    _admin_route: true

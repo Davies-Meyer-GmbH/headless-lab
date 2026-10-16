@@ -1,0 +1,183 @@
+uuid: 199873e3-4cf7-4f5c-a283-9f9d31517f38
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.alpina_product_teaser
+    - field.field.media.image.field_media_image
+    - field.field.media.video.field_media_video_file
+    - image.style.canvas_parametrized_width
+    - media.type.image
+    - media.type.video
+    - node.type.product
+  module:
+    - file
+    - media
+    - media_library
+    - node
+    - options
+active_version: d7c8211f5ebdfb2c
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        product:
+          required: false
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: node
+          field_instance_settings:
+            handler: default
+            handler_settings:
+              target_bundles:
+                - product
+          field_widget: entity_reference_autocomplete
+          default_value: null
+          expression: ℹ︎entity_reference␟entity
+          derived_schema_metadata: {  }
+        linkLabel:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'jetzt entdecken'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        desktopBackground:
+          required: false
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: media
+          field_instance_settings:
+            handler: 'default:media'
+            handler_settings:
+              target_bundles:
+                image: image
+          field_widget: media_library_widget
+          default_value: {  }
+          expression: 'ℹ︎entity_reference␟entity␜␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}'
+          derived_schema_metadata: {  }
+        mobileBackground:
+          required: false
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: media
+          field_instance_settings:
+            handler: 'default:media'
+            handler_settings:
+              target_bundles:
+                image: image
+          field_widget: media_library_widget
+          default_value: {  }
+          expression: 'ℹ︎entity_reference␟entity␜␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}'
+          derived_schema_metadata: {  }
+        mediaType:
+          required: false
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: image
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+        desktopVideo:
+          required: false
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: media
+          field_instance_settings:
+            handler: 'default:media'
+            handler_settings:
+              target_bundles:
+                video: video
+          field_widget: media_library_widget
+          default_value: {  }
+          expression: 'ℹ︎entity_reference␟entity␜␜entity:media:video␝field_media_video_file␞␟{src↝entity␜␜entity:file␝uri␞␟url}'
+          derived_schema_metadata: {  }
+        mobileVideo:
+          required: false
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: media
+          field_instance_settings:
+            handler: 'default:media'
+            handler_settings:
+              target_bundles:
+                video: video
+          field_widget: media_library_widget
+          default_value: {  }
+          expression: 'ℹ︎entity_reference␟entity␜␜entity:media:video␝field_media_video_file␞␟{src↝entity␜␜entity:file␝uri␞␟url}'
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+  e9bf23437e483031:
+    settings:
+      prop_field_definitions:
+        product:
+          required: false
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: node
+          field_instance_settings:
+            handler: default
+            handler_settings:
+              target_bundles:
+                - product
+          field_widget: entity_reference_autocomplete
+          default_value: null
+          expression: ℹ︎entity_reference␟entity
+          derived_schema_metadata: {  }
+        linkLabel:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'jetzt entdecken'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        desktopBackground:
+          required: true
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: media
+          field_instance_settings:
+            handler: 'default:media'
+            handler_settings:
+              target_bundles:
+                image: image
+          field_widget: media_library_widget
+          default_value: {  }
+          expression: 'ℹ︎entity_reference␟entity␜␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}'
+          derived_schema_metadata: {  }
+        mobileBackground:
+          required: true
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: media
+          field_instance_settings:
+            handler: 'default:media'
+            handler_settings:
+              target_bundles:
+                image: image
+          field_widget: media_library_widget
+          default_value: {  }
+          expression: 'ℹ︎entity_reference␟entity␜␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}'
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Alpina Product Teaser'
+id: js.alpina_product_teaser
+provider: null
+source: js
+source_local_id: alpina_product_teaser

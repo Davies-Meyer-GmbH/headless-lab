@@ -1,0 +1,5 @@
+services:
+  alpina_cms.translation_admin_routes:
+    class: Drupal\alpina_cms\EventSubscriber\TranslationAdminRoutesSubscriber
+    tags:
+      - { name: event_subscriber }

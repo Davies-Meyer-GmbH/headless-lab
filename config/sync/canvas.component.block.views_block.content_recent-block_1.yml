@@ -6,9 +6,20 @@ dependencies:
     - views.view.content_recent
   module:
     - views
-active_version: 16d888528dc6da22
+active_version: 1760ca0039cb39cf
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'views_block:content_recent-block_1'
+        label: 'Recent content'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  16d888528dc6da22:
     settings:
       default_settings:
         id: 'views_block:content_recent-block_1'

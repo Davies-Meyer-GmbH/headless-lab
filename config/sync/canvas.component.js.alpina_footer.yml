@@ -1,0 +1,84 @@
+uuid: c910a38b-a17e-4255-b28b-b6b2dad74c0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.alpina_footer
+  module:
+    - link
+active_version: 1dc41e9fd191a73c
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        pinterestLink:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://www.pinterest.com/'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+        instagramLink:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://www.instagram.com/'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+        facebookLink:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://www.facebook.com/'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+        youTubeLink:
+          required: false
+          field_type: link
+          field_storage_settings: {  }
+          field_instance_settings:
+            title: 0
+            link_type: 17
+          field_widget: link_default
+          default_value:
+            -
+              uri: 'https://www.youtube.com/'
+              options: {  }
+          expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Alpina Footer'
+id: js.alpina_footer
+provider: null
+source: js
+source_local_id: alpina_footer

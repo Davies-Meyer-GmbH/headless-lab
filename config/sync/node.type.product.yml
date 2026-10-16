@@ -1,0 +1,11 @@
+uuid: 02ec908d-eee2-4eac-a8e3-e5ff4a15449a
+langcode: en
+status: true
+dependencies: {  }
+name: Product
+type: product
+description: 'Reusable Alpina product content for teasers, cards, and future product pages.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

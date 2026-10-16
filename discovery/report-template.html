@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discovery report</title>
+<style>
+  :root {
+    --ink: #16233b; --paper: #eef1f3; --card: #fff; --rule: #d3d9e0; --soft: #5b6678;
+    --drop: #0678be; --built: #3f7d5a; --ready: #0678be; --props: #5b6678; --decide: #b45f00;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); color: var(--ink); }
+  body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: var(--drop); }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 0.86em; background: #e3e8ed; padding: 1px 5px; border-radius: 4px; }
+  .app { display: grid; grid-template-columns: 300px minmax(0, 1fr); min-height: 100vh; }
+  .app > * { min-width: 0; }
+
+  /* Sidebar */
+  nav { background: var(--ink); color: #dfe6ee; padding: 24px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  nav .meta { padding: 0 22px 18px; border-bottom: 1px solid #2c3b55; }
+  nav .meta h1 { font-size: 1.05rem; margin: 0 0 6px; color: #fff; }
+  nav .meta p { margin: 2px 0; font-size: 0.82rem; color: #a9b6c6; }
+  nav h2 { font-size: 0.78rem; font-weight: 600; color: #8796ab; margin: 22px 22px 6px; }
+  nav a { display: block; padding: 8px 22px; color: #dfe6ee; text-decoration: none; border-left: 3px solid transparent; }
+  nav a:hover { background: #1f2f4a; }
+  nav a.on { background: #23365a; border-left-color: #5fb4ea; color: #fff; }
+  nav a .sub { display: block; font-size: 0.78rem; color: #8fa0b6; }
+  nav a .count { float: right; font-size: 0.75rem; padding: 1px 8px; border-radius: 10px; background: #2c3b55; }
+  nav a .count.decide { background: var(--decide); color: #fff; }
+  nav a:focus-visible { outline: 2px solid #5fb4ea; outline-offset: -2px; }
+
+  main { padding: 32px 44px 80px; max-width: 1500px; }
+  main h2 { font-size: 1.5rem; margin: 0 0 4px; }
+  .lead { color: var(--soft); margin: 0 0 24px; max-width: 80ch; }
+
+  /* Status chips */
+  .chip { display: inline-block; font-size: 0.76rem; font-weight: 600; padding: 2px 10px; border-radius: 12px; color: #fff; white-space: nowrap; }
+  .chip.built { background: var(--built); }
+  .chip.ready { background: var(--ready); }
+  .chip.component-only { background: var(--props); }
+  .chip.needs-drupal { background: var(--decide); }
+  .proposal { font-size: 0.75rem; color: var(--soft); margin-left: 6px; }
+
+  /* Page view rows */
+  .variants { background: #fff; border: 1px solid var(--rule); border-left: 4px solid var(--drop); border-radius: 6px; padding: 10px 16px; margin: 0 0 24px; }
+  .variants p { margin: 2px 0; }
+  .row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 0; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
+  .row.decide { border-color: var(--decide); box-shadow: inset 4px 0 0 var(--decide); }
+  .row .shot { background: #f6f8fa; border-right: 1px solid var(--rule); max-height: 380px; overflow: hidden; }
+  .row .shot img { width: 100%; display: block; }
+  .row .shot a { display: block; }
+  .row .info { padding: 16px 20px; }
+  .row h3 { margin: 0 0 4px; font-size: 1.08rem; }
+  .row .pos { color: var(--soft); font-size: 0.8rem; }
+  dl { margin: 12px 0 0; display: grid; grid-template-columns: 7.5rem 1fr; gap: 6px 12px; font-size: 0.92rem; }
+  dt { color: var(--soft); }
+  dd { margin: 0; }
+  .need { color: var(--decide); font-weight: 600; }
+  .compact { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; background: var(--card); border: 1px dashed var(--rule); border-radius: 8px; padding: 10px 16px; margin-bottom: 10px; }
+  .compact .name { font-weight: 600; }
+  .compact .why { color: var(--soft); font-size: 0.9rem; flex: 1; }
+
+  /* Tables and lists */
+  table { border-collapse: collapse; width: 100%; background: var(--card); font-size: 0.9rem; margin: 8px 0 28px; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { font-size: 0.8rem; color: var(--soft); font-weight: 600; background: #f6f8fa; }
+  .num { text-align: right; white-space: nowrap; }
+  .decisions li { background: #fff; border: 1px solid var(--rule); border-left: 4px solid var(--decide); border-radius: 6px; padding: 10px 14px; margin-bottom: 10px; list-style: none; }
+  .decisions { padding: 0; max-width: 90ch; }
+  h3.section { font-size: 1.05rem; margin: 30px 0 6px; }
+
+  code { overflow-wrap: anywhere; }
+  table { display: block; overflow-x: auto; }
+  @media (max-width: 1100px) {
+    .app { grid-template-columns: 1fr; }
+    nav { position: static; height: auto; }
+    .row { grid-template-columns: 1fr; }
+    .row .shot { border-right: 0; border-bottom: 1px solid var(--rule); }
+    main { padding: 24px 20px 60px; }
+    dl { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <nav id="nav" aria-label="Report sections"></nav>
+  <main id="view"></main>
+</div>
+<script>
+const DATA = /*__DATA__*/null;
+const C = DATA.components;
+const STATUS = {
+  'built': 'Already built',
+  'ready': 'Uses existing Drupal content',
+  'component-only': 'Props only, no Drupal changes',
+  'needs-drupal': 'Needs a Drupal decision',
+};
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const statusOf = (c) => (c.verified ? 'built' : c.status);
+const nameOf = (c) => (c.component || `New component for .${c.block}`).replace(/\s*\(proposed\)\s*$/, '');
+const typeById = Object.fromEntries(DATA.pageTypes.map((t) => [t.id, t]));
+
+// First page type (in build order) that contains each component.
+const firstType = {};
+DATA.pageTypes.forEach((t) => t.structure.forEach((b) => { if (!(b in firstType)) firstType[b] = t.id; }));
+
+function pageStats(t) {
+  const blocks = [...new Set(t.structure)];
+  const own = blocks.filter((b) => !C[b].global && firstType[b] === t.id);
+  return {
+    own: own.length,
+    build: own.filter((b) => !C[b].verified).length,
+    built: own.filter((b) => C[b].verified).length,
+    decide: own.filter((b) => C[b].status === 'needs-drupal').length,
+    reused: blocks.length - own.length,
+  };
+}
+
+function renderNav(route) {
+  const m = DATA.meta;
+  const link = (href, label, extra = '', sub = '') =>
+    `<a href="${href}" class="${route === href ? 'on' : ''}">${extra}${esc(label)}${sub ? `<span class="sub">${sub}</span>` : ''}</a>`;
+  const decideCount = Object.values(C).filter((c) => c.status === 'needs-drupal').length;
+  let html = `<div class="meta"><h1>Discovery report</h1>
+    <p>${esc(m.project)}</p><p>${esc(m.developer)}, ${esc(m.date)}</p></div>
+    <h2>Start here</h2>
+    ${link('#/overview', 'Overview')}
+    ${link('#/decisions', 'Drupal decisions', `<span class="count decide">${decideCount}</span>`)}
+    <h2>Page types, in build order</h2>`;
+  DATA.pageTypes.forEach((t) => {
+    const s = pageStats(t);
+    const count = s.decide ? `<span class="count decide">${s.decide} to decide</span>` : `<span class="count">${s.build ? `${s.build} to build` : 'built'}</span>`;
+    const files = t.pages.map((p) => `${p}.html`).join(', ');
+    html += link(`#/page/${t.id}`, t.label, count, esc(files));
+  });
+  html += `<h2>Reference</h2>${link('#/global', 'Global components')}${link('#/inventory', 'Drupal inventory')}`;
+  document.getElementById('nav').innerHTML = html;
+}
+
+function details(c) {
+  const rows = [];
+  if (c.props.length) rows.push(['Editors set', esc(c.props.join(', '))]);
+  rows.push(['From Drupal', c.uses.length ? esc(c.uses.join('; ')) : 'Nothing; all content is props']);
+  if (c.needs.length) rows.push(['Still needed', `<span class="need">${esc(c.needs.join('; '))}</span>`]);
+  const others = (c.page_types || []).map((id) => typeById[id].label);
+  if (others.length > 1) rows.push(['Also used on', esc(others.join(', '))]);
+  if (c.note) rows.push(['Note', esc(c.note)]);
+  rows.push(['Static source', `<code>.${esc(c.block)}</code>${c.scss ? ` <code>${esc(c.scss)}</code>` : ''}`]);
+  return `<dl>${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>`;
+}
+
+function fullRow(c, position) {
+  const st = statusOf(c);
+  const shot = c.shots[0] ? `<a href="${esc(c.shots[0])}" target="_blank" title="Open the full screenshot"><img src="${esc(c.shots[0])}" alt="Static ${esc(c.block)} section" loading="lazy"></a>` : '';
+  const proposal = c.verified ? '' : '<span class="proposal">proposal</span>';
+  return `<article class="row ${c.status === 'needs-drupal' ? 'decide' : ''}">
+    <div class="shot">${shot}</div>
+    <div class="info">
+      <div class="pos">${position}</div>
+      <h3>${esc(nameOf(c))}</h3>
+      <span class="chip ${st}">${STATUS[st]}</span>${proposal}
+      ${details(c)}
+    </div></article>`;
+}
+
+function compactRow(c, position, why) {
+  return `<div class="compact"><span class="pos">${position}</span>
+    <span class="name">${esc(nameOf(c))}</span><span class="why">${why}</span>
+    <span class="chip ${statusOf(c)}">${STATUS[statusOf(c)]}</span></div>`;
+}
+
+function renderPage(id) {
+  const t = typeById[id];
+  if (!t) return renderOverview();
+  const s = pageStats(t);
+  let html = `<h2>${esc(t.label)}</h2>
+    <p class="lead">Static ${t.pages.length > 1 ? 'files' : 'file'}: ${t.pages.map((p) => `<code>${esc(p)}.html</code>`).join(', ')}.
+    ${s.build} ${s.build === 1 ? 'component' : 'components'} still to build on this page${s.built ? `, ${s.built} already built` : ''}${s.decide ? `; ${s.decide} need a Drupal decision first` : ''}. Sections are listed top to bottom, as on the page.</p>`;
+  if (t.variants.length) {
+    html += `<div class="variants"><strong>Variants, not separate pages.</strong> ${t.pages.length} static files share this layout; build the components once with an option:${t.variants.map((v) => `<p><code>${esc(v.page)}.html</code>: ${esc(nameOf(C[v.block]))} uses ${esc(v.text)}.</p>`).join('')}</div>`;
+  }
+  const seen = {};
+  t.structure.forEach((b, i) => {
+    const c = C[b];
+    const position = `Section ${i + 1} of ${t.structure.length}`;
+    if (c.global) {
+      html += compactRow(c, position, 'Global: built once in the page variant, appears on every page.');
+    } else if (firstType[b] !== t.id) {
+      html += compactRow(c, position, `Reuse: first needed on <a href="#/page/${firstType[b]}">${esc(typeById[firstType[b]].label)}</a>.`);
+    } else if (seen[b]) {
+      html += compactRow(c, position, 'Same component as above, with different content.');
+    } else {
+      html += fullRow(c, position);
+    }
+    seen[b] = true;
+  });
+  return html;
+}
+
+function renderOverview() {
+  const all = Object.values(C);
+  const by = (st) => all.filter((c) => statusOf(c) === st).length;
+  let html = `<h2>Overview</h2>
+    <p class="lead">${DATA.meta.pages} static pages make ${DATA.pageTypes.length} page types with ${all.length} components. The page list and Drupal inventory are script output; how each component maps to Drupal is a proposal, except for components already built. ${esc(DATA.meta.index_note)}</p>
+    <table><thead><tr><th>Status</th><th class="num">Components</th></tr></thead><tbody>
+    ${Object.keys(STATUS).map((st) => `<tr><td><span class="chip ${st}">${STATUS[st]}</span></td><td class="num">${by(st)}</td></tr>`).join('')}
+    </tbody></table>
+    <h3 class="section">Page types, in build order</h3>
+    <table><thead><tr><th>Page type</th><th>Static files</th><th class="num">To build</th><th class="num">Already built</th><th class="num">Reused or global</th><th class="num">Drupal decisions</th></tr></thead><tbody>`;
+  DATA.pageTypes.forEach((t) => {
+    const s = pageStats(t);
+    html += `<tr><td><a href="#/page/${t.id}">${esc(t.label)}</a></td><td>${t.pages.map((p) => `<code>${esc(p)}.html</code>`).join(' ')}</td>
+      <td class="num">${s.build}</td><td class="num">${s.built || ''}</td><td class="num">${s.reused}</td><td class="num">${s.decide || ''}</td></tr>`;
+  });
+  return html + '</tbody></table>';
+}
+
+function renderDecisions() {
+  const deciding = Object.values(C).filter((c) => c.status === 'needs-drupal');
+  return `<h2>Drupal decisions</h2>
+    <p class="lead">These need a decision before building, because they change Drupal's content model or need backend behaviour. Everything else can be built with existing content and props.</p>
+    <ul class="decisions">${DATA.todo.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
+    <h3 class="section">Components waiting for these decisions</h3>
+    <table><thead><tr><th>Component</th><th>Still needed</th><th>Page types</th></tr></thead><tbody>
+    ${deciding.map((c) => `<tr><td>${esc(nameOf(c))}</td><td>${esc(c.needs.join('; '))}</td><td>${(c.page_types || []).map((id) => `<a href="#/page/${id}">${esc(typeById[id].label)}</a>`).join(', ')}</td></tr>`).join('')}
+    </tbody></table>`;
+}
+
+function renderGlobal() {
+  const globals = Object.values(C).filter((c) => c.global);
+  return `<h2>Global components</h2>
+    <p class="lead">These appear on every page. They live in the page variant and are built once.</p>
+    ${globals.map((c) => fullRow(c, 'On every page')).join('')}`;
+}
+
+function renderInventory() {
+  const d = DATA.drupal;
+  const fields = (t) => t.fields.map((f) => `${esc(f.label)} <code>${esc(f.jsonapi || f.machine)}</code>`).join(', ') || 'none';
+  const menus = d.menus.filter((m) => m.links.length);
+  return `<h2>Drupal inventory</h2>
+    <p class="lead">What exists in Drupal now, read from the site on ${esc((d.generated || '').slice(0, 10))}. ${esc(d.conventions?.jsonapi_fields || '')}</p>
+    <h3 class="section">Content types</h3>
+    <table><thead><tr><th>Type</th><th class="num">Nodes</th><th>Fields (JSON:API name)</th></tr></thead><tbody>
+    ${d.content_types.map((t) => `<tr><td>${esc(t.label)} <code>${esc(t.machine)}</code></td><td class="num">${t.nodes_total}</td><td>${fields(t)}</td></tr>`).join('')}
+    </tbody></table>
+    <h3 class="section">Menus with links</h3>
+    <table><thead><tr><th>Menu</th><th>Links</th></tr></thead><tbody>
+    ${menus.map((m) => `<tr><td>${esc(m.label)} <code>${esc(m.machine)}</code></td><td>${m.links.map((l) => esc('— '.repeat(l.depth) + l.title)).join('<br>')}</td></tr>`).join('')}
+    </tbody></table>
+    <h3 class="section">Media types and vocabularies</h3>
+    <table><thead><tr><th>Name</th><th class="num">Items</th></tr></thead><tbody>
+    ${d.media_types.map((m) => `<tr><td>Media: ${esc(m.label)}</td><td class="num">${m.items}</td></tr>`).join('')}
+    ${d.vocabularies.map((v) => `<tr><td>Vocabulary: ${esc(v.label)}</td><td class="num">${v.terms}</td></tr>`).join('')}
+    </tbody></table>
+    <h3 class="section">Canvas components already registered</h3>
+    <table><thead><tr><th>Component</th><th>Props</th></tr></thead><tbody>
+    ${d.canvas_components.map((c) => `<tr><td>${esc(c.label)}</td><td>${c.props.map((p) => esc(p.title || p.name)).join(', ')}</td></tr>`).join('')}
+    </tbody></table>
+    <h3 class="section">Canvas pages and page variants</h3>
+    <table><thead><tr><th>Name</th><th>Components</th></tr></thead><tbody>
+    ${d.page_variants.map((v) => `<tr><td>Variant: ${esc(v.label)}</td><td>${esc(v.components.join(', '))}</td></tr>`).join('')}
+    ${d.canvas_pages.map((p) => `<tr><td>Page ${p.id}: ${esc(p.title)}</td><td>${esc(p.components.join(', '))}</td></tr>`).join('')}
+    </tbody></table>`;
+}
+
+function route() {
+  const hash = location.hash || '#/overview';
+  const [, view, id] = hash.split('/');
+  const html = view === 'page' ? renderPage(id)
+    : view === 'decisions' ? renderDecisions()
+    : view === 'global' ? renderGlobal()
+    : view === 'inventory' ? renderInventory()
+    : renderOverview();
+  document.getElementById('view').innerHTML = html;
+  renderNav(view === 'page' ? `#/page/${id}` : `#/${view || 'overview'}`);
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+route();
+</script>
+</body>
+</html>

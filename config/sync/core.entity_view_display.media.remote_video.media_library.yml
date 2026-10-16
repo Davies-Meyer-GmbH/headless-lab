@@ -1,5 +1,5 @@
 uuid: 8e213b3d-8ee6-488d-bba4-d23502b200eb
-langcode: en
+langcode: fr
 status: true
 dependencies:
   config:
@@ -30,5 +30,6 @@ content:
 hidden:
   created: true
   field_media_oembed_video: true
+  langcode: true
   name: true
   uid: true

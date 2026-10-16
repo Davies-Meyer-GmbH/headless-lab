@@ -1,5 +1,5 @@
 uuid: ec822caa-63f3-4aec-9c79-7cc24e4e16aa
-langcode: en
+langcode: fr
 status: true
 dependencies:
   config:
@@ -32,4 +32,5 @@ content:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  langcode: true

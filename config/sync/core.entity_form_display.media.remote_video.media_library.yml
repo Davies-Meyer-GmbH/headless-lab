@@ -1,5 +1,5 @@
 uuid: a1aa8446-b889-4ff4-add4-6948d4c6711d
-langcode: en
+langcode: fr
 status: true
 dependencies:
   config:
@@ -12,7 +12,14 @@ id: media.remote_video.media_library
 targetEntityType: media
 bundle: remote_video
 mode: media_library
-content: {  }
+content:
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
 hidden:
   created: true
   field_media_oembed_video: true

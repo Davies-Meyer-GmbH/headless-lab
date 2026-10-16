@@ -1,5 +1,5 @@
 uuid: db62c34e-1d8c-491e-9bc5-332f56b0d8e9
-langcode: en
+langcode: fr
 status: true
 dependencies:
   config:
@@ -29,6 +29,13 @@ content:
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   path:
     type: path

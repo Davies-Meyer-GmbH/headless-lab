@@ -1,5 +1,5 @@
 uuid: 165187b0-4a40-4867-93cf-502bc67ff56e
-langcode: en
+langcode: fr
 status: true
 dependencies:
   config:
@@ -28,4 +28,5 @@ content:
     weight: 0
     region: content
 hidden:
+  langcode: true
   member_for: true

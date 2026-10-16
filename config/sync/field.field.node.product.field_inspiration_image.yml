@@ -1,0 +1,38 @@
+uuid: 38439451-6b9e-493b-8234-4d798070a620
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_inspiration_image
+    - node.type.product
+  module:
+    - image
+id: node.product.field_inspiration_image
+field_name: field_inspiration_image
+entity_type: node
+bundle: product
+label: 'Inspiration image'
+description: 'Interior/lifestyle image shown by inspiration grids. Product name, collection, packshot and destination remain shared.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: alpina/products
+  file_extensions: 'png jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: null
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

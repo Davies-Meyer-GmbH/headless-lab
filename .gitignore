@@ -25,3 +25,7 @@
 /frontend/.env
 /frontend/.env.*
 !/frontend/.env.example
+
+# Generated output: static-site inventory results and comparison screenshots
+/discovery/out/
+/.compare/

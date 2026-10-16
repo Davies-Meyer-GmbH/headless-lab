@@ -1,0 +1,69 @@
+uuid: b49365cc-dd4d-4ecf-b412-8e453fccd106
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_hero
+name: 'Alpina Hero'
+type: external
+required:
+  - heading
+props:
+  eyebrow:
+    type: string
+    title: Eyebrow
+    examples:
+      - 'Weiße Wandfarben, bunte Innenfarben und Lacke'
+  heading:
+    type: string
+    title: Heading
+    examples:
+      - 'alpina — Deutsch­lands Nr. 1* Jetzt auch in Belgien!'
+  text:
+    type: string
+    title: Text
+    examples:
+      - 'Willkommen bei Alpina. Mit unseren Farben und Lacken kannst du deine Wände streichen und dein Bad oder deine Küche renovieren. Sogar Fliesen lassen sich einfach überstreichen – schnell, sauber und ohne Vorkenntnisse. Unsere Wandfarben decken zuverlässig, sind frei von Löse- und Konservierungsmitteln und lassen sich ganz einfach verarbeiten.'
+  desktopImage:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/image'
+    title: 'Desktop image'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/assets/hero-img.jpg'
+        alt: 'Alpinaweiß paint bucket on a wooden table in a bright interior'
+        width: 1920
+        height: 900
+  mobileImage:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/image'
+    title: 'Mobile image'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/assets/hero-img-m.jpg'
+        alt: 'Alpinaweiß paint bucket on a wooden table in a bright interior'
+        width: 375
+        height: 600
+  mediaType:
+    type: string
+    enum:
+      - image
+      - video
+    title: 'Media type'
+    examples:
+      - image
+  desktopVideo:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/video'
+    title: 'Desktop video'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/assets/video/video-a-d.mp4'
+  mobileVideo:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/video'
+    title: 'Mobile video'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/assets/video/video-a-m.mp4'
+slots: {  }
+dataDependencies: {  }

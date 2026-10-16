@@ -1,0 +1,33 @@
+uuid: 3a305a29-23e5-49f1-b729-d12bc76ff8c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.alpina_shell
+active_version: 464952b5ddca0042
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions: {  }
+    fallback_metadata:
+      slot_definitions:
+        header:
+          title: Header
+        content:
+          title: Content
+        footer:
+          title: Footer
+  01505200e9e98910:
+    settings:
+      prop_field_definitions: {  }
+    fallback_metadata:
+      slot_definitions:
+        header:
+          title: Header
+        content:
+          title: Content
+label: 'Alpina Page Shell'
+id: js.alpina_shell
+provider: null
+source: js
+source_local_id: alpina_shell

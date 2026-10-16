@@ -1,0 +1,8 @@
+name: Alpina CMS
+type: module
+description: Site-specific integration for Drupal Canvas authoring.
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - canvas:canvas
+  - drupal:content_translation

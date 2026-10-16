@@ -1,0 +1,53 @@
+uuid: 8a241a27-c329-48d5-afc0-6f0c4df70355
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.alpina_inspo_grid
+active_version: ff05fb07c70c360d
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        heading:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Inspiration fürs Renovieren'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Lass dich inspirieren und gestalte elegante Räume, in denen du dich jeden Tag aufs Neue wohlfühlst – von der Farbwahl bis zur gestrichenen Wand oder Oberfläche.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        numberOfProducts:
+          required: true
+          field_type: integer
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: number
+          default_value:
+            -
+              value: 8
+          expression: ℹ︎integer␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Alpina Inspo Grid'
+id: js.alpina_inspo_grid
+provider: null
+source: js
+source_local_id: alpina_inspo_grid

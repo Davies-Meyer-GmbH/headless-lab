@@ -1,0 +1,365 @@
+{
+  "_note": "AI-proposed mapping for the discovery report. Statuses are proposals: Ready means everything the component needs already exists in Drupal; Component only means frontend work with props and existing media, no new Drupal structure; Needs Drupal structure means a content-model or backend decision the developer must approve before building. Verified mappings from the hand-built homepage slices are marked verified.",
+  "project": "headless-lab (Alpina lab)",
+  "build_order": [
+    "index",
+    "alpinaweiss",
+    "products",
+    "about",
+    "bad-kueche",
+    "contact",
+    "store-locator",
+    "legal"
+  ],
+  "mappings": [
+    {
+      "block": "navigation",
+      "component": "alpina_header",
+      "status": "ready",
+      "verified": true,
+      "props": [
+        "logo (media)",
+        "logoLink",
+        "logoLabel",
+        "menuLabel",
+        "openMenuLabel",
+        "closeMenuLabel",
+        "untranslatedLabel"
+      ],
+      "uses": [
+        "Main menu links, order, nesting"
+      ],
+      "needs": [],
+      "note": "Global: lives in the Alpina page variant, not on pages. FR/NL switcher is visual-only."
+    },
+    {
+      "block": "footer",
+      "component": "alpina_footer",
+      "status": "ready",
+      "verified": true,
+      "props": [
+        "social links (4, may be empty)"
+      ],
+      "uses": [
+        "Footer menu links"
+      ],
+      "needs": [],
+      "note": "Global: Footer slot of the page shell. Footer menu links are <nolink> placeholders until those pages exist."
+    },
+    {
+      "block": "hero-header",
+      "component": "alpina_hero",
+      "status": "ready",
+      "verified": true,
+      "props": [
+        "eyebrow",
+        "heading",
+        "text",
+        "desktopImage/mobileImage (media)",
+        "mediaType + desktopVideo/mobileVideo (media)"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "One component with an image/video variant (mediaType prop), not two components. Same pattern as the video test page."
+    },
+    {
+      "block": "full-width-teaser",
+      "component": "alpina_full_width_teaser + alpina_product_teaser children",
+      "status": "ready",
+      "verified": true,
+      "props": [
+        "heading per section; per item: Product reference, desktop/mobile background (media), linkLabel"
+      ],
+      "uses": [
+        "Product nodes: title, summary, teaser image, destination link"
+      ],
+      "needs": [],
+      "note": "Repeated items come from Product nodes via the products slot. Video-background variant on index-video is a media swap on the same component."
+    },
+    {
+      "block": "product-slider",
+      "component": "alpina_product_slider",
+      "status": "ready",
+      "verified": true,
+      "props": [
+        "heading",
+        "text",
+        "numberOfProducts"
+      ],
+      "uses": [
+        "Product nodes ordered by field_slider_weight"
+      ],
+      "needs": [],
+      "note": "Card content (collection, name, image, benefits) comes from Product nodes. alpinaweiss instances add mobile/desktop headline spans."
+    },
+    {
+      "block": "inspo-grid",
+      "component": "alpina_inspo_grid",
+      "status": "ready",
+      "verified": true,
+      "props": [
+        "heading",
+        "text",
+        "numberOfProducts"
+      ],
+      "uses": [
+        "Product nodes: inspiration image + field_inspiration_weight ordering"
+      ],
+      "needs": [],
+      "note": "8 cards per instance on both pages; same structure."
+    },
+    {
+      "block": "store-logo",
+      "component": "alpina_store_logo",
+      "status": "ready",
+      "verified": true,
+      "props": [
+        "heading",
+        "text",
+        "two logo images (media)",
+        "buttonLabel",
+        "buttonLink"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "SVG logos must be converted (core image media rejects SVG); Hubo uses a PNG export. Button link renders # when empty, as in the source."
+    },
+    {
+      "block": "legal-footnotes",
+      "component": "alpina_legal_footnotes (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "footnote text lines"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Static text. Remaining homepage section from the lab; no Drupal structure needed."
+    },
+    {
+      "block": "sub-header",
+      "component": "alpina_sub_header (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "heading",
+        "optional eyebrow",
+        "hero image (media)",
+        "mediaType + video (media)"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Same component on about/contact; contact instance has no eyebrow, about-video uses the video variant."
+    },
+    {
+      "block": "sub-header-anchor",
+      "component": "alpina_sub_header_anchor (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "eyebrow",
+        "heading words",
+        "copy",
+        "anchor buttons",
+        "hero image/video (media)"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Distinct from sub-header (anchor links + two-part headline). alpinaweiss-video uses the video variant."
+    },
+    {
+      "block": "benefits",
+      "component": "alpina_benefits (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "heading",
+        "copy",
+        "3 bullet items (icon + text)",
+        "2 seals (images)"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Fixed item count in the source; props suffice."
+    },
+    {
+      "block": "product-grid",
+      "component": "alpina_product_grid (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "heading",
+        "product count or explicit list"
+      ],
+      "uses": [
+        "Product nodes: same card fields as the slider"
+      ],
+      "needs": [
+        "filter decision (see filter-wrapper) before the products page"
+      ],
+      "note": "products.html renders 11 cards with mobile/desktop duplicates; card markup matches the slider cards."
+    },
+    {
+      "block": "filter-wrapper",
+      "component": "alpina_filter (proposed)",
+      "status": "needs-drupal",
+      "verified": false,
+      "props": [],
+      "uses": [
+        "Product collection values (field_collection) as filter options"
+      ],
+      "needs": [
+        "Filter model decision: taxonomy vs collection strings, and where filtering runs"
+      ],
+      "note": "Needs approval: filtering changes the data model or the page behavior."
+    },
+    {
+      "block": "text-icon-modul",
+      "component": "alpina_text_icon (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "3 cards: icon (image), heading, text"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Source uses swiper-slide classes (mobile slider); same markup can carry the slider or a static row."
+    },
+    {
+      "block": "faq-module",
+      "component": "alpina_faq (proposed)",
+      "status": "needs-drupal",
+      "verified": false,
+      "props": [
+        "heading",
+        "categories with questions + answers (24 items in 3 categories in the source)"
+      ],
+      "uses": [],
+      "needs": [
+        "FAQ content model: new FAQ item type vs props on the component"
+      ],
+      "note": "Needs approval: a new content type ends up in exported config."
+    },
+    {
+      "block": "intro",
+      "component": "alpina_intro (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "heading",
+        "copy blocks"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Static brand copy, about page only."
+    },
+    {
+      "block": "text-header",
+      "component": "alpina_text_header (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "heading",
+        "intro copy"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Identical structure on legal/products/store-locator; page title differs."
+    },
+    {
+      "block": "text-image-module",
+      "component": "alpina_text_image (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "heading",
+        "copy",
+        "image (media)",
+        "layout direction"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Two instances per about page, alternating image-left / image-right. One component with a direction prop."
+    },
+    {
+      "block": "legal-body",
+      "component": "alpina_legal_body (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "8 content blocks of heading + paragraphs"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Long static copy; editors need structured props or one rich-text prop (decision at build time, reversible)."
+    },
+    {
+      "block": "pdf-download",
+      "component": "alpina_pdf_download (proposed)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "heading",
+        "copy",
+        "document file",
+        "cover image (media)"
+      ],
+      "uses": [
+        "document media type (exists, empty)"
+      ],
+      "needs": [],
+      "note": "Uploading the brochure is a content item, creatable without approval."
+    },
+    {
+      "block": "bad-kueche",
+      "component": "alpina_before_after + alpina_use_cases (proposed split)",
+      "status": "component-only",
+      "verified": false,
+      "props": [
+        "heading",
+        "before/after image pairs (6)",
+        "use-case tabs (6, with swatches, USPs, product images)"
+      ],
+      "uses": [],
+      "needs": [],
+      "note": "Biggest section in the source (before/after comparison slider + tabbed use cases). Proposed split into two components; all content is props."
+    },
+    {
+      "block": "contact-form",
+      "component": "alpina_contact_form (proposed)",
+      "status": "needs-drupal",
+      "verified": false,
+      "props": [
+        "aside copy + image (media)",
+        "field labels (fixed set in source)"
+      ],
+      "uses": [],
+      "needs": [
+        "Form receiver/backend: where submissions go (Webform, custom endpoint, external service)"
+      ],
+      "note": "Needs approval: a form backend is hard to undo and touches editorial workflow."
+    },
+    {
+      "block": "store-locator",
+      "component": "alpina_store_locator (proposed)",
+      "status": "needs-drupal",
+      "verified": false,
+      "props": [
+        "heading",
+        "search labels"
+      ],
+      "uses": [],
+      "needs": [
+        "Retailer data source + search: new content type, external API, or embedded service"
+      ],
+      "note": "Needs approval: retailer search needs a data source beyond the markup."
+    }
+  ],
+  "drupal_todo": [
+    "FAQ content model: new FAQ item type vs props on the component (blocks faq-module).",
+    "Products filter model: taxonomy vs collection strings, and where filtering runs (blocks products page).",
+    "Contact form receiver: Webform, custom endpoint, or external service (blocks contact-form).",
+    "Store locator data source and search (blocks store-locator).",
+    "Menu links for each new page (content items, no approval needed)."
+  ]
+}

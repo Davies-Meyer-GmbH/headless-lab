@@ -1,0 +1,133 @@
+uuid: 1acd9305-4da7-444b-a1f3-e33ec89c28bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.alpina_product_slider
+active_version: c9fe82af9260c2a7
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        heading:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'unsere Produkte'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Alpinaweiß Premium überzeugt als Testsieger bei Stiftung Warenstest mit höchster Deckkraft und strahlendem Weiß für ein erstklassiges Farbergebnis.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        numberOfProducts:
+          required: true
+          field_type: float
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: number
+          default_value:
+            -
+              value: 4.0
+          expression: ℹ︎float␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+  7c4ccc076e30e32d:
+    settings:
+      prop_field_definitions:
+        heading:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'unsere Produkte'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Alpinaweiß Premium überzeugt als Testsieger bei Stiftung Warenstest mit höchster Deckkraft und strahlendem Weiß für ein erstklassiges Farbergebnis.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        numberOfProducts:
+          required: false
+          field_type: float
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: number
+          default_value:
+            -
+              value: 4.0
+          expression: ℹ︎float␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+  71754726fa1284ab:
+    settings:
+      prop_field_definitions:
+        heading:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'unsere Produkte'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Alpinaweiß Premium überzeugt als Testsieger bei Stiftung Warenstest mit höchster Deckkraft und strahlendem Weiß für ein erstklassiges Farbergebnis.'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        limit:
+          required: true
+          field_type: float
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: number
+          default_value:
+            -
+              value: 4.0
+          expression: ℹ︎float␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Alpina Product Slider'
+id: js.alpina_product_slider
+provider: null
+source: js
+source_local_id: alpina_product_slider

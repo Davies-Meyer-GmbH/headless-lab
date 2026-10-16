@@ -1,6 +1,6 @@
 _core:
   default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
-langcode: en
+langcode: fr
 uuid: 530dde68-00fe-4123-a2b5-87e8b065f28c
 name: 'Headless Lab'
 mail: admin@example.com
@@ -8,7 +8,7 @@ slogan: ''
 page:
   403: ''
   404: ''
-  front: /page/7
+  front: /page/16
 admin_compact_mode: false
 weight_select_max: 100
 default_langcode: en

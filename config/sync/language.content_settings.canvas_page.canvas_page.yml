@@ -1,0 +1,15 @@
+uuid: fb708271-21a3-446e-beed-36dcc7c3ad1f
+langcode: fr
+status: true
+dependencies:
+  module:
+    - canvas
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+id: canvas_page.canvas_page
+target_entity_type_id: canvas_page
+target_bundle: canvas_page
+default_langcode: site_default
+language_alterable: false

@@ -1,5 +1,5 @@
 uuid: 74e594ec-b0c3-4a32-9b78-cb6117befa7d
-langcode: en
+langcode: fr
 status: true
 dependencies:
   config:
@@ -30,5 +30,6 @@ content:
 hidden:
   created: true
   field_media_document: true
+  langcode: true
   name: true
   uid: true

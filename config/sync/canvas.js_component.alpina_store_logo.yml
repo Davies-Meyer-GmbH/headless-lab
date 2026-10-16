@@ -1,0 +1,51 @@
+uuid: e10fdb1f-5edf-47cf-acb8-123ebd0110da
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_store_logo
+name: 'Alpina Store Logo'
+type: external
+required:
+  - heading
+props:
+  heading:
+    type: string
+    title: Heading
+    examples:
+      - 'Alpina Händlersuche'
+  text:
+    type: string
+    title: Text
+    examples:
+      - 'Finde für jedes Alpina Sortiment den passenden Händler.'
+  firstLogo:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/image'
+    title: 'First logo'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/img/_icn/logos-hubo.svg'
+        alt: Hubo
+        width: 368
+        height: 144
+  secondLogo:
+    type: object
+    $ref: 'json-schema-definitions://canvas.module/image'
+    title: 'Second logo'
+    examples:
+      -
+        src: 'http://localhost:3000/alpina/img/_icn/logos-colos.png'
+        alt: Colos
+        width: 350
+        height: 141
+  buttonLabel:
+    type: string
+    title: 'Button label'
+    examples:
+      - 'Zur Händlersuche'
+  buttonLink:
+    type: string
+    format: uri-reference
+    title: 'Button link'
+slots: {  }
+dataDependencies: {  }

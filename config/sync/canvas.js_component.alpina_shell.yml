@@ -1,0 +1,17 @@
+uuid: 0f2f8fa2-8192-4db3-863d-f94f7cc2b97b
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_shell
+name: 'Alpina Page Shell'
+type: external
+required: {  }
+props: {  }
+slots:
+  header:
+    title: Header
+  content:
+    title: Content
+  footer:
+    title: Footer
+dataDependencies: {  }

@@ -1,0 +1,29 @@
+uuid: 808bd9a1-79f0-43cb-97a9-cc8754abf190
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_inspo_grid
+name: 'Alpina Inspo Grid'
+type: external
+required:
+  - heading
+  - numberOfProducts
+props:
+  heading:
+    type: string
+    title: Heading
+    examples:
+      - 'Inspiration fürs Renovieren'
+  text:
+    type: string
+    title: Text
+    examples:
+      - 'Lass dich inspirieren und gestalte elegante Räume, in denen du dich jeden Tag aufs Neue wohlfühlst – von der Farbwahl bis zur gestrichenen Wand oder Oberfläche.'
+  numberOfProducts:
+    type: integer
+    title: 'Number of products'
+    description: 'Products from the separate inspiration order to display.'
+    examples:
+      - 8
+slots: {  }
+dataDependencies: {  }

@@ -1,0 +1,33 @@
+uuid: effa9efd-8d0b-41e4-acec-c28ea5537c85
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.alpina_full_width_teaser
+active_version: b1b092d72e7995a4
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        heading:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Unsere Produkte'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions:
+        products:
+          title: Products
+          description: 'Add Product Teaser items and choose a reusable Product node for each.'
+label: 'Alpina Full-width Teaser'
+id: js.alpina_full_width_teaser
+provider: null
+source: js
+source_local_id: alpina_full_width_teaser
