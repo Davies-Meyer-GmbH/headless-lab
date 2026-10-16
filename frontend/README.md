@@ -1,138 +1,29 @@
-# Canvas headless template: Next.js
+# Alpina Canvas frontend
 
-A minimal Next.js frontend for Drupal Canvas with React components and Tailwind CSS.
+Next.js renders Drupal Canvas pages through the catch-all route in `app/[[...slug]]/page.tsx`.
 
-## Setup
+The current component library contains `alpina_shell`, `alpina_header`, and `alpina_hero`. The old starter/PepsiCo components are removed.
+
+`draft-indicator.tsx` and `draft-banner.tsx` manage editor draft-session feedback and renewal. They are integration UI, not Alpina content components. `CanvasRuntime`, `proxy.ts`, `instrumentation.ts`, and the Canvas/draft API routes support previews, component selection, metadata synchronization, and publishing.
+
+Source SCSS is in `styles/alpina/` and is imported directly by the root layout. Next.js generates the development CSS and source maps. Alpina icons and reference assets are in `public/alpina/`; font-face URLs follow the source declarations in `styles/alpina/base/_fonts.scss`. Editable hero images are Drupal media.
+
+The independent static reference repo is one directory up, in `alpina-be-frontend/`. Keep it unchanged.
 
 ```bash
-npx @drupal-canvas/create@latest --template nextjs
+cd /home/dejan/projects/drupal/headless-lab/frontend
+npm ci
+npm run dev -- --hostname 127.0.0.1 --port 3000
 ```
 
-The dev server runs at <http://localhost:3000>. After enabling the Canvas Headless module, configure this URL as a headless frontend.
+Set `CANVAS_SITE_URL=http://headless-lab.local` in the ignored `.env`.
 
-## Project structure
+Frontend:
+http://localhost:3000
 
-- **Components:** `components` contains the React components exposed to Canvas.
-- **Styles:** `app/globals.css` contains the global Tailwind styles.
-- **Canvas integration:** `withCanvas()` generates the component registry, while the routes under `app/api` handle draft sessions, component metadata, and component-library thumbnails. The catch-all route renders Drupal content through `CanvasComponentTree`.
-- **Framing policy:** `proxy.ts` applies the SDK's request-time CSP on every request. Keep it mounted for page and editor previews. To add an application CSP, compose it with `applyCanvasHeaders()` from `@drupal-canvas/headless-next/middleware` on the same response, rather than setting a static CSP in `next.config.ts`.
+Alpina homepage:
+http://localhost:3000/alpina
 
-## Portable React components
+`npm run check` runs lint and TypeScript. `npm run build` builds the application. Next.js compiles the imported SCSS directly. Development CSS maps point to the original SCSS partials.
 
-The root `CanvasRuntime` supplies nonsecret JSON:API runtime configuration, and
-`CanvasComponentTree` receives `context={page.context}`. Components can import
-`usePageContext`, `useSiteContext` and `useJsonApiClient` from
-`drupal-canvas/react`; handle their nullable results. Existing `Image` and
-`FormattedText` imports stay at `drupal-canvas`.
-
-The `/api/canvas/jsonapi/[[...path]]` route mounts the SDK's same-origin proxy.
-If changing `CANVAS_JSONAPI_PROXY_PATH`, move the route to the matching path.
-Session credentials stay server-side. Server data loading uses `getClient()`;
-its default serializer returns collections directly as arrays with flattened
-resource fields (see `lib/content.ts`), not `data`/`attributes` documents.
-
-### Server rendering and SWR
-
-SWR fetchers do not run during server rendering, for public pages or drafts.
-Prefetch with server-side `getClient()` to include data in the initial HTML;
-otherwise components render their loading or empty state until the browser
-fetches. Portable components stay synchronous, using `useJsonApiClient()` and
-SWR rather than becoming async components.
-
-The example follows the
-[SDK reference](https://git.drupalcode.org/project/canvas/-/blob/d1ffcdd69d7be9dc753c8deccc0b1905f588acca/packages/headless/README.md#server-rendering-and-swr).
-When adopting it, add `swr` as a direct application dependency (`npm install swr`);
-it is not included in the template.
-
-Define an application-owned client boundary at `components/swr-fallback.tsx`
-(this is not an SDK export):
-
-```tsx
-'use client';
-
-import type { ReactNode } from 'react';
-import { SWRConfig } from 'swr';
-
-export default function SwrFallback({
-  fallback,
-  children,
-}: {
-  fallback: Record<string, unknown>;
-  children: ReactNode;
-}) {
-  return <SWRConfig value={{ fallback }}>{children}</SWRConfig>;
-}
-```
-
-In `app/[[...slug]]/page.tsx`, add these imports, then replace the final return
-inside `CatchAllPage`, keeping the existing page lookup and not-found/redirect
-handling. This example assumes Drupal exposes `node--article` with a `title`:
-
-```tsx
-import { getClient } from '@drupal-canvas/headless-next';
-import SwrFallback from '@/components/swr-fallback';
-
-// Inside CatchAllPage, after the redirect handling:
-const client = await getClient();
-const articles =
-  (await client.getCollection<{ id: string; title: string }[]>(
-    'node--article',
-  )) ?? [];
-// Project only the fields needed across the server/client boundary.
-const fallback = {
-  articles: articles.map(({ id, title }) => ({ id, title })),
-};
-
-return (
-  <SwrFallback fallback={fallback}>
-    <CanvasComponentTree tree={page.content} context={page.context} />
-  </SwrFallback>
-);
-```
-
-A portable article-list component registered with Canvas and placed in the page
-can consume that fallback with the exact same string key, `articles`:
-
-```jsx
-import { useJsonApiClient } from 'drupal-canvas/react';
-import useSWR from 'swr';
-
-export default function ArticleList() {
-  const client = useJsonApiClient();
-  const { data, error } = useSWR(client ? 'articles' : null, () =>
-    client.getCollection('node--article'),
-  );
-
-  if (error) return <p>Unable to load articles.</p>;
-  if (!data) return <p>Loading articles…</p>;
-  return (
-    <ul>
-      {data.map((article) => (
-        <li key={article.id}>{article.title}</li>
-      ))}
-    </ul>
-  );
-}
-```
-
-The renderer supplies a non-null draft client during SSR so the SWR key stays
-enabled and fallback data can render. Direct fetches through that draft client
-reject with `ServerRenderingDraftFetchError`; use the server integration's
-`await getClient()` for prefetching, as above. After hydration, SWR fetches through
-the browser client and same-origin proxy.
-
-Keep fallback data request-scoped, not in a shared server cache. Pass only
-hydration-safe data across the boundary, never clients or credentials.
-`DefaultSerializer`'s `getMeta()` and `getLinks()` functions do not serialize;
-the example passes plain fields instead. Token renewal does not clear
-application SWR caches; the application owns cache invalidation.
-
-## Commands
-
-| Command             | Purpose                                |
-| ------------------- | -------------------------------------- |
-| `npm run dev`       | Start Next.js                          |
-| `npm run build`     | Create a production build              |
-| `npm start`         | Run the production server              |
-| `npm run workbench` | Preview components in Canvas Workbench |
-| `npm run check`     | Run ESLint and TypeScript              |
+Dev and build use Webpack. Development emits CSS maps with embedded SCSS sources, so inspecting the hero points to `styles/alpina/layout/_hero-header.scss` rather than an intermediate CSS file.

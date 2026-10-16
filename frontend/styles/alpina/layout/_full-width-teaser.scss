@@ -1,0 +1,190 @@
+@use '../utils' as *;
+
+.full-width-teaser {
+  @include flex(flex-start, stretch, column);
+  gap: var(--space-20);
+  padding-block: var(--space-40);
+  background-color: var(--clr-bg-white);
+
+  @include respond-to($breakpoint-md) {
+    gap: var(--space-40);
+    padding-block: var(--space-80);
+  }
+
+  .container .h2 {
+    max-inline-size: toRem(335);
+    margin-inline: auto;
+    color: var(--clr-text-headline);
+    text-align: center;
+
+    @include respond-to($breakpoint-md) {
+      max-inline-size: none;
+    }
+  }
+
+  &__item {
+    position: relative;
+    @include flex(flex-start, center, column);
+    overflow: hidden;
+    inline-size: 100%;
+    @include aspect-ratio(375, 700);
+
+    @include respond-to($breakpoint-sm) {
+      aspect-ratio: auto;
+      min-block-size: toRem(640);
+    }
+
+    @include respond-to($breakpoint-lg) {
+      justify-content: center;
+      align-items: flex-end;
+      min-block-size: #{fluid(440, 802, $breakpoint-lg, $breakpoint-desktop)};
+    }
+
+    @include respond-to($breakpoint-figma) {
+      @include aspect-ratio(1920, 802);
+      min-block-size: 0;
+    }
+  }
+
+  &__bg,
+  &__bg img {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  &__bg img,
+  &__bg video,
+  video {
+    object-fit: cover;
+  }
+
+  video {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    max-inline-size: none;
+    max-block-size: none;
+  }
+
+  &__wrapper {
+    position: relative;
+    z-index: 1;
+    @include flex(flex-start, center, column);
+    gap: var(--space-20);
+    inline-size: calc(100% - (var(--space-30) * 2));
+    margin-inline: var(--space-30);
+    padding-block-start: var(--space-40);
+    padding-block-end: var(--space-80);
+    padding-inline: 0;
+    background-image: linear-gradient(
+      180deg,
+      rgb(255 255 255) 0%,
+      rgb(255 255 255) 40%,
+      rgb(255 255 255 / 60%) 60%,
+      rgb(255 255 255 / 40%) 80%,
+      rgb(255 255 255 / 0%) 100%
+    );
+
+    @include respond-to($breakpoint-lg) {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-40);
+      inline-size: min(#{toRem(970)}, 100%);
+      min-block-size: toRem(284);
+      margin-inline-start: auto;
+      margin-inline-end: 0;
+      padding-block: var(--space-40);
+      padding-inline-start: #{fluid(40, 64, $breakpoint-lg, $breakpoint-figma)};
+      padding-inline-end: #{fluid(48, 145, $breakpoint-lg, $breakpoint-figma)};
+      background-image: linear-gradient(
+        90deg,
+        rgb(255 255 255) 0%,
+        rgb(255 255 255) 40%,
+        rgb(255 255 255 / 60%) 60%,
+        rgb(255 255 255 / 40%) 80%,
+        rgb(255 255 255 / 0%) 100%
+      );
+    }
+
+    // @include respond-to($breakpoint-xl) {
+    //   inline-size: min(#{toRem(1440)}, 100%);
+    // }
+
+    @include respond-to($breakpoint-figma) {
+      padding-block: 0;
+      padding-inline-start: toRem(64);
+      padding-inline-end: toRem(145);
+      inline-size: min(#{toRem(1040)}, 100%);
+    }
+
+    @include respond-to($breakpoint-2xl) {
+      inline-size: min(#{toRem(1200)}, 100%);
+    }
+
+    @include respond-to($breakpoint-desktop) {
+      inline-size: min(#{toRem(1440)}, 100%);
+    }
+  }
+
+  &__content {
+    @include flex(flex-start, flex-start, column);
+    gap: var(--space-20);
+    inline-size: 100%;
+    max-inline-size: #{fluid(275, 480, 375px, $breakpoint-lg)};
+    color: var(--clr-text-headline);
+    overflow-wrap: anywhere;
+
+    @include respond-to($breakpoint-lg) {
+      flex: 0 1 toRem(620);
+      min-inline-size: 0;
+      max-inline-size: toRem(620);
+    }
+  }
+
+  &__product-img {
+    flex: 0 0 auto;
+    inline-size: #{fluid(335, 460, 375px, $breakpoint-lg)};
+    max-inline-size: 100%;
+    aspect-ratio: 580 / 404;
+
+    @include respond-to($breakpoint-lg) {
+      flex: 0 1 toRem(580);
+      inline-size: auto;
+      max-inline-size: toRem(580);
+      min-inline-size: 0;
+      margin-block: toRem(-40);
+    }
+
+    @include respond-to($breakpoint-figma) {
+      flex: 0 0 toRem(380);
+      inline-size: toRem(380);
+      block-size: toRem(404);
+      max-inline-size: toRem(380);
+    }
+
+    @include respond-to($breakpoint-2xl) {
+      flex: 0 0 toRem(480);
+      inline-size: toRem(480);
+      max-inline-size: toRem(480);
+    }
+    @include respond-to($breakpoint-desktop) {
+      flex: 0 0 toRem(580);
+      inline-size: toRem(580);
+      max-inline-size: toRem(580);
+      margin-block: toRem(-60);
+    }
+
+    picture,
+    img {
+      inline-size: 100%;
+      block-size: 100%;
+    }
+
+    img {
+      object-fit: contain;
+    }
+  }
+}

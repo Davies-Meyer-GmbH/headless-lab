@@ -1,0 +1,13 @@
+name: Alpina Page Shell
+machineName: alpina_shell
+status: true
+required: []
+props:
+  properties: {}
+slots:
+  header:
+    title: Header
+  content:
+    title: Content
+  footer:
+    title: Footer

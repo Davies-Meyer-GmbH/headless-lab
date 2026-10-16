@@ -1,0 +1,35 @@
+@use '../utils' as *;
+
+.inspo-grid {
+  background-color: var(--clr-bg-gold);
+
+  .container {
+    @include flex(flex-start, stretch, column);
+    gap: var(--space-40);
+    padding-block: var(--space-40);
+
+    @include respond-to($breakpoint-md) {
+      padding-block: var(--space-80);
+    }
+  }
+
+  &__header {
+    @include flex(center, center, column);
+    gap: var(--space-32);
+    max-inline-size: toRem(1000);
+    margin-inline: auto;
+    color: var(--clr-text-headline);
+    text-align: center;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-10);
+
+    @include respond-to($breakpoint-figma) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-20);
+    }
+  }
+}

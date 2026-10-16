@@ -1,0 +1,43 @@
+{
+  "name": "Alpina Footer",
+  "machineName": "alpina_footer",
+  "status": true,
+  "required": [],
+  "props": {
+    "properties": {
+      "pinterestLink": {
+        "title": "Pinterest link",
+        "type": "string",
+        "format": "uri-reference",
+        "examples": [
+          "https://www.pinterest.com/"
+        ]
+      },
+      "instagramLink": {
+        "title": "Instagram link",
+        "type": "string",
+        "format": "uri-reference",
+        "examples": [
+          "https://www.instagram.com/"
+        ]
+      },
+      "facebookLink": {
+        "title": "Facebook link",
+        "type": "string",
+        "format": "uri-reference",
+        "examples": [
+          "https://www.facebook.com/"
+        ]
+      },
+      "youTubeLink": {
+        "title": "YouTube link",
+        "type": "string",
+        "format": "uri-reference",
+        "examples": [
+          "https://www.youtube.com/"
+        ]
+      }
+    }
+  },
+  "slots": {}
+}

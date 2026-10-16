@@ -1,0 +1,43 @@
+@use '../utils' as *;
+
+.hero-header {
+  background-color: var(--clr-bg-white);
+
+  &__img {
+    position: relative;
+    overflow: hidden;
+    @include aspect-ratio(375, 600);
+    @include media-crop-fill;
+
+    @include respond-to($breakpoint-md) {
+      @include aspect-ratio(1920, 900);
+    }
+  }
+
+  &__txt {
+    @include flex(flex-start, center, column);
+    gap: var(--space-20);
+    padding-block: var(--space-40);
+
+    @include respond-to($breakpoint-md) {
+      gap: var(--space-40);
+      padding-block: var(--space-60);
+    }
+  }
+
+  &__copy-wrapper {
+    max-inline-size: toRem(1000);
+  }
+
+  .subheadline-lg,
+  .h1 {
+    max-inline-size: var(--container-max-width);
+    color: var(--clr-text-headline);
+    text-align: center;
+  }
+
+  .body-extra-lg {
+    color: var(--clr-text-body);
+    text-align: center;
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Alpina Inspo Grid",
+  "machineName": "alpina_inspo_grid",
+  "status": true,
+  "required": [
+    "heading",
+    "numberOfProducts"
+  ],
+  "props": {
+    "properties": {
+      "heading": {
+        "title": "Heading",
+        "type": "string",
+        "examples": [
+          "Inspiration fürs Renovieren"
+        ]
+      },
+      "text": {
+        "title": "Text",
+        "type": "string",
+        "examples": [
+          "Lass dich inspirieren und gestalte elegante Räume, in denen du dich jeden Tag aufs Neue wohlfühlst – von der Farbwahl bis zur gestrichenen Wand oder Oberfläche."
+        ]
+      },
+      "numberOfProducts": {
+        "title": "Number of products",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100,
+        "description": "Products from the separate inspiration order to display.",
+        "examples": [
+          8
+        ]
+      }
+    }
+  },
+  "slots": {}
+}

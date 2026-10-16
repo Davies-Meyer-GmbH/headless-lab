@@ -1,0 +1,96 @@
+{
+  "name": "Alpina Hero",
+  "machineName": "alpina_hero",
+  "status": true,
+  "required": [
+    "heading"
+  ],
+  "props": {
+    "properties": {
+      "eyebrow": {
+        "title": "Eyebrow",
+        "type": "string",
+        "examples": [
+          "Wei\u00dfe Wandfarben, bunte Innenfarben und Lacke"
+        ]
+      },
+      "heading": {
+        "title": "Heading",
+        "type": "string",
+        "examples": [
+          "alpina \u2014 Deutsch\u00adlands Nr. 1* Jetzt auch in Belgien!"
+        ]
+      },
+      "subHeading11": {
+        "title": "Sub heading 11",
+        "type": "string",
+        "examples": ["Example subheading"]
+      },
+      "text": {
+        "title": "Text",
+        "type": "string",
+        "examples": [
+          "Willkommen bei Alpina. Mit unseren Farben und Lacken kannst du deine W\u00e4nde streichen und dein Bad oder deine K\u00fcche renovieren. Sogar Fliesen lassen sich einfach \u00fcberstreichen \u2013 schnell, sauber und ohne Vorkenntnisse. Unsere Wandfarben decken zuverl\u00e4ssig, sind frei von L\u00f6se- und Konservierungsmitteln und lassen sich ganz einfach verarbeiten."
+        ]
+      },
+      "desktopImage": {
+        "title": "Desktop image",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/image",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/assets/hero-img.jpg",
+            "alt": "Alpinawei\u00df paint bucket on a wooden table in a bright interior",
+            "width": 1920,
+            "height": 900
+          }
+        ]
+      },
+      "mobileImage": {
+        "title": "Mobile image",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/image",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/assets/hero-img-m.jpg",
+            "alt": "Alpinawei\u00df paint bucket on a wooden table in a bright interior",
+            "width": 375,
+            "height": 600
+          }
+        ]
+      },
+      "mediaType": {
+        "title": "Media type",
+        "type": "string",
+        "enum": [
+          "image",
+          "video"
+        ],
+        "examples": [
+          "image"
+        ]
+      },
+      "desktopVideo": {
+        "title": "Desktop video",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/video",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/assets/video/video-a-d.mp4"
+          }
+        ]
+      },
+      "mobileVideo": {
+        "title": "Mobile video",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/video",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/assets/video/video-a-m.mp4"
+          }
+        ]
+      }
+    }
+  },
+  "slots": {}
+}

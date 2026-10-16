@@ -1,0 +1,56 @@
+@use '../utils' as *;
+
+.inspo-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  @include aspect-ratio(360, 534);
+  background-color: var(--clr-bg-white);
+  @include focus-ring;
+
+  > picture {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  &__sm-img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  &__content {
+    @include flex(center, center, column);
+    position: absolute;
+    inset: 0;
+    gap: var(--space-40);
+    padding: var(--space-20);
+    background-color: var(--clr-bg-white);
+    opacity: 0;
+    @include transition(opacity);
+  }
+
+  &:hover &__content,
+  &:focus-visible &__content {
+    opacity: 1;
+  }
+
+  &__product-img {
+    inline-size: 100%;
+    @include aspect-ratio(169, 169);
+    object-fit: contain;
+  }
+
+  &__product-name {
+    @include flex(flex-start, center, column);
+    gap: var(--space-10);
+    inline-size: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inspo-card__content {
+    transition: none;
+  }
+}

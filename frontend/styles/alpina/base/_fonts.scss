@@ -1,0 +1,32 @@
+// Kit faces are separate families. Group them under "Univers LT Std" so existing weights still match.
+$fonts-net-kit: 'https://cdn.fonts.net/kit/0b5bb6a2-6e45-4635-9c92-609373c09724';
+
+@font-face {
+  font-family: 'Univers LT Std';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    url('#{$fonts-net-kit}/Univers/UniversLTPro_normal_normal_300.woff2') format('woff2'),
+    url('#{$fonts-net-kit}/Univers/UniversLTPro_normal_normal_300.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Univers LT Std';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('#{$fonts-net-kit}/Univers/Univers55Roman_normal_normal.woff2') format('woff2'),
+    url('#{$fonts-net-kit}/Univers/Univers55Roman_normal_normal.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Univers LT Std';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('#{$fonts-net-kit}/Univers/Univers65Bold_normal_normal.woff2') format('woff2'),
+    url('#{$fonts-net-kit}/Univers/Univers65Bold_normal_normal.woff') format('woff');
+}

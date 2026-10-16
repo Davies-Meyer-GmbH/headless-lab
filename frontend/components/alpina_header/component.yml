@@ -1,0 +1,73 @@
+{
+  "name": "Alpina Header",
+  "machineName": "alpina_header",
+  "status": true,
+  "required": [
+    "logoLabel",
+    "menuLabel",
+    "openMenuLabel",
+    "closeMenuLabel",
+    "untranslatedLabel"
+  ],
+  "props": {
+    "properties": {
+      "logo": {
+        "title": "Logo",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/image",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/img/_icn/logo.svg",
+            "alt": "Alpina",
+            "width": 97,
+            "height": 80
+          }
+        ]
+      },
+      "logoLink": {
+        "title": "Logo link",
+        "type": "string",
+        "format": "uri-reference",
+        "examples": [
+          "/"
+        ]
+      },
+      "logoLabel": {
+        "title": "Logo label",
+        "type": "string",
+        "examples": [
+          "Alpina"
+        ]
+      },
+      "menuLabel": {
+        "title": "Menu label",
+        "type": "string",
+        "examples": [
+          "Main navigation"
+        ]
+      },
+      "openMenuLabel": {
+        "title": "Open menu label",
+        "type": "string",
+        "examples": [
+          "Open menu"
+        ]
+      },
+      "closeMenuLabel": {
+        "title": "Close menu label",
+        "type": "string",
+        "examples": [
+          "Close menu"
+        ]
+      },
+      "untranslatedLabel": {
+        "title": "Untranslated label",
+        "type": "string",
+        "examples": [
+          "Translation not yet available"
+        ]
+      }
+    }
+  },
+  "slots": {}
+}

@@ -1,0 +1,60 @@
+@use 'sass:math';
+@use 'sass:meta';
+@use 'variables' as *;
+
+@function toRem($px) {
+  $value: $px;
+
+  @if meta.type-of($px) == 'number' and math.is-unitless($px) {
+    $value: $px * 1px;
+  }
+
+  @return math.div($value, 16px) * 1rem;
+}
+
+@function lineHeightRatio($line-height-px, $font-size-px) {
+  @return math.div(math.round(math.div($line-height-px, $font-size-px) * 1000), 1000);
+}
+
+@function fluid($min, $max, $min-bp: $breakpoint-sm, $max-bp: $breakpoint-figma) {
+  $min-num: $min;
+  $max-num: $max;
+  $min-bp-num: $min-bp;
+  $max-bp-num: $max-bp;
+
+  @if meta.type-of($min) == 'number' and not math.is-unitless($min) {
+    $min-num: math.div($min, 1px);
+  }
+
+  @if meta.type-of($max) == 'number' and not math.is-unitless($max) {
+    $max-num: math.div($max, 1px);
+  }
+
+  @if meta.type-of($min-bp) == 'number' and not math.is-unitless($min-bp) {
+    $min-bp-num: math.div($min-bp, 1px);
+  }
+
+  @if meta.type-of($max-bp) == 'number' and not math.is-unitless($max-bp) {
+    $max-bp-num: math.div($max-bp, 1px);
+  }
+
+  $slope: math.div($max-num - $min-num, $max-bp-num - $min-bp-num);
+  $y-intercept: $min-num - $slope * $min-bp-num;
+
+  @return clamp(#{toRem($min-num)}, #{math.div($y-intercept, 16)}rem + #{$slope * 100}vw, #{toRem($max-num)});
+}
+@function em($px, $context: 16) {
+  $value: $px;
+  $base: $context;
+
+  @if meta.type-of($px) == 'number' and not math.is-unitless($px) {
+    $value: math.div($px, 1px);
+  }
+
+  @if meta.type-of($context) == 'number' and not math.is-unitless($context) {
+    $base: math.div($context, 1px);
+  }
+
+  @return math.div($value, $base) * 1em;
+}
+

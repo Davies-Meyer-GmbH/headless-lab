@@ -1,0 +1,148 @@
+@use 'sass:list';
+@use 'functions' as *;
+
+@mixin respond-to($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin visually-show {
+  position: static;
+  inline-size: auto;
+  block-size: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+}
+
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+  }
+}
+
+@mixin flex($justify: flex-start, $align: stretch, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin grid($cols, $gap: null) {
+  display: grid;
+  grid-template-columns: $cols;
+
+  @if $gap {
+    gap: $gap;
+  }
+}
+
+@mixin aspect-ratio($w, $h) {
+  aspect-ratio: #{$w} / #{$h};
+}
+
+@mixin media-crop-fill {
+  picture,
+  img,
+  video {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  img,
+  video {
+    object-fit: cover;
+  }
+
+  video {
+    position: absolute;
+    inset: 0;
+    max-inline-size: none;
+    max-block-size: none;
+  }
+}
+
+@mixin transition($props...) {
+  $list: ();
+
+  @each $prop in $props {
+    $list: list.append($list, $prop var(--duration-default) var(--ease-default), comma);
+  }
+
+  transition: $list;
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--clr-orange-500);
+    outline-offset: 2px;
+  }
+}
+
+@mixin leading-trim-cap {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
+@mixin hover-shadow-fade($shadow, $show-on-focus: false) {
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    box-shadow: $shadow;
+    opacity: 0;
+    pointer-events: none;
+    @include transition(opacity);
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  @if $show-on-focus {
+    &:focus-visible::after {
+      opacity: 1;
+    }
+  }
+
+  &:active::after,
+  &:disabled::after,
+  &[aria-disabled='true']::after {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      transition: none;
+    }
+  }
+}
+

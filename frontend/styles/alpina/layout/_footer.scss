@@ -1,0 +1,110 @@
+@use '../utils' as *;
+
+.footer {
+  @include flex(flex-start, center, column);
+  gap: var(--space-40);
+  padding-block: var(--space-60);
+  padding-inline: var(--space-30);
+  background-color: var(--clr-bg-dark);
+  color: var(--clr-text-muted);
+
+  @include respond-to($breakpoint-md) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-block: var(--space-30);
+    padding-inline: var(--space-40);
+  }
+
+  @include respond-to($breakpoint-2xl) {
+    padding-inline: var(--space-100);
+  }
+
+  &__social-icons {
+    @include flex(flex-start, center);
+    gap: var(--space-40);
+    order: -1;
+    margin: 0;
+
+    @include respond-to($breakpoint-md) {
+      gap: var(--space-20);
+      order: 0;
+    }
+  }
+
+  &__social {
+    @include flex(center, center);
+    @include transition(opacity);
+
+    &:hover,
+    &:active {
+      opacity: 0.8;
+    }
+  }
+
+  &__links {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: var(--space-60);
+    row-gap: var(--space-10);
+    align-items: center;
+    inline-size: toRem(246);
+    margin: 0;
+
+    @include respond-to($breakpoint-md) {
+      display: flex;
+      gap: var(--space-40);
+      inline-size: auto;
+    }
+  }
+
+  &__links li:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  &__links li:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  &__links li:nth-child(4) {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  &__links li:nth-child(5) {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  &__divider {
+    display: block;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-self: center;
+    inline-size: 1px;
+    block-size: 100%;
+    min-block-size: toRem(88);
+    background-color: var(--clr-text-muted);
+
+    @include respond-to($breakpoint-md) {
+      display: none;
+    }
+  }
+
+  &__link {
+    @include flex(flex-start, center);
+    min-block-size: toRem(44);
+    color: var(--clr-text-muted);
+
+    @include respond-to($breakpoint-md) {
+      min-block-size: 0;
+    }
+
+    &:hover,
+    &:active {
+      color: var(--clr-text-on-dark);
+    }
+  }
+}

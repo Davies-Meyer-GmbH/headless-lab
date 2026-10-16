@@ -1,0 +1,56 @@
+@use '../utils' as *;
+
+.product-card {
+  @include flex(flex-start, stretch, column);
+  min-inline-size: 0;
+  inline-size: 100%;
+  padding-block: toRem(28);
+  padding-inline: var(--space-10);
+  background-color: var(--clr-bg-gold);
+  @include focus-ring;
+
+  &__name {
+    @include flex(flex-start, center, column);
+    gap: var(--space-10);
+    padding-inline: var(--space-10);
+    text-align: center;
+  }
+
+  &__sub-brand--hidden {
+    opacity: 0;
+  }
+
+  &__img-container {
+    @include flex(center, center);
+    inline-size: 100%;
+    @include aspect-ratio(340, 340);
+    padding-block: var(--space-20);
+    padding-inline: var(--space-10);
+  }
+
+  &__img-container picture,
+  &__img-container img {
+    inline-size: 100%;
+  }
+
+  &__img-container img {
+    aspect-ratio: 320 / 300;
+    object-fit: contain;
+  }
+
+  &__usp-list {
+    @include flex(flex-start, stretch, column);
+    gap: var(--space-10);
+    inline-size: 100%;
+  }
+
+  &__usp {
+    @include flex(flex-start, flex-start, row);
+    gap: var(--space-10);
+    text-align: start;
+  }
+
+  &__usp-bullet {
+    flex-shrink: 0;
+  }
+}

@@ -1,0 +1,13 @@
+.container {
+  max-inline-size: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-20);
+
+  &--small {
+    max-inline-size: var(--container-small);
+  }
+
+  &--xsmall {
+    max-inline-size: var(--container-xsmall);
+  }
+}

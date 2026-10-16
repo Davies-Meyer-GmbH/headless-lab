@@ -1,0 +1,65 @@
+{
+  "name": "Alpina Store Logo",
+  "machineName": "alpina_store_logo",
+  "status": true,
+  "required": [
+    "heading"
+  ],
+  "props": {
+    "properties": {
+      "heading": {
+        "title": "Heading",
+        "type": "string",
+        "examples": [
+          "Alpina H\u00e4ndlersuche"
+        ]
+      },
+      "text": {
+        "title": "Text",
+        "type": "string",
+        "examples": [
+          "Finde f\u00fcr jedes Alpina Sortiment den passenden H\u00e4ndler."
+        ]
+      },
+      "firstLogo": {
+        "title": "First logo",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/image",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/img/_icn/logos-hubo.svg",
+            "alt": "Hubo",
+            "width": 368,
+            "height": 144
+          }
+        ]
+      },
+      "secondLogo": {
+        "title": "Second logo",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/image",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/img/_icn/logos-colos.png",
+            "alt": "Colos",
+            "width": 350,
+            "height": 141
+          }
+        ]
+      },
+      "buttonLabel": {
+        "title": "Button label",
+        "type": "string",
+        "examples": [
+          "Zur H\u00e4ndlersuche"
+        ]
+      },
+      "buttonLink": {
+        "title": "Button link",
+        "type": "string",
+        "format": "uri-reference"
+      }
+    }
+  },
+  "slots": {}
+}

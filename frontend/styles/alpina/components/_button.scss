@@ -1,0 +1,95 @@
+@use '../utils' as *;
+
+.button {
+  @include flex(flex-start, center);
+  gap: var(--space-8);
+  min-inline-size: toRem(40);
+  min-block-size: toRem(44);
+  color: var(--clr-text-body);
+  text-decoration: none;
+  @include transition(color, background-color, border-color, outline-color);
+  @include focus-ring;
+
+  &:focus-visible {
+    outline-width: 4px;
+    outline-color: var(--clr-grey-300);
+    outline-offset: 0;
+  }
+
+  &:disabled,
+  &.is-disabled {
+    color: var(--clr-text-muted);
+    pointer-events: none;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    inline-size: toRem(22);
+    block-size: toRem(11);
+  }
+
+  &--text {
+    padding-block: var(--space-16);
+    padding-inline: var(--space-8);
+    border-radius: var(--radius-button);
+
+    &:hover:not(:disabled),
+    &:active:not(:disabled) {
+      background-color: var(--clr-grey-200);
+    }
+  }
+
+  &--primary,
+  &--icon-primary {
+    justify-content: center;
+    padding-block: toRem(18);
+    padding-inline: var(--space-20);
+    border: 0;
+    border-radius: var(--radius-button);
+    background-color: var(--clr-bg-dark);
+    color: var(--clr-text-on-dark);
+
+    &:hover:not(:disabled),
+    &:active:not(:disabled) {
+      background-color: var(--clr-bg-button-hover);
+      color: var(--clr-text-on-dark);
+    }
+
+    &:disabled,
+    &.is-disabled {
+      background-color: var(--clr-grey-200);
+      color: var(--clr-text-muted);
+    }
+  }
+
+  &--icon-primary &__icon {
+    inline-size: toRem(11);
+    block-size: toRem(11);
+  }
+
+  &--secondary {
+    padding-block: toRem(18);
+    padding-inline: var(--space-20);
+    border: 1px solid var(--clr-border-enabled);
+    border-radius: var(--radius-button);
+
+    &:hover:not(:disabled),
+    &:active:not(:disabled) {
+      background-color: var(--clr-bg-dark);
+      border-color: var(--clr-border-enabled);
+      color: var(--clr-text-on-dark);
+    }
+
+    &:disabled,
+    &.is-disabled {
+      border-color: var(--clr-text-muted);
+      background-color: transparent;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

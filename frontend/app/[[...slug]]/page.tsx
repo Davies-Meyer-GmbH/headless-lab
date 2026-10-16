@@ -7,6 +7,11 @@ import {
 import type { Metadata } from 'next';
 import { notFound, permanentRedirect, redirect } from 'next/navigation';
 import { cache } from 'react';
+import { getMenu } from '../../lib/main-menu';
+import { AlpinaFooterMenuProvider, AlpinaNavigationProvider } from '../../lib/alpina-navigation';
+import { getOrderedProducts } from '../../lib/product-list';
+import { AlpinaInspirationProvider } from '../../lib/alpina-inspiration';
+import { AlpinaProductsProvider } from '../../lib/alpina-products';
 
 export const dynamic = 'force-dynamic';
 
@@ -43,5 +48,23 @@ export default async function CatchAllPage({ params }: CatchAllPageProps) {
     redirect(url);
   }
 
-  return <CanvasComponentTree tree={page.content} context={page.context} />;
+  const language = page.context?.page?.mainEntity?.requestedLanguage ?? '';
+  const [menu, footerMenu, products, inspirationProducts] = await Promise.all([
+    getMenu('main', language),
+    getMenu('footer', language),
+    getOrderedProducts(),
+    getOrderedProducts('inspiration'),
+  ]);
+
+  return (
+    <AlpinaNavigationProvider items={menu}>
+      <AlpinaFooterMenuProvider items={footerMenu}>
+        <AlpinaProductsProvider products={products}>
+          <AlpinaInspirationProvider products={inspirationProducts}>
+            <CanvasComponentTree tree={page.content} context={page.context} />
+          </AlpinaInspirationProvider>
+        </AlpinaProductsProvider>
+      </AlpinaFooterMenuProvider>
+    </AlpinaNavigationProvider>
+  );
 }

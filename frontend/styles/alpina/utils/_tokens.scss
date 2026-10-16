@@ -1,0 +1,129 @@
+@use 'variables' as *;
+@use 'functions' as *;
+@use 'mixins' as *;
+
+:root {
+  --clr-orange-500: #ef7d00;
+  --clr-text-headline: #3e3838;
+  --clr-text-body: #3e3838;
+  --clr-text-on-dark: #fff;
+  --clr-text-muted: #b2afaf;
+  --clr-text-helper: #787373;
+  --clr-text-error: #e30613;
+  --clr-bg-white: #fff;
+  --clr-bg-dark: #3e3838;
+  --clr-bg-button-hover: #131111;
+  --clr-bg-gold: #faf6f1;
+  --clr-bg-secondary-green: #daded0;
+  --clr-bg-secondary-blue: #ecf7fa;
+  --clr-swatch-magnolie: #e7dad3;
+  --clr-swatch-kreidefelsen: #eae6d8;
+  --clr-swatch-treibholz: #cac6ba;
+  --clr-swatch-silberfarn: #cad0c4;
+  --clr-swatch-salbei: #97a297;
+  --clr-swatch-bergnebel: #dee4de;
+  --clr-swatch-nordsee: #88999b;
+  --clr-swatch-granit: #95938b;
+  --clr-swatch-schiefer: #676c6c;
+  --clr-swatch-olive: #8a8f6e;
+  --clr-swatch-terrakotta: #c47a5a;
+  --clr-swatch-tiefsee: #3d4f5a;
+  --clr-swatch-vulkangestein: #4a4543;
+  --clr-swatch-baumwollweiss: #f4f1ea;
+  --clr-swatch-felsenmeer: #7d8b8c;
+  --clr-swatch-sturmwolke: #6b7280;
+  --clr-swatch-rosenstaub: #c9a9a6;
+  --clr-swatch-agave: #6f8b7a;
+  --clr-border-enabled: #3e3838;
+  --clr-border-error: #e30613;
+  --clr-border-subtle: #f1ebeb;
+  --clr-grey-200: #ebebeb;
+  --clr-grey-300: #cfcdcd;
+  --clr-icon-default: #3e3838;
+  --color-focus: var(--clr-orange-500);
+
+  --space-4: #{toRem(4)};
+  --space-8: #{toRem(8)};
+  --space-10: #{toRem(10)};
+  --space-12: #{toRem(12)};
+  --space-16: #{toRem(16)};
+  --space-20: #{toRem(20)};
+  --space-30: #{toRem(30)};
+  --space-32: #{toRem(32)};
+  --space-40: #{toRem(40)};
+  --space-50: #{toRem(50)};
+  --space-60: #{toRem(60)};
+  --space-80: #{toRem(80)};
+  --space-100: #{toRem(100)};
+  --space-120: #{toRem(120)};
+  --space-160: #{toRem(160)};
+  --space-200: #{toRem(200)};
+
+  --font-family-univers: 'Univers LT Std', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  --font-size-h1: #{fluid(48, 80, 375px, $breakpoint-figma)};
+  --line-height-h1: #{lineHeightRatio(52.8, 48)};
+  --letter-spacing-h1: 0.1em; // Figma Sizing/10
+
+  --font-size-h2: #{fluid(34, 60, 375px, $breakpoint-figma)};
+  --line-height-h2: #{lineHeightRatio(37.4, 34)};
+  --letter-spacing-h2: 0.02em; // Figma spacing/headline 2
+
+  --font-size-h3: #{fluid(32, 48, 375px, $breakpoint-figma)};
+  --line-height-h3: 1.1;
+  --letter-spacing-h3: 0.02em; // Figma spacing/headline 2
+
+  --font-size-h4: #{fluid(20, 36, 375px, $breakpoint-figma)};
+  --line-height-h4: 1.1;
+  --letter-spacing-h4: 0.02em; // Figma spacing/headline 2
+
+  --font-size-h5: #{fluid(20, 20, 375px, $breakpoint-figma)};
+  --line-height-h5: 1.1;
+  --letter-spacing-h5: 0; // Figma Desktop/H5 letterSpacing 0
+
+  --font-size-subheadline-lg: #{fluid(20, 24, 375px, $breakpoint-figma)};
+  --line-height-subheadline-lg: 1.1;
+
+  --font-size-body-extra-lg: #{toRem(18)};
+  --line-height-body-extra-lg: #{lineHeightRatio(27, 18)};
+
+  --font-size-body-lg: #{toRem(18)};
+  --line-height-body-lg: #{lineHeightRatio(27, 18)};
+
+  --font-size-body-md: #{toRem(16)};
+  --line-height-body-md: 1.5;
+
+  --font-size-body-2: #{toRem(16)};
+  --line-height-body-2: #{lineHeightRatio(19.2, 16)};
+
+  --font-size-tag: #{toRem(16)};
+  --line-height-tag: 0.9;
+
+  --font-size-button: #{toRem(14)};
+  --line-height-button: 1.2;
+  --letter-spacing-button: #{toRem(5.6)};
+
+  --radius-pill: 9999px;
+  --radius-button: #{toRem(4)};
+  --container-max-width: #{toRem(1500)};
+  --container-small: #{toRem(1200)};
+  --container-xsmall: #{toRem(800)};
+
+  --z-base: 1;
+  --z-backdrop: 90;
+  --z-header: 100;
+  --z-menu: 110;
+  --z-skip-link: 200;
+
+  --duration-default: 200ms;
+  --ease-default: ease-out;
+
+  @include respond-to($breakpoint-md) {
+    --font-size-body-extra-lg: #{toRem(24)};
+    --line-height-body-extra-lg: #{lineHeightRatio(36, 24)};
+    --line-height-h1: #{lineHeightRatio(88, 80)};
+  }
+}

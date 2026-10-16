@@ -1,0 +1,131 @@
+@use '../utils' as *;
+
+.product-slider {
+  background-color: var(--clr-bg-white);
+
+  .container {
+    @include flex(flex-start, center, column);
+    gap: var(--space-20);
+    padding-block: var(--space-40);
+
+    @include respond-to($breakpoint-md) {
+      gap: var(--space-40);
+      padding-block: var(--space-80);
+    }
+  }
+
+  &__header {
+    @include flex(center, center, column);
+    gap: var(--space-32);
+    max-inline-size: toRem(1000);
+    color: var(--clr-text-headline);
+    text-align: center;
+  }
+
+  &__hl--desktop {
+    display: none;
+
+    @include respond-to($breakpoint-md) {
+      display: block;
+    }
+  }
+
+  &__hl--mobile {
+    display: block;
+
+    @include respond-to($breakpoint-md) {
+      display: none;
+    }
+  }
+
+  &__slider-row {
+    @include flex(flex-start, center, column);
+    gap: var(--space-40);
+    inline-size: 100%;
+  }
+
+  &__slider-main {
+    @include flex(center, center);
+    gap: var(--space-20);
+    inline-size: 100%;
+  }
+
+  &__slider {
+    min-inline-size: 0;
+    inline-size: 100%;
+
+    .swiper-wrapper {
+      align-items: stretch;
+    }
+
+    .swiper-slide {
+      @include flex(flex-start, stretch);
+      block-size: auto;
+    }
+
+    .product-card {
+      flex: 1 1 auto;
+      inline-size: 100%;
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+    flex-shrink: 0;
+    position: static;
+    inset: auto;
+    margin: 0;
+    padding: 0;
+    inline-size: toRem(44);
+    block-size: toRem(44);
+    border: 1px solid var(--clr-border-enabled);
+    border-radius: var(--radius-pill);
+    background-color: var(--clr-bg-white);
+    color: var(--clr-icon-default);
+    @include transition(color, border-color, background-color, opacity);
+    @include focus-ring;
+
+    &::after {
+      content: none;
+    }
+
+    .swiper-navigation-icon {
+      display: none;
+    }
+
+    @include respond-to($breakpoint-figma) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:hover:not(:disabled) {
+      border-color: var(--clr-orange-500);
+      color: var(--clr-orange-500);
+    }
+
+    &.swiper-button-disabled {
+      opacity: 0.3;
+    }
+  }
+
+  .slider-nav__icon {
+    display: block;
+    flex-shrink: 0;
+    inline-size: toRem(13);
+    block-size: toRem(22);
+  }
+
+  .swiper-pagination {
+    position: static;
+    inline-size: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-slider .swiper-button-prev,
+  .product-slider .swiper-button-next {
+    transition: none;
+  }
+}

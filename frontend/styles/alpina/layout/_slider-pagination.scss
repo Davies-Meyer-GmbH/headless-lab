@@ -1,0 +1,30 @@
+@use '../utils' as *;
+
+.swiper-pagination-bullets {
+  --swiper-pagination-bullet-horizontal-gap: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: toRem(20);
+}
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+  flex-shrink: 0;
+  inline-size: toRem(10);
+  block-size: toRem(10);
+  margin: 0;
+  background-color: transparent;
+  border: 1px solid var(--clr-border-enabled);
+  opacity: 1;
+  transform: scale(1);
+  @include focus-ring;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet-active,
+.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet-active {
+  margin-inline: toRem(3);
+  background-color: var(--clr-text-headline);
+  border-color: var(--clr-text-headline);
+  transform: scale(1.6);
+}

@@ -1,0 +1,41 @@
+@use '../utils' as *;
+
+.store-logo {
+  background-color: var(--clr-bg-white);
+
+  .container {
+    @include flex(center, center, column);
+    gap: var(--space-40);
+    padding-block: var(--space-60);
+
+    @include respond-to($breakpoint-md) {
+      gap: var(--space-80);
+      padding-block: toRem(160);
+    }
+  }
+
+  &__header {
+    @include flex(flex-start, stretch, column);
+    gap: var(--space-32);
+    inline-size: 100%;
+    color: var(--clr-text-headline);
+    text-align: center;
+  }
+
+  &__logos {
+    @include flex(center, center, column);
+    gap: var(--space-20);
+    inline-size: 100%;
+
+    @include respond-to($breakpoint-md) {
+      flex-direction: row;
+      gap: var(--space-40);
+    }
+  }
+
+  &__hubo,
+  &__colos {
+    inline-size: min(#{toRem(368)}, 100%);
+    block-size: auto;
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Alpina Full-width Teaser",
+  "machineName": "alpina_full_width_teaser",
+  "status": true,
+  "required": [
+    "heading"
+  ],
+  "props": {
+    "properties": {
+      "heading": {
+        "title": "Heading",
+        "type": "string",
+        "examples": [
+          "Unsere Produkte"
+        ]
+      }
+    }
+  },
+  "slots": {
+    "products": {
+      "title": "Products",
+      "description": "Add Product Teaser items and choose a reusable Product node for each."
+    }
+  }
+}

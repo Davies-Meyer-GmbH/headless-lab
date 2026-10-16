@@ -1,0 +1,82 @@
+{
+  "name": "Alpina Product Teaser",
+  "machineName": "alpina_product_teaser",
+  "status": true,
+  "required": [
+    "linkLabel"
+  ],
+  "props": {
+    "properties": {
+      "product": {
+        "title": "Product",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/content-entity-reference"
+      },
+      "linkLabel": {
+        "title": "Link label",
+        "type": "string",
+        "examples": [
+          "jetzt entdecken"
+        ]
+      },
+      "desktopBackground": {
+        "title": "Desktop background",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/image",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/assets/teaser-1.jpg",
+            "alt": "",
+            "width": 1920,
+            "height": 802
+          }
+        ]
+      },
+      "mobileBackground": {
+        "title": "Mobile background",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/image",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/assets/teaser-1-m.jpg",
+            "alt": "",
+            "width": 375,
+            "height": 700
+          }
+        ]
+      },
+      "mediaType": {
+        "title": "Media type",
+        "type": "string",
+        "enum": [
+          "image",
+          "video"
+        ],
+        "examples": [
+          "image"
+        ]
+      },
+      "desktopVideo": {
+        "title": "Desktop video",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/video",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/assets/video/video-a-d.mp4"
+          }
+        ]
+      },
+      "mobileVideo": {
+        "title": "Mobile video",
+        "type": "object",
+        "$ref": "json-schema-definitions://canvas.module/video",
+        "examples": [
+          {
+            "src": "http://localhost:3000/alpina/assets/video/video-a-m.mp4"
+          }
+        ]
+      }
+    }
+  },
+  "slots": {}
+}

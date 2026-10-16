@@ -1,0 +1,36 @@
+{
+  "name": "Alpina Product Slider",
+  "machineName": "alpina_product_slider",
+  "status": true,
+  "required": [
+    "heading",
+    "numberOfProducts"
+  ],
+  "props": {
+    "properties": {
+      "heading": {
+        "title": "Heading",
+        "type": "string",
+        "examples": [
+          "unsere Produkte"
+        ]
+      },
+      "text": {
+        "title": "Text",
+        "type": "string",
+        "examples": [
+          "Alpinaweiß Premium überzeugt als Testsieger bei Stiftung Warenstest mit höchster Deckkraft und strahlendem Weiß für ein erstklassiges Farbergebnis."
+        ]
+      },
+      "numberOfProducts": {
+        "title": "Number of products",
+        "description": "How many products from the admin Product slider order to display.",
+        "type": "number",
+        "examples": [
+          4
+        ]
+      }
+    }
+  },
+  "slots": {}
+}
