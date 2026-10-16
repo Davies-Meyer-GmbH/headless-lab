@@ -93,3 +93,12 @@ After the plain-language badge texts, Dejan still saw "[browser] A component was
 - `async-inner.jsx` holds the async fetcher and is only rendered on the server.
 - First attempt re-imported the `server-only` lib in the inner file — build broke again (the loader rejects the marker anywhere in the import graph, not just the entry). Inlined the fetch.
 - Verified: `/a4-async` renders the product list as before; badge text updated (preview shows the notice instead of an error).
+
+## Findings page: the .md files rendered live on the site
+
+Dejan asked for a page that displays the findings, ideally the real .md content rather than a copy. Decision: the .md files in `docs/` stay the single source of truth (agent workflow depends on them); `/findings` renders `docs/alpina/nextjs-test-plan.md` live.
+
+- `app/(app)/findings/page.tsx` reads the file from the repo on every request (`force-dynamic`, `process.cwd()/../docs/...`) and renders it with `marked` (new dependency, the only one added).
+- Verified live: a line appended to the .md appeared on the page immediately; file reverted after the check.
+- Scoped to the repo/lab: in production the file must ship with the deployment (or be fetched from the repo at runtime); the path is fixed rather than configurable — fine for a lab.
+- Badge entry added for /findings; test-index table gained a row for it. Not a Drupal page on purpose: Drupal has no markdown renderer, and the findings are repo artifacts, not editorial content.

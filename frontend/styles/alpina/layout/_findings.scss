@@ -1,0 +1,69 @@
+/* Minimal styling for the /findings page (renders nextjs-test-plan.md). */
+.findings {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  font-family: sans-serif;
+  color: var(--clr-text-body);
+}
+
+.findings__notice {
+  background: var(--clr-grey-200);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.findings__body h1 {
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+}
+
+.findings__body h2 {
+  font-size: 1.4rem;
+  margin: 2rem 0 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--clr-grey-200);
+}
+
+.findings__body h3 {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.findings__body code {
+  background: var(--clr-grey-200);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.findings__body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.findings__body th,
+.findings__body td {
+  border: 1px solid var(--clr-grey-200);
+  padding: 0.5rem 0.65rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.findings__body th {
+  background: var(--clr-grey-200);
+}
+
+.findings__body li {
+  margin-block: 0.25rem;
+}
+
+.findings__body blockquote {
+  border-left: 3px solid var(--clr-grey-300);
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  color: var(--clr-text-helper);
+}

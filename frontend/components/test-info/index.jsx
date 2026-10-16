@@ -46,6 +46,13 @@ const PAGE_INFO = [
     conclusion: 'Works, but every visit pays for one extra request to Drupal. Fine for a few pages like search or account; for anything bigger, the page should live in Drupal like the rest.',
   },
   {
+    match: '/findings',
+    id: 'findings',
+    title: 'All findings on one page',
+    tested: 'A live view of the test plan file in the repository (docs/alpina/nextjs-test-plan.md): every test, its status and its conclusions — rendered straight from the .md file, not copied.',
+    conclusion: 'This page is a window onto the markdown file: update the file, reload, and the page shows the new content. The session-by-session story is in docs/alpina/2026-10-16-session-notes.md.',
+  },
+  {
     match: '/legal-next',
     id: 'B2 · Next.js way',
     title: 'Datenschutz — built in code',
