@@ -1,0 +1,15 @@
+uuid: 218de980-41be-4ed0-94cf-dc1fe9e13ee9
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_legal_shell
+name: 'Alpina Legal Shell'
+type: external
+required: {  }
+props: {  }
+slots:
+  content:
+    title: Content
+  footer:
+    title: Footer
+dataDependencies: {  }

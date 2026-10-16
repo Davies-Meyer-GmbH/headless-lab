@@ -9,8 +9,10 @@ dependencies:
     - canvas.component.js.alpina_header
     - canvas.component.js.alpina_hero
     - canvas.component.js.alpina_inspo_grid
+    - canvas.component.js.alpina_legal_shell
     - canvas.component.js.alpina_product_slider
     - canvas.component.js.alpina_product_teaser
+    - canvas.component.js.alpina_rich_text
     - canvas.component.js.alpina_shell
     - canvas.component.js.alpina_store_logo
     - canvas.component.marker.page_content
@@ -26,8 +28,10 @@ items:
   - js.alpina_header
   - js.alpina_hero
   - js.alpina_inspo_grid
+  - js.alpina_legal_shell
   - js.alpina_product_slider
   - js.alpina_product_teaser
+  - js.alpina_rich_text
   - js.alpina_shell
   - js.alpina_store_logo
   - marker.page_content

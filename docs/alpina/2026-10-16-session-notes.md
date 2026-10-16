@@ -72,3 +72,15 @@ Conclusion: async server components are viable on the public site if they self-f
 - E2E verified: Drupal heading change stays invisible while cached, appears after revalidatePath; heading restored to original afterwards (the marker script's arg handling with drush was fiddly; restored via drush eval).
 - Ops note: `pkill -f "next start"` doesn't kill the listener because it renames itself to `next-server`; kill by PID. Two stale servers caused 30 confusing minutes of "revalidation doesn't work" while an old build answered.
 - Production server left running on port 3001 (terminal output in /tmp/next-prod.log).
+
+## B2 built both ways + test badge + A4 editor-preview confirmed
+
+Dejan asked for both legal-page approaches, an on-page test badge everywhere, a test index, and reported an editor-preview error.
+
+- **Error reported by Dejan's editor session confirmed the A4 caveat:** in the editor preview the async component runs in the browser — React rejects async client components and `CANVAS_SITE_URL` was missing, looping `/undefined/jsonapi/...` 404s. Guarded the component to skip fetching without the env var; the React error itself cannot be avoided. Rule recorded: no async server components on editor-previewed pages.
+- **B2 Canvas way (pass):** new `alpina_legal_shell` (slim logo bar, content+footer slots, no product nav) and `alpina_rich_text` (editable formatted text) components; synced via `scripts/test-b2-legal-variant.php`, which also creates the `legal` page variant (entity type id is `page_variant`, not `canvas_page_variant`; config entities have no `validate()`) and Canvas page 20 at `/legal`. Verified: legal shell renders, real footer from the variant, no product navigation.
+- **B2 Next.js way (pass):** route group `app/(legal)/` with own `layout.tsx` and static `legal-next/page.tsx`. No Drupal involvement.
+- Note: the two twins live at `/legal` (Canvas) and `/legal-next` (Next) because one path can only be owned by one side (A1).
+- **Test badge:** `components/test-info/index.jsx`, mounted in all three group layouts, including the real pages `/alpina` and `/alpina-video-test` as Dejan requested. Black pill bottom-right, expands to Tested/Conclusion per page.
+- **Test index added** at the top of `nextjs-test-plan.md`: URL, test, status, one-line conclusion for every page.
+- Stumbled once: `component.yml` for rich text had `slots` nested under `props` — dev server exits fatally on invalid metadata (worth remembering: a bad component.yml takes the whole frontend down).

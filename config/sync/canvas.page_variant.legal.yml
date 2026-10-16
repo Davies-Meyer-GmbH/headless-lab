@@ -1,0 +1,39 @@
+uuid: 72e14872-f7fa-4452-9110-3e775c4e4387
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.js.alpina_footer
+    - canvas.component.js.alpina_legal_shell
+    - canvas.component.marker.page_content
+  module:
+    - link
+id: legal
+label: Legal
+description: null
+component_tree:
+  2c790452-92c6-4aff-834e-d3d04b8e3e00:
+    parent_uuid: null
+    slot: null
+    uuid: 2c790452-92c6-4aff-834e-d3d04b8e3e00
+    component_id: js.alpina_legal_shell
+    component_version: 6eb2c42b367afdf4
+    inputs: {  }
+  18fccbdc-aa36-4ed4-8f51-579fb043d454:
+    parent_uuid: 2c790452-92c6-4aff-834e-d3d04b8e3e00
+    slot: content
+    uuid: 18fccbdc-aa36-4ed4-8f51-579fb043d454
+    component_id: marker.page_content
+    component_version: 3b12c0b99a6caecc
+    inputs: {  }
+  dea3a900-5d36-4dba-a902-709a60485de0:
+    parent_uuid: 2c790452-92c6-4aff-834e-d3d04b8e3e00
+    slot: footer
+    uuid: dea3a900-5d36-4dba-a902-709a60485de0
+    component_id: js.alpina_footer
+    component_version: 1dc41e9fd191a73c
+    inputs:
+      pinterestLink: 'https://www.pinterest.com/'
+      instagramLink: 'https://www.instagram.com/'
+      facebookLink: 'https://www.facebook.com/'
+      youTubeLink: 'https://www.youtube.com/'

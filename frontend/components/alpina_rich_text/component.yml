@@ -1,0 +1,12 @@
+name: Alpina Rich Text
+machineName: alpina_rich_text
+status: true
+required:
+  - text
+props:
+  properties:
+    text:
+      title: Text
+      type: string
+      examples:
+        - "<p class='body-md'>Datenschutzerklärung</p><div class='legal-body__block'><p class='body-md'>1. Allgemeine Hinweise</p><p class='body-md'>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst.</p></div>"

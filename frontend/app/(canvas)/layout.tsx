@@ -1,3 +1,4 @@
+import TestInfo from "../../components/test-info";
 /**
  * A2: layout for Canvas-managed routes.
  *
@@ -19,6 +20,7 @@ export default function CanvasGroupLayout({ children }: { children: React.ReactN
       >
         A2: (canvas) group layout
       </div>
+      <TestInfo />
       {children}
     </div>
   );

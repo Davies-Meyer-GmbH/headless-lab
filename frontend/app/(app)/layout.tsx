@@ -1,3 +1,4 @@
+import TestInfo from "../../components/test-info";
 /**
  * A2: layout for Next.js-only routes (search, account, checkout…).
  */
@@ -15,6 +16,7 @@ export default function AppGroupLayout({ children }: { children: React.ReactNode
       >
         A2: (app) group layout
       </div>
+      <TestInfo />
       {children}
     </div>
   );

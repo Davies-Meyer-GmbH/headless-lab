@@ -1,0 +1,30 @@
+uuid: 39fd9809-8c44-45b6-993e-6a2152413072
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.alpina_rich_text
+active_version: e6de9ec699bf197c
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        text:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: "<p class='body-md'>Datenschutzerklärung</p><div class='legal-body__block'><p class='body-md'>1. Allgemeine Hinweise</p><p class='body-md'>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst.</p></div>"
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: 'Alpina Rich Text'
+id: js.alpina_rich_text
+provider: null
+source: js
+source_local_id: alpina_rich_text

@@ -1,0 +1,20 @@
+@use '../utils/variables' as *;
+
+// B2: slim chrome for the legal page variant.
+.legal-header {
+  border-bottom: 1px solid var(--clr-grey-200);
+  background: #fff;
+}
+
+.legal-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
+}
+
+.legal-header__label {
+  color: var(--clr-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,17 @@
+uuid: ca2fe63e-5f85-48b2-b406-6276148be060
+langcode: en
+status: true
+dependencies: {  }
+machineName: alpina_rich_text
+name: 'Alpina Rich Text'
+type: external
+required:
+  - text
+props:
+  text:
+    type: string
+    title: Text
+    examples:
+      - "<p class='body-md'>Datenschutzerklärung</p><div class='legal-body__block'><p class='body-md'>1. Allgemeine Hinweise</p><p class='body-md'>Wir nehmen den Schutz Ihrer persönlichen Daten sehr ernst.</p></div>"
+slots: {  }
+dataDependencies: {  }

@@ -4,6 +4,21 @@ Purpose: find out how Next.js behaves inside the Drupal 11 + Canvas setup, and w
 
 Already tested by Dejan: creating Canvas components in Next.js and updating them through `component.yml`.
 
+## Test index — every page, what it tests, result
+
+| URL | Test | Status | Conclusion in one line |
+|-----|------|--------|------------------------|
+| http://localhost:3000/alpina | Real page (reference) | pass | The full `alpina` page variant; used as baseline for A1–A6. |
+| http://localhost:3000/alpina-video-test | Real page (reference) | pass | Video hero/teasers; see `video-variants.md`. |
+| http://localhost:3000/test-route | A1 + A2 + A3 | pass | Specific Next.js route beats the catch-all **silently**; Canvas page 18 at the same path is unreachable. No Drupal chrome. Shows the `(app)` group layout. |
+| http://localhost:3000/shell-demo | A3 | limited | Real `alpina_header`/`alpina_footer` on a Next.js page via `lib/alpina-chrome.ts` (content-API props of `/`). Extra `no-store` call per request. |
+| http://localhost:3000/a4-async | A4 + A5 + A6 | limited | Async self-fetching server component works on the public site; **breaks the editor preview** (async client component rejected, env missing — now guarded, no more 404 loop). Cannot import `server-only` libs. With A5 it fetches nothing extra at page level; with A6 its API response is cached (0.19s → 0.02s warm). |
+| http://localhost:3000/legal | B2 (Canvas) | pass | Second page variant `legal` with `alpina_legal_shell` (slim logo bar, no product nav), selected on the page. Footer from the variant, text editable via `alpina_rich_text`. |
+| http://localhost:3000/legal-next | B2 (Next.js) | pass | Route group `(legal)` with its own `layout.tsx`, static content, zero Drupal dependencies. Not editor-editable; would shadow a Canvas page at the same path. |
+| Every page above | Test badge | — | The black "what is this?" pill (bottom right) shows what is tested and the conclusion per page. |
+
+Every test page carries the badge via the group layouts (`(canvas)`, `(app)`, `(legal)`), including the real pages `/alpina` and `/alpina-video-test`.
+
 For each test, record the result in the session notes and set the status here: `todo`, `pass`, `fail`, or `limited` (works with a workaround).
 
 Background: Next.js has one root layout (`frontend/app/layout.tsx`) and one catch-all route (`frontend/app/[[...slug]]/page.tsx`). The visible layout (header, footer) is the Canvas page variant `alpina`, which Drupal merges with the page content before Next.js receives it.
@@ -49,7 +64,9 @@ Check: header props such as the logo are stored in the Drupal page variant, not 
 
 Status: limited
 
-Result (16 Oct): an `async` server component **does** render through `CanvasComponentTree` on the public site — `alpina_async_products` fetched 13 products via JSON:API inside the component and rendered them server-side on `/a4-async`. But it **cannot import `server-only` modules**: the Canvas component loader compiles components outside the App Router server layer (Next reports "you are using it in the Pages Router"), so `import 'server-only'` fails the build. Consequence: the existing `lib/` loaders (`product-list.ts`, `main-menu.ts`, `alpina-chrome.ts`, all marked `server-only`) cannot be reused inside components; components must inline their own fetches or the libs must drop the marker. Sync server components without data (e.g. `alpina_store_logo`) are fine. **Editor preview not verified** (needs admin login) — expect async components to fail or render empty there, since the preview executes in the browser.
+Result (16 Oct): an `async` server component **does** render through `CanvasComponentTree` on the public site — `alpina_async_products` fetched 13 products via JSON:API inside the component and rendered them server-side on `/a4-async`. But it **cannot import `server-only` modules**: the Canvas component loader compiles components outside the App Router server layer (Next reports "you are using it in the Pages Router"), so `import 'server-only'` fails the build. Consequence: the existing `lib/` loaders (`product-list.ts`, `main-menu.ts`, `alpina-chrome.ts`, all marked `server-only`) cannot be reused inside components; components must inline their own fetches or the libs must drop the marker. Sync server components without data (e.g. `alpina_store_logo`) are fine.
+
+**Editor preview confirmed broken (16 Oct, observed by Dejan in the editor):** the preview runs the component in the browser — React throws "`<AlpinaAsyncProducts>` is an async Client Component. Only Server Components can be async", and `CANVAS_SITE_URL` is undefined there, which caused a `/undefined/jsonapi/...` 404 request loop (now guarded: the component skips fetching without the env var, but the React error remains). Rule: do not place async server components on pages editors preview.
 
 Steps:
 1. Note which components use `'use client'`. Most do; `alpina_store_logo` doesn't.
@@ -182,7 +199,7 @@ Check: the editor embeds the Next.js preview in an iframe, so both sites need ma
 | ID | Test | What to check |
 |----|------|---------------|
 | B1 | Content template for Product | `/node/5` currently shows Drupal theme HTML in the content slot. Build a template and check what editors can change per product. |
-| B2 | Second page variant | A landing page without navigation, selected per page. |
+| B2 | Second page variant | **Done 16 Oct**: variant `legal` with `alpina_legal_shell` on page 20 at `/legal` (slim logo bar, no product nav; footer slot; `alpina_rich_text` editable in the editor). Next.js-owned twin at `/legal-next`. Variant selected on the page wins over the site default. |
 | B3 | Changing a component already in use | Rename, remove, and retype a prop, and remove a slot. Does page 16 still render? |
 | B4 | Config deployment to a clean database | Do components, the variant, and the homepage come back with config import plus import scripts? |
 | B5 | Forms | Contact form through Webform or Next.js server actions. |

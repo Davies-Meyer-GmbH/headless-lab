@@ -1,0 +1,11 @@
+name: Alpina Legal Shell
+machineName: alpina_legal_shell
+status: true
+required: []
+props:
+  properties: {}
+slots:
+  content:
+    title: Content
+  footer:
+    title: Footer

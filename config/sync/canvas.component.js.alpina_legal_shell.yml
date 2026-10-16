@@ -1,0 +1,22 @@
+uuid: fe018e4e-435d-45ff-8f00-f5b83c30a35f
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.js_component.alpina_legal_shell
+active_version: 6eb2c42b367afdf4
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions: {  }
+    fallback_metadata:
+      slot_definitions:
+        content:
+          title: Content
+        footer:
+          title: Footer
+label: 'Alpina Legal Shell'
+id: js.alpina_legal_shell
+provider: null
+source: js
+source_local_id: alpina_legal_shell
